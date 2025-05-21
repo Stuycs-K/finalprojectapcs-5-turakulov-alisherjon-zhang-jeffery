@@ -86,9 +86,44 @@ classDiagram
 # Intended pacing:
 
 How you are breaking down the project and who is responsible for which parts.
-
-
-Especially for larger classes, e.g., Game, Player, Enemy we'll work together on different elements.
+This project will be broken down into three parts consisting of the NPCs along with the player, the map, and finally the wave defense system along with the shop.
+The responsibility for parts will be split in half for each phase, where one of us will work on the player lets say and the other works on the entities for phase one. However, ~Especially~ for larger classes, e.g., Game, Player, Enemy we'll work together on different elements required to get our project in a functioning state.
 
 A timeline with expected completion dates of parts of the project. (CHANGE THIS!!!!!)
+- Phase 1 [NPC/Player]
+- Entity Class
+  - Fields & Constructor
+  - movement
+  - Player Child Class
+    - Fields & Constructor
+    - Shooting and reloading
+    - Dropping catnip
+  - Enemy Child Class
+    - Fields & Constructor
+    - close attacks
+    - plausible type of attack
 
+
+
+- Phase 2 [Map]
+  - Constructor for Game
+  - initialization of game via setup
+    - Marked enemy spawns
+    - Marked shop spawns
+    - Marked player & cat spawn
+    - Walls initialized randomly
+
+
+
+- Phase 3 [Gameplay/QoL]
+- Game Class
+  - Fields & Constructors
+  - wave incrementing
+    - causes adjustments to other classes like enemy (stats)
+  - Shop Class
+    - upgrades for Defense
+    - upgrades for Weapons
+  - Wall Class
+    - state that turns into debris that damages enemy
+    - health
+  -QoL TBD
