@@ -18,12 +18,77 @@ How you will be using the topics covered in class in the project.
 # Project Design
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
+```mermaid
+classDiagram
+		class Entity{
+    <<Abstract>>
+	    int: hp, maxHP, mass
+	    PVector: position, velocity, acceleration
+	    String name
+	    move()*
+	    display()*
+	    applyForce(PVector)*
+	    attractTo(Entity)* PVector
+	  }
+	  
+	  class Game{
+		  ArrayList<Entity> Enemies, Walls, Projectiles, Shops
+		  Entity: Cat, Player
+		  int[][] map
+		  int wave
+		  steup() void
+		  draw() void
+		  mouseClicked() void
+		}
+		
+	  Entity <--  Player: inheritance
+	  Entity <-- Enemy
+	  Entity <-- Projectile
+	  Entity <-- Shop
+	  Entity <-- Wall
+	  Entity <-- Cat
+	  
+    class Player{
+		  int: catnip, weapon, defense, ammo
+		  boolean useCatnip
+		  reload() void
+		  keyPressed() void
+		  useCatnip() void
+		  shoot() void
+	  }
+	  class Enemy{
+			int damage
+			attack(Entity) void
+	  }
+	  class Projectile{
+	     int damage
+	     applyDamage(Entity) void
+		}
+		class Shop{
+		   int: costDefence, costWeapon
+		   upgradeDefense()
+		   upgradeWeapon() 
+		}
+      class Wall{
+		   int damage
+		   applyDamage(Entity) void
+		}
 
+		Game ..> "1"Player
+      Game ..> "0...n"Enemy
+		Game  ..> "0...n"Projectile: dependecy
+		Game ..> "2" Shop
+		Game ..> "0...n" Wall
+		Game  ..>"1" Cat
+```
 
     
 # Intended pacing:
 
 How you are breaking down the project and who is responsible for which parts.
+
+
+Especially for larger classes, e.g., Game, Player, Enemy we'll work together on different elements.
 
 A timeline with expected completion dates of parts of the project. (CHANGE THIS!!!!!)
 
