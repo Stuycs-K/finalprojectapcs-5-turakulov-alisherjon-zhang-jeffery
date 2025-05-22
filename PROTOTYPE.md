@@ -20,6 +20,7 @@ How you will be using the topics covered in class in the project.
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
 ```mermaid
 classDiagram
+direction RL
 		class Entity{
     <<Abstract>>
 	    int: hp, maxHP, mass
@@ -27,8 +28,8 @@ classDiagram
 	    String name
 	    move()*
 	    display()*
-	    applyForce(PVector)*
-	    attractTo(Entity)* PVector
+	    applyForce( f: PVector )*
+	    attractTo( other: Entity)* PVector
 	  }
 	  
 	  class Game{
@@ -41,12 +42,12 @@ classDiagram
 		  mouseClicked() void
 		}
 		
-	  Entity <--  Player: inheritance
-	  Entity <-- Enemy
-	  Entity <-- Projectile
-	  Entity <-- Shop
-	  Entity <-- Wall
-	  Entity <-- Cat
+	  Entity <|--  Player : inheritance
+	  Entity <|-- Enemy
+	  Entity <|-- Projectile
+	  Entity <|-- Shop
+	  Entity <|-- Wall
+	  Entity <|-- Cat
 	  
     class Player{
 		  int: catnip, weapon, defense, ammo
@@ -56,13 +57,13 @@ classDiagram
 		  useCatnip() void
 		  shoot() void
 	  }
-	  class Enemy{
-			int damage
-			attack(Entity) void
+   class Enemy{
+		int damage
+		attack( other: Entity ) void
 	  }
 	  class Projectile{
 	     int damage
-	     applyDamage(Entity) void
+	     applyDamage( other: Entity) void
 		}
 		class Shop{
 		   int: costDefence, costWeapon
@@ -71,15 +72,15 @@ classDiagram
 		}
       class Wall{
 		   int damage
-		   applyDamage(Entity) void
+		   applyDamage( other: Entity ) void
 		}
 
-		Game ..> "1"Player
-      Game ..> "0...n"Enemy
-		Game  ..> "0...n"Projectile: dependecy
-		Game ..> "2" Shop
-		Game ..> "0...n" Wall
-		Game  ..>"1" Cat
+		Game "1" --o "1" Player : aggregation
+	        Game "1" --o "0...n"Enemy
+		Game "1" --o "0...n"Projectile
+		Game "1" --o "2" Shop
+		Game "1" --o "0...n" Wall
+		Game "1" --o "1" Cat
 ```
 
     
