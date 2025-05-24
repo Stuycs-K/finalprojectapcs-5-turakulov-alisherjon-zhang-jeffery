@@ -18,38 +18,57 @@ How you will be using the topics covered in class in the project.
 # Project Design
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
+
 ```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
 classDiagram
-direction RL
-		class Entity{
-    <<Abstract>>
-	    int: hp, maxHP, mass
-	    PVector: position, velocity, acceleration
-	    String name
-	    move()*
-	    display()*
-	    applyForce( f: PVector )*
-	    attractTo( other: Entity)* PVector
-	  }
-	  
-	  class Game{
-		  ArrayList<Entity> Enemies, Walls, Projectiles, Shops
-		  Entity: Cat, Player
-		  int[][] map
-		  int wave
-		  steup() void
-		  draw() void
-		  mouseClicked() void
+direction LR
+
+
+	class Entity{
+		<<Abstract>>
+		int: hp, maxHP, mass
+		PVector: position, velocity, acceleration
+		String name
+		move()*
+		display()*
+		applyForce( f: PVector )*
+		attractTo( other: Entity)* PVector
+	}
+
+
+
+	class Map{
+		int[][] map
+		void display()
+	}
+
+
+	  class Wall{
+		   int damage
+		   applyDamage( other: Entity ) void
 		}
-		
-	  Entity <|--  Player : inheritance
-	  Entity <|-- Enemy
-	  Entity <|-- Projectile
-	  Entity <|-- Shop
-	  Entity <|-- Wall
-	  Entity <|-- Cat
-	  
-    class Player{
+
+	Game "1" --o "1" Player
+	Game "1" --o "0...n" Wall
+
+	Entity <|-- Projectile
+	Entity <|--  Shop 
+	Entity <|-- Player
+	Entity <|-- Cat
+	Entity <|-- Enemy
+	Entity <|-- Wall
+	class Shop{
+		int: costDefence, costWeapon
+		upgradeDefense()
+		upgradeWeapon() 
+	}
+
+    	class Player{
 		  int: catnip, weapon, defense, ammo
 		  boolean useCatnip
 		  reload() void
@@ -57,31 +76,42 @@ direction RL
 		  useCatnip() void
 		  shoot() void
 	  }
-   class Enemy{
+  	 class Enemy{
 		int damage
 		attack( other: Entity ) void
 	  }
-	  class Projectile{
-	     int damage
-	     applyDamage( other: Entity) void
-		}
-		class Shop{
-		   int: costDefence, costWeapon
-		   upgradeDefense()
-		   upgradeWeapon() 
-		}
-      class Wall{
-		   int damage
-		   applyDamage( other: Entity ) void
-		}
+	class Projectile{
+		int damage
+		applyDamage( other: Entity) void
+	}
+		
 
-		Game "1" --o "1" Player : aggregation
-	        Game "1" --o "0...n"Enemy
-		Game "1" --o "0...n"Projectile
+
+ style m1: stroke-width:0px,text-color:none,stroke:none,fill:none
+   
+ 
+		
+  	class Game{
+		  ArrayList<Entity> Enemies, Walls, Projectiles, Shops
+		  Entity: Cat, Player
+		  Map map;
+		  int wave
+		  setup() void
+		  draw() void
+		  mouseClicked() void
+	}
+		
+		  Cat "1" o-- "1"Game
+		
+	       Enemy "1" o-- "1" Game
+		Game "1" --o "0...n" Projectile
 		Game "1" --o "2" Shop
-		Game "1" --o "0...n" Wall
-		Game "1" --o "1" Cat
+		Map "1" o-- "1" Game
+		
+	
 ```
+Changes to UML :
+- Store map array to a separate Map class
 
     
 # Intended pacing:
