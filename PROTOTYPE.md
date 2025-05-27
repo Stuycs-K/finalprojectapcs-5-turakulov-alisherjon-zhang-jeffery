@@ -17,7 +17,75 @@ How you will be using the topics covered in class in the project.
      
 # Project Design
 
-UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
+UML Diagrams and descriptions of key algorithms, classes, and how things fit together.  
+
+Diagram V1:  
+```mermaid
+classDiagram
+direction RL
+		class Entity{
+    <<Abstract>>
+	    int: hp, maxHP, mass
+	    PVector: position, velocity, acceleration
+	    String name
+	    move()*
+	    display()*
+	    applyForce( f: PVector )*
+	    attractTo( other: Entity)* PVector
+	  }
+	  
+	  class Game{
+		  ArrayList<Entity> Enemies, Walls, Projectiles, Shops
+		  Entity: Cat, Player
+		  int[][] map
+		  int wave
+		  steup() void
+		  draw() void
+		  mouseClicked() void
+		}
+		
+	  Entity <|--  Player : inheritance
+	  Entity <|-- Enemy
+	  Entity <|-- Projectile
+	  Entity <|-- Shop
+	  Entity <|-- Wall
+	  Entity <|-- Cat
+	  
+    class Player{
+		  int: catnip, weapon, defense, ammo
+		  boolean useCatnip
+		  reload() void
+		  keyPressed() void
+		  useCatnip() void
+		  shoot() void
+	  }
+   class Enemy{
+		int damage
+		attack( other: Entity ) void
+	  }
+	  class Projectile{
+	     int damage
+	     applyDamage( other: Entity) void
+		}
+		class Shop{
+		   int: costDefence, costWeapon
+		   upgradeDefense()
+		   upgradeWeapon() 
+		}
+      class Wall{
+		   int damage
+		   applyDamage( other: Entity ) void
+		}
+
+		Game "1" --o "1" Player : aggregation
+	        Game "1" --o "0...n"Enemy
+		Game "1" --o "0...n"Projectile
+		Game "1" --o "2" Shop
+		Game "1" --o "0...n" Wall
+		Game "1" --o "1" Cat
+```
+
+Diagram V2:  
 
 ```mermaid
 ---
@@ -31,7 +99,8 @@ direction LR
 
 	class Entity{
 		<<Abstract>>
-		int: hp, maxHP, mass
+		int: hp, maxHP
+		float mass
 		PVector: position, velocity, acceleration
 		String name
 		move()*
