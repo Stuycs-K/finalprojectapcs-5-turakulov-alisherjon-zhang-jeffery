@@ -12,6 +12,7 @@ c = new Cat(400, 400);
 }
 
 void draw(){
+  //c.position = new PVector(mouseX, mouseY);
   background(255);
   e.display();
   p.display();
