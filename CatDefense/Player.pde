@@ -14,9 +14,13 @@ class Player extends Entity{
     ammo=amm;
     this.isCatnip=isCatnip;
   }
+  //FOLLOWING SHOOT AND RELOAD WILL NEED A SEPARATE CLASS FOR BULLETS ETC
+  void shoot(){
+    ammo--;
+  }
   
   void reload(){
-    
+    ammo+=1; //placeholder include amt of max bullets
   }
   
   void keyPressed(){
@@ -44,11 +48,16 @@ class Player extends Entity{
   acceleration=f.div(mass).setMag(acceleration.mag()+f.mag());
   }
   
-  void useCatnip(){
-    
+  void display(){
+    fill(255,255,0);
+    stroke(0);
+    circle(position.x,position.y,24);
   }
   
-  void shoot(){
-  
+  void useCatnip(){
+    if(isCatnip){
+      catnip--;
+      //code here relating to cat class need to discuss
+    }
   }
 }
