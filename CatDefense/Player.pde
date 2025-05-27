@@ -26,6 +26,7 @@ class Player extends Entity{
   void keyPressed(){
     if(key=='w'||key=='W'||keyCode==UP){
       position.y-=speed;
+      System.out.println("MOVEUP");
     }
     if(key=='a'||key=='A'||keyCode==LEFT){
       position.x-=speed;

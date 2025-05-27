@@ -1,14 +1,19 @@
 
 ArrayList<Entity> Enemies, Projectiles, Walls;
-Entity p;
+Entity en;
+Player p;
 Enemy e;
 Cat c;
 
 void setup(){
 size(800, 800);
-p = new Enemy(1, 100, 100);
+en= new Enemy(1, 100, 100);
+p=new Player(1,1,1,1,false,100,100);
 e = new Enemy(1, 100, 100);
 c = new Cat(400, 400);
+}
+
+void keyPressed(){
 }
 
 void draw(){
@@ -21,6 +26,6 @@ void draw(){
   e.move();
   if(frameCount % 20 == 0){
     e.attack(p);
-System.out.println("player: "+ p.hp+ "  ;   en: " + e.hp);
+//System.out.println("player: "+ p.hp+ "  ;   en: " + e.hp);
   }
 }
