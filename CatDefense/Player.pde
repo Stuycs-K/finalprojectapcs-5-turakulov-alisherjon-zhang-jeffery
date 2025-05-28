@@ -5,7 +5,9 @@ class Player extends Entity{
   int ammo;
   boolean isCatnip;
   float speed = 3; //test around
+  float bulletSpeed=10; //upgrades later
   boolean up,down,left,right;
+  ArrayList<Bullets> bullets;
   
   public Player(int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos){
     super(5,100,10.0,xpos,ypos,0,0,"Player");
@@ -14,10 +16,17 @@ class Player extends Entity{
     defense=def;
     ammo=amm;
     this.isCatnip=isCatnip;
+    bullets=new ArrayList<Bullets>();
   }
   //FOLLOWING SHOOT AND RELOAD WILL NEED A SEPARATE CLASS FOR BULLETS ETC
   void shoot(){
+    if(ammo>0){
+      PVector dir=new PVector(mouseX,mouseY);
+      PVector shoot=position.copy();
+      bullets.add(new Bullets(shoot,dir,bulletSpeed));
     ammo--;
+    System.out.println("bullet shot!");
+    }
   }
   
   void reload(){
@@ -26,7 +35,7 @@ class Player extends Entity{
   
   void keyPressed(){
     if(key=='w'||key=='W'||keyCode==UP){
-      position.y-=speed;
+      up=true;
     }
     if(key=='a'||key=='A'||keyCode==LEFT){
       left=true;
@@ -37,6 +46,10 @@ class Player extends Entity{
     if(key=='d'||key=='D'||keyCode==RIGHT){
       right=true;
     }
+  }
+  
+  void mouseClicked(){
+    shoot();
   }
   
   void keyReleased(){

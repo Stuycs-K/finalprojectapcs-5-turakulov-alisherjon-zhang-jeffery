@@ -8,7 +8,7 @@ Cat c;
 void setup(){
 size(800, 800);
 en= new Enemy(1, 100, 100);
-p=new Player(1,1,1,1,false,100,100);
+p=new Player(1,1,1,10,false,100,100);
 e = new Enemy(1, 100, 100);
 c = new Cat(400, 400);
 }
@@ -21,6 +21,11 @@ void keyReleased(){
   p.keyReleased();
 }
 
+void mouseClicked(){
+  p.mouseClicked();
+}
+  
+
 void draw(){
   //c.position = new PVector(mouseX, mouseY);
   background(255);
@@ -30,6 +35,15 @@ void draw(){
   e.applyForce(e.attractTo(c));
   e.move();
   p.move();
+  for(int i=p.bullets.size()-1;i>0;i--){
+    Bullets b=p.bullets.get(i);
+    b.move();
+    b.display();
+    if(b.destroy()){
+      p.bullets.remove(i);
+    }
+  }
+  
   if(frameCount % 20 == 0){
     e.attack(p);
 //System.out.println("player: "+ p.hp+ "  ;   en: " + e.hp);
