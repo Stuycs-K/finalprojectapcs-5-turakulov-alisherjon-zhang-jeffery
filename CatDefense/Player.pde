@@ -2,7 +2,7 @@ class Player extends Entity{
   int catnip;
   int weapon; //damage
   int defense; //hp increase?
-  int ammo;
+  int ammo; int maxAmmo;
   boolean isCatnip;
   float speed = 3; //test around
   float bulletSpeed=10; //upgrades later
@@ -15,6 +15,7 @@ class Player extends Entity{
     weapon=wep;
     defense=def;
     ammo=amm;
+    maxAmmo=amm;
     this.isCatnip=isCatnip;
     bullets=new ArrayList<Bullets>();
   }
@@ -25,12 +26,14 @@ class Player extends Entity{
       PVector shoot=position.copy();
       bullets.add(new Bullets(shoot,dir,bulletSpeed));
     ammo--;
-    System.out.println("bullet shot!");
+    System.out.println("ammo: "+ammo+"/"+maxAmmo);
     }
   }
   
   void reload(){
-    ammo+=1; //placeholder include amt of max bullets
+    if(ammo<maxAmmo){
+    ammo+=maxAmmo-ammo; //placeholder include amt of max bullets
+    }
   }
   
   void keyPressed(){
@@ -45,6 +48,9 @@ class Player extends Entity{
     }
     if(key=='d'||key=='D'||keyCode==RIGHT){
       right=true;
+    }
+    if(key=='r'||key=='R'){
+      reload();
     }
   }
   
