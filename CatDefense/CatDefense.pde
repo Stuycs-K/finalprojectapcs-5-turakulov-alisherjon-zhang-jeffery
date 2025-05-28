@@ -9,6 +9,7 @@ void setup(){
 size(800, 800);
 m = new Map(50);
 m.display();
+Walls = m.Walls;
 p = new Enemy(1, 100, 100);
 e = new Enemy(1, 100, 100);
 c = new Cat(400, 400);
