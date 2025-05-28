@@ -19,15 +19,20 @@ class Player extends Entity{
     this.isCatnip=isCatnip;
     bullets=new ArrayList<Bullets>();
   }
-  //FOLLOWING SHOOT AND RELOAD WILL NEED A SEPARATE CLASS FOR BULLETS ETC
+  
   void shoot(){
     if(ammo>0){
-      PVector dir=new PVector(mouseX,mouseY);
+      PVector dir2=new PVector(mouseX,mouseY);
+      PVector dir=new PVector(position.x,position.y).sub(dir2).mult(-1);
       PVector shoot=position.copy();
       bullets.add(new Bullets(shoot,dir,bulletSpeed));
     ammo--;
     System.out.println("ammo: "+ammo+"/"+maxAmmo);
     }
+  }
+  
+  void damage(Enemy other){
+    if(bullets.get
   }
   
   void reload(){
