@@ -4,10 +4,11 @@ class Player extends Entity{
   int defense; //hp increase?
   int ammo;
   boolean isCatnip;
-  float speed = 1; //test around
+  float speed = 3; //test around
+  boolean up,down,left,right;
   
   public Player(int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos){
-    super(5,100,10.0,xpos,ypos,(int)random(-2,2),0,"Player");
+    super(5,100,10.0,xpos,ypos,0,0,"Player");
     this.catnip=catnip;
     weapon=wep;
     defense=def;
@@ -26,20 +27,38 @@ class Player extends Entity{
   void keyPressed(){
     if(key=='w'||key=='W'||keyCode==UP){
       position.y-=speed;
-      System.out.println("MOVEUP");
     }
     if(key=='a'||key=='A'||keyCode==LEFT){
-      position.x-=speed;
+      left=true;
     }
     if(key=='s'||key=='S'||keyCode==DOWN){
-      position.y+=speed;
+      down=true;
     }
     if(key=='d'||key=='D'||keyCode==RIGHT){
-      position.x+=speed;
+      right=true;
+    }
+  }
+  
+  void keyReleased(){
+    if(key=='w'||key=='W'||keyCode==UP){
+      up=false;
+    }
+    if(key=='a'||key=='A'||keyCode==LEFT){
+      left=false;
+    }
+    if(key=='s'||key=='S'||keyCode==DOWN){
+      down=false;
+    }
+    if(key=='d'||key=='D'||keyCode==RIGHT){
+      right=false;
     }
   }
   
   void move(){
+    if(up)position.y-=speed;
+    if(left)position.x-=speed;
+    if(down)position.y+=speed;
+    if(right)position.x+=speed;
     position.add(velocity);
     velocity.add(acceleration);
     acceleration.setMag(0.0);

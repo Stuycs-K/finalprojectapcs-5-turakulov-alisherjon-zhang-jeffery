@@ -14,6 +14,11 @@ c = new Cat(400, 400);
 }
 
 void keyPressed(){
+  p.keyPressed();
+}
+
+void keyReleased(){
+  p.keyReleased();
 }
 
 void draw(){
@@ -24,6 +29,7 @@ void draw(){
   c.display();
   e.applyForce(e.attractTo(c));
   e.move();
+  p.move();
   if(frameCount % 20 == 0){
     e.attack(p);
 //System.out.println("player: "+ p.hp+ "  ;   en: " + e.hp);
