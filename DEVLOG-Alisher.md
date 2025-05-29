@@ -18,8 +18,8 @@ Time: ~90 minutes;
 
 ### 2025-05-27 - Work on Map and Wall classes
 Write the map class constructor to intitalize map array, randomly place a number of walls, and add wall entities with corresponding positions to the arraylist of walls. Also write Wall class, with constructor and damage intitialization.  
+Time: ~90 minutes;  
+
+### 2025-05-28 - Tweak enemy movement, add enemy wave spawning, add wall obstructing enemies  
+Write Enemy spawning system based on wave variable in CatDefense class, change Enemy movement to rely on a constant velocity toward Cat. Begin implementation of enemy movement obsturction when enemies step on a cell with a wall (according to the map array).    
 Time: ~90 minutes;
-
-
-
-
