@@ -1,8 +1,9 @@
+<<<<<<< HEAD
 
 ArrayList<Entity> Enemies, Projectiles, Walls;
 Entity en;
 Player p;
-Enemy e; //arraylist maybe so can remove easier?
+Enemy e;
 Cat c;
 Shop s;
 
@@ -63,6 +64,6 @@ void draw(){
     
   if(frameCount % 20 == 0){
     e.attack(p);
-//System.out.println("player: "+ p.hp+ "  ;   en: " + e.hp);
+System.out.println("player: "+ p.hp+ "  ;   en: " + e.hp);
   }
 }
