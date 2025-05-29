@@ -23,8 +23,14 @@ class Shop extends Entity{
       //maybe add a bulletspeed thing too
   }
   }
+  void UI(){
+    if(dist(position.x,position.y,p.position.x,p.position.y)<30){
+      fill(100);
+      rect((width/4)+50,height/4,300,400,28);
+    }
+  }
   void display(){
     fill(0,255,255);
-    circle(position.x,position.y,50);
+    circle(position.x,position.y,30);
 }
 }

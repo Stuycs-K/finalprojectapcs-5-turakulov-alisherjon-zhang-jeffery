@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 ArrayList<Entity> Enemies, Projectiles, Walls;
 Entity en;
 Player p;
@@ -61,6 +59,7 @@ void draw(){
     }
     System.out.println(p.souls);
   }
+  s.UI();
     
   if(frameCount % 20 == 0){
     e.attack(p);
