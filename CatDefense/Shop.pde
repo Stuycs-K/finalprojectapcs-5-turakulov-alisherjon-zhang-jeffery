@@ -3,7 +3,7 @@ class Shop extends Entity{
   int costWeapon;
   Player p;
   public Shop(int costD,int costW,Player player){
-    super(10000000,10000000,10.0,0,0,0,0,"Shop");
+    super(10000000,10000000,10.0,200,600,0,0,"Shop");
     costDefence=costD;
     costWeapon=costW;
     p=player;
@@ -23,4 +23,8 @@ class Shop extends Entity{
       //maybe add a bulletspeed thing too
   }
   }
+  void display(){
+    fill(0,255,255);
+    circle(position.x,position.y,50);
+}
 }

@@ -34,6 +34,7 @@ void draw(){
   e.display();
   p.display();
   c.display();
+  s.display();
   e.applyForce(e.attractTo(c));
   e.move();
   p.move();
