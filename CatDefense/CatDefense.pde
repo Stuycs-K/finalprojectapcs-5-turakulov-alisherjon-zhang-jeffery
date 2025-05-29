@@ -1,4 +1,3 @@
-
 ArrayList<Entity> Projectiles, Walls;
 ArrayList<Enemy> Enemies;
 Player p;
@@ -92,6 +91,13 @@ void draw(){
       en.attack(p);
       en.applyForce(en.attractTo(c));
       en.move();
+    }
+    for(Wall wa: Walls){
+      wa.takeDamage();
+      //if(wa.hp <= 0){
+        //map[position.y/40][position.x/4] ==
+        //Walls.remove(wa);
+    //  }
     }
     //System.out.println("player: "+ p.hp+ "  ;   cat: " + c.hp);
  

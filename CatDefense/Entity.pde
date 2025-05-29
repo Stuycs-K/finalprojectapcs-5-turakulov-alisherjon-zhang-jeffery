@@ -21,6 +21,10 @@ abstract class Entity{
      return null;
    }
    void attack(Entity other){}
- 
+   
+  boolean closeEnough(Entity other){
+   boolean closeX = abs(position.x - other.position.x) <= 24;
+    boolean closeY = abs(position.y - other.position.y) <= 24;
+    return closeX && closeY; 
   
-}
+  }

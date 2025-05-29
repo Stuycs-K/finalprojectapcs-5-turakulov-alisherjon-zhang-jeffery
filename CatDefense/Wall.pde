@@ -20,6 +20,16 @@ class Wall extends Entity{
     //circle(x+10, y+10, 10);
   }
   
+ 
+  void takeDamage(){
+      for(Enemy en: Enemies){
+        if(closeEnough(en)){
+          hp -= en.damage;
+          Enemy.hp -= damage;
+        }
+      }
+  }
+  
   
   
 }
