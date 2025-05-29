@@ -104,6 +104,9 @@ class Player extends Entity{
   void defInc(int amt){
     defense+=amt;
   }
+  void wepInc(int amt){
+    weapon+=amt;
+  }
   
   void useCatnip(){
     if(isCatnip){
