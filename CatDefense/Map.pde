@@ -35,7 +35,7 @@ void display(){
         fill(150, 100, 0);
         rect(x, y, x+20, y+20);
         fill(0, 250, 50);
-        circle(x+10, y+10, 10);
+        circle(x+10, y+10, 15);
       }
     }
   }

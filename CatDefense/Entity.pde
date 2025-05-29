@@ -20,6 +20,7 @@ abstract class Entity{
    PVector attractTo(Entity other){
      return null;
    }
+   void attack(Entity other){}
  
   
 }

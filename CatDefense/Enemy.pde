@@ -1,9 +1,11 @@
  class Enemy extends Entity{
   int damage;
+ //static ArrayList<Entity> Enemies = new ArrayList<Entity>(30);
   
   public Enemy(int damage, int xpos, int ypos){
     super(5, 100, 10.0, xpos, ypos, (int)random(-2,2), 0, "Enemy");
     this.damage = damage;
+   
   }
   
   void attack(Entity other){
@@ -15,9 +17,16 @@
     
   }
   void move(){
-    velocity.add(acceleration);
-    position.add(velocity);
-    acceleration.setMag(0.0);
+    if(m.map[(int)(position.x/40)][(int)(position.y/40)] == 1){
+      velocity.setMag(0.0);
+    }
+      //velocity.add(acceleration);
+      position.add(velocity);
+     // acceleration.setMag(0.0);
+  
+    //println(m.map[(int)(position.x/40)][(int)(position.y/40)]);
+    
+    
     
   }
   void display(){
