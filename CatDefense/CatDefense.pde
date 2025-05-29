@@ -4,13 +4,15 @@ Entity en;
 Player p;
 Enemy e; //arraylist maybe so can remove easier?
 Cat c;
+Shop s;
 
 void setup(){
 size(800, 800);
 en= new Enemy(1, 100, 100);
-p=new Player(1,1,1,10,false,100,100);
+p=new Player(1,1,0,10,false,100,100);
 e = new Enemy(1, 100, 100);
 c = new Cat(400, 400);
+s = new Shop(5,3,p);
 }
 
 void keyPressed(){
@@ -52,6 +54,10 @@ void draw(){
   if(e.hp<=0){//placeholder for on death
     fill(255,0,0);
     circle(e.position.x, e.position.y, 24);
+    if(p.souls<1000){
+    p.souls++; //placeholder
+    }
+    System.out.println(p.souls);
   }
     
   if(frameCount % 20 == 0){

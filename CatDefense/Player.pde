@@ -1,8 +1,9 @@
 class Player extends Entity{
   int catnip;
   int weapon; //damage
-  int defense; //hp increase?
+  int defense; //hp increase
   int ammo; int maxAmmo;
+  int souls; //currency
   boolean isCatnip;
   float speed = 3; //test around
   float bulletSpeed=10; //upgrades later
@@ -10,7 +11,7 @@ class Player extends Entity{
   ArrayList<Bullets> bullets;
   
   public Player(int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos){
-    super(5,100,10.0,xpos,ypos,0,0,"Player");
+    super(5,100+def,10.0,xpos,ypos,0,0,"Player");
     this.catnip=catnip;
     weapon=wep;
     defense=def;
@@ -92,6 +93,16 @@ class Player extends Entity{
     fill(255,255,0);
     stroke(0);
     circle(position.x,position.y,24);
+  }
+  
+  void soulsDec(int amt){
+    souls-=amt;
+  }
+  int getSouls(){
+    return souls;
+  }
+  void defInc(int amt){
+    defense+=amt;
   }
   
   void useCatnip(){
