@@ -31,10 +31,6 @@ class Player extends Entity{
     }
   }
   
-  void damage(Enemy other){
-    if(bullets.get
-  }
-  
   void reload(){
     if(ammo<maxAmmo){
     ammo+=maxAmmo-ammo; //placeholder include amt of max bullets

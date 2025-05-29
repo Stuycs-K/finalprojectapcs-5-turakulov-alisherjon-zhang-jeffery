@@ -2,7 +2,7 @@
 ArrayList<Entity> Enemies, Projectiles, Walls;
 Entity en;
 Player p;
-Enemy e;
+Enemy e; //arraylist maybe so can remove easier?
 Cat c;
 
 void setup(){
@@ -37,13 +37,23 @@ void draw(){
   p.move();
   for(int i=p.bullets.size()-1;i>0;i--){
     Bullets b=p.bullets.get(i);
+    float d=dist(b.position.x,b.position.y,e.position.x,e.position.y);
+    if(d<20){
+      e.hp-=p.weapon;
+      p.bullets.remove(i);
+      System.out.println(e.hp);
+    }
     b.move();
     b.display();
     if(b.destroy()){
       p.bullets.remove(i);
     }
   }
-  
+  if(e.hp<=0){//placeholder for on death
+    fill(255,0,0);
+    circle(e.position.x, e.position.y, 24);
+  }
+    
   if(frameCount % 20 == 0){
     e.attack(p);
 //System.out.println("player: "+ p.hp+ "  ;   en: " + e.hp);
