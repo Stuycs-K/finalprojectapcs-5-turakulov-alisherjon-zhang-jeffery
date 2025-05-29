@@ -5,7 +5,7 @@ class Player extends Entity{
   int ammo; int maxAmmo;
   int souls; //currency
   boolean isCatnip;
-  float speed = 3; //test around
+  float speed = 10; //test around
   float bulletSpeed=10; //upgrades later
   boolean up,down,left,right;
   ArrayList<Bullets> bullets;
