@@ -1,44 +1,85 @@
 class Player extends Entity{
   int catnip;
   int weapon; //damage
-  int defense; //hp increase?
-  int ammo;
+  int defense; //hp increase
+  int ammo; int maxAmmo;
+  int souls; //currency
   boolean isCatnip;
-  float speed = 1; //test around
+  float speed = 3; //test around
+  float bulletSpeed=10; //upgrades later
+  boolean up,down,left,right;
+  ArrayList<Bullets> bullets;
   
   public Player(int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos){
-    super(5,100,10.0,xpos,ypos,(int)random(-2,2),0,"Player");
+    super(5,100+def,10.0,xpos,ypos,0,0,"Player");
     this.catnip=catnip;
     weapon=wep;
     defense=def;
     ammo=amm;
+    maxAmmo=amm;
     this.isCatnip=isCatnip;
+    bullets=new ArrayList<Bullets>();
   }
-  //FOLLOWING SHOOT AND RELOAD WILL NEED A SEPARATE CLASS FOR BULLETS ETC
+  
   void shoot(){
+    if(ammo>0){
+      PVector dir2=new PVector(mouseX,mouseY);
+      PVector dir=new PVector(position.x,position.y).sub(dir2).mult(-1);
+      PVector shoot=position.copy();
+      bullets.add(new Bullets(shoot,dir,bulletSpeed));
     ammo--;
+    System.out.println("ammo: "+ammo+"/"+maxAmmo);
+    }
   }
   
   void reload(){
-    ammo+=1; //placeholder include amt of max bullets
+    if(ammo<maxAmmo){
+    ammo+=maxAmmo-ammo; //placeholder include amt of max bullets
+    }
   }
   
   void keyPressed(){
     if(key=='w'||key=='W'||keyCode==UP){
-      position.y-=speed;
+      up=true;
     }
     if(key=='a'||key=='A'||keyCode==LEFT){
-      position.x-=speed;
+      left=true;
     }
     if(key=='s'||key=='S'||keyCode==DOWN){
-      position.y+=speed;
+      down=true;
     }
     if(key=='d'||key=='D'||keyCode==RIGHT){
-      position.x+=speed;
+      right=true;
+    }
+    if(key=='r'||key=='R'){
+      reload();
+    }
+  }
+  
+  void mouseClicked(){
+    shoot();
+  }
+  
+  void keyReleased(){
+    if(key=='w'||key=='W'||keyCode==UP){
+      up=false;
+    }
+    if(key=='a'||key=='A'||keyCode==LEFT){
+      left=false;
+    }
+    if(key=='s'||key=='S'||keyCode==DOWN){
+      down=false;
+    }
+    if(key=='d'||key=='D'||keyCode==RIGHT){
+      right=false;
     }
   }
   
   void move(){
+    if(up)position.y-=speed;
+    if(left)position.x-=speed;
+    if(down)position.y+=speed;
+    if(right)position.x+=speed;
     position.add(velocity);
     velocity.add(acceleration);
     acceleration.setMag(0.0);
@@ -52,6 +93,19 @@ class Player extends Entity{
     fill(255,255,0);
     stroke(0);
     circle(position.x,position.y,24);
+  }
+  
+  void soulsDec(int amt){
+    souls-=amt;
+  }
+  int getSouls(){
+    return souls;
+  }
+  void defInc(int amt){
+    defense+=amt;
+  }
+  void wepInc(int amt){
+    weapon+=amt;
   }
   
   void useCatnip(){
