@@ -7,9 +7,9 @@
   }
   
   void attack(Entity other){
-    boolean closeX = abs(position.x - other.position.x) <= 12;
-    boolean closeY = abs(position.y - other.position.y) <= 12;
-    if( closeX && closeY /* && (other.name.equals("Player") || other.name.equals("Cat"))*/){
+    boolean closeX = abs(position.x - other.position.x) <= 24;
+    boolean closeY = abs(position.y - other.position.y) <= 24;
+    if( closeX && closeY && !other.name.equals("Enemy")){
       other.hp -= damage;
     }
     
@@ -29,15 +29,18 @@
  
  /// Precondition: other is Cat
   PVector attractTo(Entity other){ // use constant distance 
-  
-    float distance = PVector.sub(position, other.position).mag();
-    if(distance >= 500){
-      distance = 300;
+      PVector direction = PVector.sub(other.position, position);
+      direction.setMag(5);
+      return direction;
+/*    float distance = PVector.sub(position, other.position).mag();
+    if(distance >= 400){
+      distance = 50;
     }else if(distance >=300){
-      distance = 700;
+      distance = 10000;
     }else{
-      distance = 500;
+      distance = 50;
     }
+    
     float magForce = (20*mass*other.mass) / (distance*distance); // Universal law of gravity
     PVector  force = PVector.sub(other.position, position);
     if(mass > other.mass){
@@ -45,13 +48,16 @@
     }
      force.normalize();
      force.setMag(magForce);
-    return force;
+    return force;*/
+    
   }
   
   
   void applyForce(PVector f){
     //Using forula F=ma ; a = F/m
-     acceleration = f.div(mass).setMag(acceleration.mag() + f.mag());
+     //acceleration = f.div(mass).setMag(acceleration.mag() + f.mag());
+     
+      velocity = f;
   }
 
 }

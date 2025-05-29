@@ -10,7 +10,7 @@ size(800, 800);
 m = new Map(50);
 m.display();
 Walls = m.Walls;
-p = new Enemy(1, 100, 100);
+p = new Player(0, 0, 0, 10, false, 100, 100);
 e = new Enemy(1, 100, 100);
 c = new Cat(400, 400);
 }
@@ -24,8 +24,10 @@ void draw(){
   c.display();
   e.applyForce(e.attractTo(c));
   e.move();
+ 
   if(frameCount % 20 == 0){
     e.attack(p);
-System.out.println("player: "+ p.hp+ "  ;   en: " + e.hp);
+    e.attack(c);
+System.out.println("player: "+ p.hp+ "  ;   cat: " + c.hp);
   }
 }
