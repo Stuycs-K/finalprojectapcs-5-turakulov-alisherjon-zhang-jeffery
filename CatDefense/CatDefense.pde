@@ -31,7 +31,7 @@ void draw(){
     if(Enemies.size() < wave*3){
       int x = (int) random(0, 800);
       int y = (int) random(0, 800);
-      if(!(x > 300 && x < 500 && y > 300 && y < 500)){
+      if(!(x > 250 && x < 550 && y > 250 && y < 550)){
         Enemies.add(new Enemy(wave, x, y));
       }
       
@@ -55,7 +55,7 @@ public static String debugToString(int[][] arr){
     for(int j = 0; j < arr[0].length; j++){
       if(j == 0){
       ret += "[";
-      }else if(j != arr[0].length){
+      }else if(j != arr[0].length-1){
         ret += ""+arr[i][j] + ", ";
       }else{
         ret += arr[i][j] + "]";

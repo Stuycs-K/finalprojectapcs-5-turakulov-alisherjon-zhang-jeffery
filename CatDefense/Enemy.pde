@@ -17,13 +17,13 @@
     
   }
   void move(){
-    if(m.map[(int)(position.x/40)][(int)(position.y/40)] == 1){
-      velocity.setMag(0.0);
-    }
+    if(m.map[(int)(position.x/40)][(int)(position.y/40)] != 1){
+      
+    
       //velocity.add(acceleration);
       position.add(velocity);
      // acceleration.setMag(0.0);
-  
+    }
     //println(m.map[(int)(position.x/40)][(int)(position.y/40)]);
     
     
@@ -39,7 +39,7 @@
  /// Precondition: other is Cat
   PVector attractTo(Entity other){ // use constant distance 
       PVector direction = PVector.sub(other.position, position);
-      direction.setMag(5);
+      direction.setMag(3);
       return direction;
 /*    float distance = PVector.sub(position, other.position).mag();
     if(distance >= 400){
