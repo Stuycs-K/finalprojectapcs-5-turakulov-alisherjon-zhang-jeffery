@@ -22,7 +22,7 @@ public Map(){
   this(20);
 }
 
-
+//display map
 void display(){
   for(int i = 0; i < map.length; i++){
     for(int j = 0; j < map[0].length; j++){
@@ -44,9 +44,10 @@ void display(){
       }
     }
   }
-  for(int k = 0; k < Walls.size(); k++){
+  
+  /*for(int k = 0; k < Walls.size(); k++){ walls displayed as static rectangles with rest of map
     Walls.get(k).display();
-  }
+  }*/
 }
 
 }

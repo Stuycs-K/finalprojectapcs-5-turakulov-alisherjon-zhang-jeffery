@@ -8,6 +8,7 @@ Enemy e;
 int wave = 1;
 Entity en;
 Shop s;
+int enemiesFolded = 0;
 
 
 void setup(){
@@ -19,7 +20,7 @@ p = new Player(0, 0, 0, 10, false, 100, 100);
 //e = new Enemy(1, 100, 100);
 Enemies = new ArrayList<Enemy>(30); 
 c = new Cat(400, 400);
-println(debugToString(m.map));
+//println(debugToString(m.map));
 //en= new Enemy(1, 100, 100);
 p=new Player(1,1,0,10,false,100,100);
 bullets = p.bullets;
@@ -48,20 +49,12 @@ void draw(){
   c.display();
   s.display();
   p.move();
+  fill(0);
+  text("wave: "+ wave, 40, 40);
 
     
 
-  if(frameCount % 20 == 0){
-    if(Enemies.size() < wave*3){
-      int x = (int) random(0, 800);
-      int y = (int) random(0, 800);
-      if(!(x > 250 && x < 550 && y > 250 && y < 550)){
-        Enemies.add(new Enemy(wave, x, y));
-      }
-      
-    }
-    
-  }
+  
   for(int h = 0; h< Enemies.size(); h++){
     Enemy en = Enemies.get(h);
     en.display();
@@ -94,17 +87,32 @@ void draw(){
     if(en.hp <= 0){
       Enemies.remove(h);
       h--;
+      enemiesFolded++;
     }
+    
   }
+  if(frameCount % 40 == 0){   
+    if(Enemies.size() < wave*3 && enemiesFolded < wave*3){
+      int x = (int) random(0, 800);
+      int y = (int) random(0, 800);
+      if(!(x > 250 && x < 550 && y > 250 && y < 550)){
+        Enemies.add(new Enemy(wave, x, y));
+      }
+    }
     for(int i = 0; i< Walls.size(); i++){
       Wall wa = Walls.get(i);
       wa.takeDamage();
       if(wa.hp <= 0){
-          m.map[(int) wa.position.y/40][(int) wa.position.x/40] = 0;
+          m.map[(int) wa.position.y/20][(int) wa.position.x/20] = 0;
           Walls.remove(i);
           i--;
         }
     }
+  }
+  if(enemiesFolded == wave*3){
+    wave++;
+  }
+    
     //System.out.println("player: "+ p.hp+ "  ;   cat: " + c.hp);
  
 }

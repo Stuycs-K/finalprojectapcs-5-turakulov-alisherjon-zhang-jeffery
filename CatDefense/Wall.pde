@@ -26,6 +26,7 @@ class Wall extends Entity{
         if(closeEnough(en)){
           hp -= en.damage;
           en.hp -= damage;
+          println(hp + " >wall en< " + en.hp);
         }
       }
   }
