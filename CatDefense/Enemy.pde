@@ -20,6 +20,13 @@
     acceleration.setMag(0.0);
     
   }
+  void UI(){
+    if(hp!=maxHP){
+      fill(0);
+    text(hp+"/"+maxHP, position.x-30, position.y-20); //healthbar percentage later
+    }
+  }
+  
   void display(){
     fill(150, 50, 50);
     noStroke();

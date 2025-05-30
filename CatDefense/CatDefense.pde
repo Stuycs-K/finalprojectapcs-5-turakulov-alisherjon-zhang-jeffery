@@ -64,6 +64,7 @@ void draw(){
   s.UI();
   textSize(30);
   p.UI();
+  e.UI();
     
   if(frameCount % 20 == 0){
     e.attack(p);
