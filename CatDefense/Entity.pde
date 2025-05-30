@@ -28,3 +28,5 @@ abstract class Entity{
     return closeX && closeY; 
   
   }
+  
+}

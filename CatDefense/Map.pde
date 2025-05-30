@@ -1,6 +1,6 @@
 class Map{
 int[][] map;
-ArrayList<Entity> Walls = new ArrayList<Entity>(25);
+ArrayList<Wall> Walls = new ArrayList<Wall>(25);
 
 
 
@@ -11,9 +11,9 @@ public Map(int num){
   for(int i = 0; i < num; i++){
     x = (int) random(0, 40);
     y = (int) random(0, 40);
-    if(map[x][y] == 0){
-      map[x][y] = 1;
-      Walls.add(new Wall(x+20, y*20));
+    if(map[y][x] == 0){
+      map[y][x] = 1;
+      Walls.add(new Wall(x*40, y*40));
     }
   }
 }

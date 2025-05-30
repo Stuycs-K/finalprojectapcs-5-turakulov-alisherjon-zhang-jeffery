@@ -25,7 +25,7 @@ class Wall extends Entity{
       for(Enemy en: Enemies){
         if(closeEnough(en)){
           hp -= en.damage;
-          Enemy.hp -= damage;
+          en.hp -= damage;
         }
       }
   }
