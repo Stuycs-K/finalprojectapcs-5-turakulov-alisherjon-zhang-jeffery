@@ -24,6 +24,9 @@ void keyReleased(){
 
 void mouseClicked(){
   p.mouseClicked();
+  if(s.isOpen){
+  s.mouseClicked();
+  }
 }
   
 
