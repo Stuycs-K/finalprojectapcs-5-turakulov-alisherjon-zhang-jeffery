@@ -50,7 +50,7 @@ void draw(){
   s.display();
   p.move();
   fill(0);
-  text("wave: "+ wave, 40, 40);
+  text("wave: "+ wave, 750, 40);
 
     
 
@@ -94,7 +94,7 @@ void draw(){
     
   }
   if(frameCount % 40 == 0){   
-    if(Enemies.size() < wave*3 && enemiesFolded < wave*3){
+    if((Enemies.size() < wave*3 && enemiesFolded <= wave*3)){
       int x = (int) random(0, 800);
       int y = (int) random(0, 800);
       if(!(x > 250 && x < 550 && y > 250 && y < 550)){
