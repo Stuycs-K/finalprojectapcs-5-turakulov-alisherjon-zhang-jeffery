@@ -13,7 +13,7 @@ public Map(int num){
     y = (int) random(0, 40);
     if(map[y][x] == 0){
       map[y][x] = 1;
-      Walls.add(new Wall(x*40, y*40));
+      Walls.add(new Wall(x*20, y*20));
     }
   }
 }

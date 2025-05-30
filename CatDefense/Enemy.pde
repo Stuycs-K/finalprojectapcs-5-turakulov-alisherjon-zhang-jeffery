@@ -17,7 +17,7 @@
     
   }
   void move(){
-    if(m.map[(int)(position.x/40)][(int)(position.y/40)] != 1){
+    if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0){
       
     
       //velocity.add(acceleration);
