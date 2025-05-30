@@ -57,7 +57,9 @@ class Player extends Entity{
   }
   
   void mouseClicked(){
+    if(mouseButton==LEFT){
     shoot();
+    }
   }
   
   void keyReleased(){
@@ -93,7 +95,8 @@ class Player extends Entity{
     fill(0);
     text("Bullets: " + ammo+"/"+maxAmmo, 25, 50);
     textSize(30); // bullet icon next to it or smth
-    text(hp+"  /  "+maxHP,25,100);
+    text(hp+"  /  "+(maxHP+defense),25,100);
+    text("Souls " +souls,25,150);
   }
   void display(){
     fill(255,255,0);
