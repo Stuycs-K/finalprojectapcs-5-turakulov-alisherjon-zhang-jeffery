@@ -20,6 +20,8 @@ Time: ~70 minutes
 Damage from bullets was implemented through the main sketch along with placeholders for when the enemy dies (color change for now). The implementation of shop added te new addition of the currency field for Player, which is dubbed as souls. Souls are earnt through defeating enemies or waves, and the increase in shop upgrade prices are exponential. Shop upgrades currently only consist of weapon and defense, which correspond to damage and maxHP respectively.
 Time: ~50 minutes
 
-### 2025-05-29 -
+### 2025-05-29 - Shop UI and other visuals
+Fixed Shop UI functionality in regards to the range of mouseclick in shop and how simply hovering over the button range would purchase the upgrade nonstop. Improved the visuals of it manually such as adding textstroke and reformatting text. Implemented images for cat and shop to be changed later with custom art when everything is deemed functional.
+Time: ~80 minutes
 
 ### 2025-05-30 -
