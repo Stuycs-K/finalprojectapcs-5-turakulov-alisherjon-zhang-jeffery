@@ -11,7 +11,7 @@ class Player extends Entity{
   ArrayList<Bullets> bullets;
   
   public Player(int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos){
-    super(5,100+def,10.0,xpos,ypos,0,0,"Player");
+    super(100,100+def,10.0,xpos,ypos,0,0,"Player");
     this.catnip=catnip;
     weapon=wep;
     defense=def;
@@ -88,7 +88,13 @@ class Player extends Entity{
   void applyForce(PVector f){
   acceleration=f.div(mass).setMag(acceleration.mag()+f.mag());
   }
-  
+  void UI(){
+    //reload
+    fill(0);
+    text("Bullets: " + ammo+"/"+maxAmmo, 25, 50);
+    textSize(30); // bullet icon next to it or smth
+    text(hp+"  /  "+maxHP,25,100);
+  }
   void display(){
     fill(255,255,0);
     stroke(0);

@@ -62,6 +62,8 @@ void draw(){
     System.out.println(p.souls);
   }
   s.UI();
+  textSize(30);
+  p.UI();
     
   if(frameCount % 20 == 0){
     e.attack(p);

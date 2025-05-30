@@ -4,6 +4,7 @@ class Shop extends Entity{
   Player p;
   boolean isOpen;
   PImage shop;
+  int expDef; int expWep;
   public Shop(int costD,int costW,Player player){
     super(10000000,10000000,10.0,200,600,0,0,"Shop");
     costDefence=costD;
@@ -15,7 +16,8 @@ class Shop extends Entity{
     if(p.getSouls()>=costDefence){
       p.soulsDec(costDefence);
       p.defInc(5);
-      costDefence*=Math.pow(1.085,2);
+      costDefence*=Math.pow(1.085,expDef);
+      expDef++;
       System.out.println("bought HP!");
   }
   }
@@ -23,7 +25,8 @@ class Shop extends Entity{
     if(p.getSouls()>=costWeapon){
       p.soulsDec(costWeapon);
       p.wepInc(1);
-      costWeapon*=Math.pow(1.107,2);
+      costWeapon*=Math.pow(1.107,expWep);
+      expWep++;
       //maybe add a bulletspeed thing too
        System.out.println("bought ATK!");
   }
