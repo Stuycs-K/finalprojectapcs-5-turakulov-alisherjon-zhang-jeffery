@@ -94,12 +94,14 @@ void draw(){
     
   }
   if(frameCount % 40 == 0){   
-    if((Enemies.size() < wave*3 && enemiesFolded <= wave*3)){
+    
+    if((Enemies.size() < (wave*3 - enemiesFolded) && enemiesFolded <= wave*3) ){
       int x = (int) random(0, 800);
       int y = (int) random(0, 800);
       if(!(x > 250 && x < 550 && y > 250 && y < 550)){
         Enemies.add(new Enemy(wave, x, y));
       }
+     
     }
     for(int i = 0; i< Walls.size(); i++){
       Wall wa = Walls.get(i);
