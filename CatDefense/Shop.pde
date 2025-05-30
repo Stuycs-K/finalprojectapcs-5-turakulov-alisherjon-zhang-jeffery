@@ -3,11 +3,13 @@ class Shop extends Entity{
   int costWeapon;
   Player p;
   boolean isOpen;
+  PImage shop;
   public Shop(int costD,int costW,Player player){
     super(10000000,10000000,10.0,200,600,0,0,"Shop");
     costDefence=costD;
     costWeapon=costW;
     p=player;
+    shop=loadImage("shop.png");
   }
   void upgradeDefense(){
     if(p.getSouls()>=costDefence){
@@ -21,7 +23,7 @@ class Shop extends Entity{
     if(p.getSouls()>=costWeapon){
       p.soulsDec(costWeapon);
       p.wepInc(1);
-      costWeapon*=Math.pow(1.207,2);
+      costWeapon*=Math.pow(1.107,2);
       //maybe add a bulletspeed thing too
        System.out.println("bought ATK!");
   }
@@ -61,6 +63,7 @@ class Shop extends Entity{
   }
   void display(){
     fill(0,255,255);
-    circle(position.x,position.y,30);
+    shop.resize(140,100);
+    image(shop,position.x-shop.width/2,position.y-shop.height/2);
 }
 }

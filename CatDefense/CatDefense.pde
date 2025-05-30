@@ -28,7 +28,6 @@ void mouseClicked(){
   s.mouseClicked();
   }
 }
-  
 
 void draw(){
   //c.position = new PVector(mouseX, mouseY);
