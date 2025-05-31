@@ -9,6 +9,7 @@ class Player extends Entity{
   float bulletSpeed=10; //upgrades later
   boolean up,down,left,right;
   ArrayList<Bullets> bullets;
+  boolean shootHold;
   
   public Player(int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos){
     super(100,100+def,10.0,xpos,ypos,0,0,"Player");
@@ -56,11 +57,20 @@ class Player extends Entity{
     }
   }
   
-  void mouseClicked(){
+  void mousePressed(){
     if(mouseButton==LEFT){
-    shoot();
+      shootHold=true;
     }
   }
+  void mouseReleased(){
+    if(mouseButton==LEFT){
+      shootHold=false;
+    }
+  }
+  
+  /*void mouseClicked(){
+    shoot();
+  } deprecated */
   
   void keyReleased(){
     if(key=='w'||key=='W'||keyCode==UP){
@@ -78,6 +88,10 @@ class Player extends Entity{
   }
   
   void move(){
+    if(position.x>width) position.x=0;
+    if(position.x<0) position.x=width;
+    if(position.y<0) position.y=height;
+    if(position.y>height) position.y=0;
     if(up)position.y-=speed;
     if(left)position.x-=speed;
     if(down)position.y+=speed;

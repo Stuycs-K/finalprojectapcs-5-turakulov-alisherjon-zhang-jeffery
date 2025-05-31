@@ -22,8 +22,15 @@ void keyReleased(){
   p.keyReleased();
 }
 
+void mousePressed(){
+  p.mousePressed();
+}
+
+void mouseReleased(){
+  p.mouseReleased();
+}
+
 void mouseClicked(){
-  p.mouseClicked();
   if(s.isOpen){
   s.mouseClicked();
   }
@@ -65,7 +72,9 @@ void draw(){
   textSize(30);
   p.UI();
   e.UI();
-    
+  if(p.shootHold&&frameCount%10==0){
+      p.shoot();
+  }
   if(frameCount % 20 == 0){
     e.attack(p);
 System.out.println("player: "+ p.hp+ "  ;   en: " + e.hp);
