@@ -24,4 +24,5 @@ Time: ~50 minutes
 Fixed Shop UI functionality in regards to the range of mouseclick in shop and how simply hovering over the button range would purchase the upgrade nonstop. Improved the visuals of it manually such as adding textstroke and reformatting text. Implemented images for cat and shop to be changed later with custom art when everything is deemed functional.
 Time: ~80 minutes
 
-### 2025-05-30 -
+### 2025-05-30 - Added QoL features
+Implemented boundaries that send player back into the space and hold to shoot in place of click to shoot. Added UIs for player consisting of main fields HP, ammo, and currency. Added hovering UIS for enemies (soon to be HP bar/dmg points). Made shots only work with left mouse button to reserve right mouse button presses for elsewhere. Started working on aesthetic of game since mostly functional already.
