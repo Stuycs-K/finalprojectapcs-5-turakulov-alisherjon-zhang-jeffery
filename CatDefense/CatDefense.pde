@@ -77,18 +77,16 @@ void draw(){
         p.bullets.remove(i);
       }
     }
-    if(en.hp<=0){//placeholder for on death
+    if(en.hp <= 0){
       fill(255,0,0);
       circle(en.position.x, en.position.y, 24);
+      Enemies.remove(h);
+      h--;
+      enemiesFolded++;
       if(p.souls<1000){
         p.souls++; //placeholder
       }
       System.out.println(p.souls);
-    }
-    if(en.hp <= 0){
-      Enemies.remove(h);
-      h--;
-      enemiesFolded++;
     }
     
   }
@@ -99,6 +97,10 @@ void draw(){
         int x = (int) random(0, 800);
         int y = (int) random(0, 800);
         if(!(x > 250 && x < 550 && y > 250 && y < 550)){
+          Enemies.add(new Enemy(wave, x, y));//enemy damage increases with waves
+          spawned++;
+        }else{
+          y=20;
           Enemies.add(new Enemy(wave, x, y));//enemy damage increases with waves
           spawned++;
         }
@@ -120,7 +122,10 @@ void draw(){
     enemiesFolded=0;
   }
  
- 
+ if(p.isCatnip){
+   c.applyForce(c.attractTo(p));
+   c.move();
+ }
     
     //System.out.println("player: "+ p.hp+ "  ;   cat: " + c.hp);
  
