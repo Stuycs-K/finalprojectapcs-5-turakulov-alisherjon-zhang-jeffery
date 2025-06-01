@@ -1,5 +1,6 @@
  class Enemy extends Entity{
   int damage;
+  ArrayList<Wall> Walls = new ArrayList<Wall>();
  //static ArrayList<Entity> Enemies = new ArrayList<Entity>(30);
   
   public Enemy(int damage, int xpos, int ypos){
@@ -9,14 +10,18 @@
   }
   
   void attack(Entity other){
-    boolean closeX = abs(position.x - other.position.x) <= 24;
-    boolean closeY = abs(position.y - other.position.y) <= 24;
-    if( closeX && closeY && !other.name.equals("Enemy")){
+    if(closeEnough(other) && !other.name.equals("Enemy")){
       other.hp -= damage;
     }
-    
   }
   void move(){
+    /*boolean blocked=false;
+    for(int i=0;i<Walls.size();i++){
+      if(Walls.get(i).closeEnoughW(this)){
+        blocked=true;
+      }
+    } nvm */
+    
     if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0){
       
     

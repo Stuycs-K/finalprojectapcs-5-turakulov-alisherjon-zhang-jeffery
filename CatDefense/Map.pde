@@ -1,8 +1,7 @@
 class Map{
 int[][] map;
 ArrayList<Wall> Walls = new ArrayList<Wall>(25);
-
-
+PImage wallace=loadImage("wall.png");
 
 public Map(int num){
   num = max(num, 50);
@@ -30,7 +29,7 @@ void display(){
       int x = j *20;
       if(map[i][j] == 1){
         fill(0, 250, 50);
-        circle(x+10, y+10, 15); //pimage for wall instead
+        image(wallace,x-wallace.width/2,y-wallace.height/2);
         text(""+map[i][j], x, y);
       }
     }
