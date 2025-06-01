@@ -9,9 +9,9 @@
   }
   
   void attack(Entity other){
-    boolean closeX = abs(position.x - other.position.x) <= 24;
-    boolean closeY = abs(position.y - other.position.y) <= 24;
-    if( closeX && closeY && !other.name.equals("Enemy")){
+    //boolean closeX = abs(position.x - other.position.x) <= 24;
+    //boolean closeY = abs(position.y - other.position.y) <= 24;
+    if( this.closeEnough(other) && !other.name.equals("Enemy")){
       other.hp -= damage;
     }
     

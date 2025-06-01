@@ -5,10 +5,9 @@ Player p;
 Cat c;
 Map m;
 Enemy e;
-int wave = 1;
+int spawned=0, enemiesFolded = 0, wave = 1;
 Entity en;
 Shop s;
-int enemiesFolded = 0;
 
 
 void setup(){
@@ -93,15 +92,17 @@ void draw(){
     }
     
   }
-  if(frameCount % 40 == 0){   
+  if(frameCount % (100-(wave*2)) == 0){   //CHANGEG THIS ABCK AFTER FIXING
     
-    if((Enemies.size() < (wave*3 - enemiesFolded) && enemiesFolded <= wave*3) ){
-      int x = (int) random(0, 800);
-      int y = (int) random(0, 800);
-      if(!(x > 250 && x < 550 && y > 250 && y < 550)){
-        Enemies.add(new Enemy(wave, x, y));
-      }
-     
+    if(Enemies.size() < wave*2 && spawned < wave*2){
+      
+        int x = (int) random(0, 800);
+        int y = (int) random(0, 800);
+        if(!(x > 250 && x < 550 && y > 250 && y < 550)){
+          Enemies.add(new Enemy(wave, x, y));
+          spawned++;
+        }
+      
     }
     for(int i = 0; i< Walls.size(); i++){
       Wall wa = Walls.get(i);
@@ -113,8 +114,10 @@ void draw(){
         }
     }
   }
-  if(enemiesFolded == wave*3){
+  if(enemiesFolded == wave*2){
     wave++;
+    spawned=0;
+    enemiesFolded=0;
   }
  
  
