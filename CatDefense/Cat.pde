@@ -8,7 +8,6 @@
         void display(){
         fill(0);
         noStroke();
-        catto.resize(40,50);
          image(catto,position.x-catto.width/2,position.y-catto.height/2);
         }
     }

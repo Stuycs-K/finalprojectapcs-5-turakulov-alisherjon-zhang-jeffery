@@ -8,7 +8,7 @@ Shop s;
 void setup(){
 size(800, 800);
 en= new Enemy(1, 100, 100);
-p=new Player(1,1,0,10,false,100,100);
+p=new Player(1,1,0,10,false,470,400);
 e = new Enemy(1, 100, 100);
 c = new Cat(400, 400);
 s = new Shop(5,3,p);
