@@ -1,23 +1,32 @@
  class Enemy extends Entity{
   int damage;
+ //static ArrayList<Entity> Enemies = new ArrayList<Entity>(30);
   
   public Enemy(int damage, int xpos, int ypos){
-    super(5, 100, 10.0, xpos, ypos, (int)random(-2,2), 0, "Enemy");
+    super(5, 5, 10.0, xpos, ypos, (int)random(-2,2), 0, "Enemy");
     this.damage = damage;
+   
   }
   
   void attack(Entity other){
-    boolean closeX = abs(position.x - other.position.x) <= 12;
-    boolean closeY = abs(position.y - other.position.y) <= 12;
-    if( closeX && closeY /* && (other.name.equals("Player") || other.name.equals("Cat"))*/){
+    boolean closeX = abs(position.x - other.position.x) <= 24;
+    boolean closeY = abs(position.y - other.position.y) <= 24;
+    if( closeX && closeY && !other.name.equals("Enemy")){
       other.hp -= damage;
     }
     
   }
   void move(){
-    velocity.add(acceleration);
-    position.add(velocity);
-    acceleration.setMag(0.0);
+    if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0){
+      
+    
+      //velocity.add(acceleration);
+      position.add(velocity);
+     // acceleration.setMag(0.0);
+    }
+    //println(m.map[(int)(position.x/40)][(int)(position.y/40)]);
+    
+    
     
   }
   void UI(){
@@ -36,15 +45,18 @@
  
  /// Precondition: other is Cat
   PVector attractTo(Entity other){ // use constant distance 
-  
-    float distance = PVector.sub(position, other.position).mag();
-    if(distance >= 500){
-      distance = 300;
+      PVector direction = PVector.sub(other.position, position);
+      direction.setMag(3);
+      return direction;
+/*    float distance = PVector.sub(position, other.position).mag();
+    if(distance >= 400){
+      distance = 50;
     }else if(distance >=300){
-      distance = 700;
+      distance = 10000;
     }else{
-      distance = 500;
+      distance = 50;
     }
+    
     float magForce = (20*mass*other.mass) / (distance*distance); // Universal law of gravity
     PVector  force = PVector.sub(other.position, position);
     if(mass > other.mass){
@@ -52,13 +64,16 @@
     }
      force.normalize();
      force.setMag(magForce);
-    return force;
+    return force;*/
+    
   }
   
   
   void applyForce(PVector f){
     //Using forula F=ma ; a = F/m
-     acceleration = f.div(mass).setMag(acceleration.mag() + f.mag());
+     //acceleration = f.div(mass).setMag(acceleration.mag() + f.mag());
+     
+      velocity = f;
   }
 
 }
