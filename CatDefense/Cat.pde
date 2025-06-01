@@ -9,5 +9,20 @@
         noStroke();
          circle(position.x, position.y, 24);
         }
+        
+        void move(){
+        position.add(velocity);
+        
+        }
+        
+        PVector attractTo(Entity other){
+          PVector direction = PVector.sub(position, other.position);
+          direction.setMag(2);
+          return direction;
+        }
+        
+        void applyForce(PVector f){
+          velocity = f;
+        }
     
     }
