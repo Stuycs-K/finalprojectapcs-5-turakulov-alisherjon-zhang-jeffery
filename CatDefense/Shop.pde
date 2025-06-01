@@ -97,7 +97,6 @@ class Shop extends Entity{
   }
   void display(){
     fill(0,255,255);
-    shop.resize(140,100);
     image(shop,position.x-shop.width/2,position.y-shop.height/2);
 }
 }

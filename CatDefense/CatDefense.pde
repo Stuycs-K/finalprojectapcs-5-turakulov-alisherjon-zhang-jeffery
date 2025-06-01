@@ -72,7 +72,7 @@ void draw(){
   textSize(30);
   p.UI();
   e.UI();
-  if(p.shootHold&&frameCount%10==0){
+  if(p.shootHold&&!s.isOpen&&frameCount%10==0){
       p.shoot();
   }
   if(frameCount % 20 == 0){
