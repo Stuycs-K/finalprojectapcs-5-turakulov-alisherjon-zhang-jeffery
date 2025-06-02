@@ -11,7 +11,7 @@ class Player extends Entity{
   ArrayList<Bullets> bullets;
   
   public Player(int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos){
-    super(5,100+def,10.0,xpos,ypos,0,0,"Player");
+    super(30,100+def,10.0,xpos,ypos,0,0,"Player");
     this.catnip=catnip;
     weapon=wep;
     defense=def;

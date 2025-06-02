@@ -44,10 +44,17 @@ void display(){
       }
     }
   }
-  
   /*for(int k = 0; k < Walls.size(); k++){ walls displayed as static rectangles with rest of map
     Walls.get(k).display();
   }*/
 }
+
+ void displayEnd(){
+  fill(100, 40, 20);
+  rect(200, 200, 400, 200);
+  fill(0);
+  textSize(50);
+  text("Game Over", 275, 310);
+  }
 
 }

@@ -1,7 +1,7 @@
     class Cat extends Entity{
       
         public Cat(int x, int y){
-        super(90, 100, 100, x, y, 0, 0, "Cat");
+        super(20, 100, 100, x, y, 0, 0, "Cat");//change
         }
         
         void display(){
