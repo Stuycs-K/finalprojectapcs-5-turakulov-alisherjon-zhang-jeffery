@@ -5,6 +5,7 @@ class Shop extends Entity{
   boolean isOpen;
   PImage shop;
   int expDef; int expWep;
+  PImage shopGuy=loadImage("shopdude.png");
   public Shop(int costD,int costW,Player player){
     super(10000000,10000000,10.0,200,600,0,0,"Shop");
     costDefence=costD;
@@ -73,6 +74,7 @@ class Shop extends Entity{
       textSize(35);
       fill(225);
       text("Cost: "+ costWeapon+"",(width/4)+55,(height/4)+72.5);
+      image(shopGuy,430,470);
       /*fill(225);
       rect((width/4)+322.5,height/4,10,400,28);
       rect((width/4)+70,height/4,10,400,28);
