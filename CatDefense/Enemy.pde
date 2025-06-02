@@ -1,22 +1,28 @@
+
  class Enemy extends Entity{
   int damage;
+  ArrayList<Wall> Walls = new ArrayList<Wall>();
  //static ArrayList<Entity> Enemies = new ArrayList<Entity>(30);
   
   public Enemy(int damage, int xpos, int ypos){
-    super(5, 100, 10.0, xpos, ypos, 0, 0, "Enemy");
+    super(5, 5, 10.0, xpos, ypos, 0, 0, "Enemy");
     this.damage = damage;
    
   }
   
   void attack(Entity other){
-    //boolean closeX = abs(position.x - other.position.x) <= 24;
-    //boolean closeY = abs(position.y - other.position.y) <= 24;
-    if( this.closeEnough(other) && !other.name.equals("Enemy")){
+    if(closeEnough(other) && !other.name.equals("Enemy")){
       other.hp -= damage;
     }
-    
   }
   void move(){
+    /*boolean blocked=false;
+    for(int i=0;i<Walls.size();i++){
+      if(Walls.get(i).closeEnoughW(this)){
+        blocked=true;
+      }
+    } nvm */
+    
     if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0){
       
     
@@ -29,6 +35,13 @@
     
     
   }
+  void UI(){
+    if(hp!=maxHP){
+      fill(0);
+    text(hp+"/"+maxHP, position.x-30, position.y-20); //healthbar percentage later
+    }
+  }
+  
   void display(){
     fill(150, 50, 50);
     noStroke();

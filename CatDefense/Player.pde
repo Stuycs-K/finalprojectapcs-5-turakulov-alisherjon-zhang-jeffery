@@ -1,3 +1,4 @@
+
 class Player extends Entity{
   int catnip;
   int weapon; //damage
@@ -9,9 +10,10 @@ class Player extends Entity{
   float bulletSpeed=10; //upgrades later
   boolean up,down,left,right;
   ArrayList<Bullets> bullets;
+  boolean shootHold;
   
   public Player(int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos){
-    super(30,100+def,10.0,xpos,ypos,0,0,"Player");
+    super(100,100+def,10.0,xpos,ypos,0,0,"Player");
     this.catnip=catnip;
     weapon=wep;
     defense=def;
@@ -28,7 +30,7 @@ class Player extends Entity{
       PVector shoot=position.copy();
       bullets.add(new Bullets(shoot,dir,bulletSpeed));
     ammo--;
-    System.out.println("ammo: "+ammo+"/"+maxAmmo);
+   // System.out.println("ammo: "+ammo+"/"+maxAmmo);
     }
   }
   
@@ -56,9 +58,20 @@ class Player extends Entity{
     }
   }
   
-  void mouseClicked(){
-    shoot();
+  void mousePressed(){
+    if(mouseButton==LEFT){
+      shootHold=true;
+    }
   }
+  void mouseReleased(){
+    if(mouseButton==LEFT){
+      shootHold=false;
+    }
+  }
+  
+  /*void mouseClicked(){
+    shoot();
+  } deprecated */
   
   void keyReleased(){
     if(key=='w'||key=='W'||keyCode==UP){
@@ -76,6 +89,10 @@ class Player extends Entity{
   }
   
   void move(){
+    if(position.x>width) position.x=0;
+    if(position.x<0) position.x=width;
+    if(position.y<0) position.y=height;
+    if(position.y>height) position.y=0;
     if(up)position.y-=speed;
     if(left)position.x-=speed;
     if(down)position.y+=speed;
@@ -88,7 +105,14 @@ class Player extends Entity{
   void applyForce(PVector f){
   acceleration=f.div(mass).setMag(acceleration.mag()+f.mag());
   }
-  
+  void UI(){
+    //reload
+    fill(0);
+    text("Bullets: " + ammo+"/"+maxAmmo, 25, 50);
+    textSize(30); // bullet icon next to it or smth
+    text(hp+"  /  "+(maxHP+defense),25,100);
+    text("Souls " +souls,25,150);
+  }
   void display(){
     fill(255,255,0);
     stroke(0);

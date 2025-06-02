@@ -20,6 +20,14 @@ Time: ~70 minutes
 Damage from bullets was implemented through the main sketch along with placeholders for when the enemy dies (color change for now). The implementation of shop added te new addition of the currency field for Player, which is dubbed as souls. Souls are earnt through defeating enemies or waves, and the increase in shop upgrade prices are exponential. Shop upgrades currently only consist of weapon and defense, which correspond to damage and maxHP respectively.
 Time: ~50 minutes
 
-### 2025-05-29 -
+### 2025-05-29 - Shop UI and other visuals
+Fixed Shop UI functionality in regards to the range of mouseclick in shop and how simply hovering over the button range would purchase the upgrade nonstop. Improved the visuals of it manually such as adding textstroke and reformatting text. Implemented images for cat and shop to be changed later with custom art when everything is deemed functional.
+Time: ~80 minutes
 
-### 2025-05-30 -
+### 2025-05-30 - Added QoL features
+Implemented boundaries that send player back into the space and hold to shoot in place of click to shoot. Added UIs for player consisting of main fields HP, ammo, and currency. Added hovering UIS for enemies (soon to be HP bar/dmg points). Made shots only work with left mouse button to reserve right mouse button presses for elsewhere. Started working on aesthetic of game since mostly functional already.
+Time: ~40 minutes
+
+### 2025-06-01 - Sprites and fixes
+Drew and implemented sprites for shop, cat, walls, shopkeeper, and map (Drawing these took most of the work time). Merged with main and got hit with a huge issue with fps caused by map which should be fixed. Added comments to certain code to make reading easier. Tried to adjust wall collision but wasn't successful. Readjusted wave UI and added a FPS counter (primarily for bugtesting fps issues).
+Time: ~160 minutes

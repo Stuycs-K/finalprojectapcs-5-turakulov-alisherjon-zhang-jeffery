@@ -20,13 +20,17 @@ class Wall extends Entity{
     //circle(x+10, y+10, 10);
   }
   
- 
+ boolean closeEnoughW(Entity other){
+   boolean closeX = abs(position.x - other.position.x) <= 40;
+    boolean closeY = abs(position.y - other.position.y) <= 24;
+    return closeX && closeY; 
+ }
   void takeDamage(){
       for(Enemy en: Enemies){
-        if(closeEnough(en)){
+        if(closeEnoughW(en)){
           hp -= en.damage;
           en.hp -= damage;
-          println(hp + " >wall en< " + en.hp);
+          //println(hp + " >wall en< " + en.hp);
         }
       }
   }
