@@ -112,8 +112,8 @@ void draw(){
     if(p.shootHold&&!s.isOpen&&frameCount%10==0){
         p.shoot();
     }
-    
-     if(frameCount % (120-(wave*2)) == 0){   //spawn rate increases with waves
+
+     if(frameCount % (max(122-(wave*2),20)) == 0){   //spawn rate increases with waves
         
         if(Enemies.size() < wave*2 && spawned < wave*2){
           
