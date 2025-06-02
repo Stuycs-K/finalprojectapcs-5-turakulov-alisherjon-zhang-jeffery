@@ -112,10 +112,10 @@ void draw(){
     if(p.shootHold&&!s.isOpen&&frameCount%10==0){
         p.shoot();
     }
-
+    int spawnNum = (int) (4*Math.pow(1.005, wave));
      if(frameCount % (max(122-(wave*2),20)) == 0){   //spawn rate increases with waves
-        
-        if(Enemies.size() < wave*2 && spawned < wave*2){
+    
+        if(Enemies.size() < spawnNum && spawned < spawnNum){
           
             int x = (int) random(0, 800);
             int y = (int) random(0, 800);
@@ -139,7 +139,8 @@ void draw(){
             }
         }
       }
-      if(enemiesFolded == wave*2){
+      if(enemiesFolded == spawnNum){
+        println(spawnNum);
         wave++;
         spawned=0;
         enemiesFolded=0;
