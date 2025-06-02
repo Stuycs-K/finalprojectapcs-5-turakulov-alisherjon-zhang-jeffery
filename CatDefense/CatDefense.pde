@@ -6,7 +6,7 @@ Player p;
 Cat c;
 Map m;
 Enemy e;
-int spawned=0, enemiesFolded = 0, wave = 1;
+int spawned=0, enemiesFolded = 0, wave = 1,tick=0;
 Entity en;
 Shop s;
 
@@ -48,7 +48,6 @@ void mouseClicked(){
 }
 
 void draw(){
-  
   //c.position = new PVector(mouseX, mouseY);
   if(p.hp <= 0 || c.hp <= 0){
     background(200);
@@ -113,7 +112,15 @@ void draw(){
         p.shoot();
     }
     
-     if(frameCount % (120-(wave*2)) == 0){   //spawn rate increases with waves
+    if(wave%5==0&&Enemies.size()==0&&tick!=300){
+  if(frameCount%5==0) tick++;
+  System.out.println(tick);
+    }else if(wave%5==0){
+      tick=0;
+      wave++;
+    }
+    
+     if(frameCount % (120-(wave*2)) == 0 && wave%5!=0 && tick==0){   //spawn rate increases with waves
         
         if(Enemies.size() < wave*2 && spawned < wave*2){
           
@@ -144,7 +151,7 @@ void draw(){
         spawned=0;
         enemiesFolded=0;
       }
-     
+      
      /*if(p.isCatnip){
        c.applyForce(c.attractTo(p));
        c.move();
