@@ -2,6 +2,7 @@ class Map{
 int[][] map;
 ArrayList<Wall> Walls = new ArrayList<Wall>(25);
 PImage wallace=loadImage("wall.png");
+PImage mappa=loadImage("map.png");
 
 public Map(int num){
   num = max(num, 50);
@@ -23,6 +24,9 @@ public Map(){
 
 //display map
 void display(){
+  imageMode(CENTER);
+  image(mappa,width/2,height/2,800,800);
+  imageMode(CORNER);
   for(int i = 0; i < map.length; i++){
     for(int j = 0; j < map[0].length; j++){
       int y = i*20;
