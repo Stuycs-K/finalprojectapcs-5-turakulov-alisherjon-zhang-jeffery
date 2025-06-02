@@ -26,5 +26,8 @@ Time: ~90 minutes;
   
 ### 2025-05-29 - Enemy-Wall interactions; Enemy/Wall removal; Wave system and incrementation of Enemies 
 Fix the array index lookup for Enemy-Wall obstructions, write wall-enemy takeDamage() and removal, as well as removal and additon of Enemies based on hp and wave.  
-Time: ~90 minutes;
-
+Time: ~90 minutes;  
+  
+### 2025-06-01 - Enemy spawn per wave, Cat movement, spawn randomization
+Use spawned variable to make sure each wave spawns a larger total enemies than the last; Increase the rate of spawning each wave; write Cat movement, and placeholder code checking for the isCatnip usage by the player.  
+Time: ~40 minutes;  
