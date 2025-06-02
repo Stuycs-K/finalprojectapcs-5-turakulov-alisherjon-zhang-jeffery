@@ -26,3 +26,8 @@ Time: ~80 minutes
 
 ### 2025-05-30 - Added QoL features
 Implemented boundaries that send player back into the space and hold to shoot in place of click to shoot. Added UIs for player consisting of main fields HP, ammo, and currency. Added hovering UIS for enemies (soon to be HP bar/dmg points). Made shots only work with left mouse button to reserve right mouse button presses for elsewhere. Started working on aesthetic of game since mostly functional already.
+Time: ~40 minutes
+
+### 2025-06-01 - Sprites and fixes
+Drew and implemented sprites for shop, cat, walls, shopkeeper, and map (Drawing these took most of the work time). Merged with main and got hit with a huge issue with fps caused by map which should be fixed. Added comments to certain code to make reading easier. Tried to adjust wall collision but wasn't successful. Readjusted wave UI and added a FPS counter (primarily for bugtesting fps issues).
+Time: ~160 minutes
