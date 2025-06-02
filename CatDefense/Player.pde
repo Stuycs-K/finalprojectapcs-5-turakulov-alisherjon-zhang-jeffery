@@ -1,3 +1,4 @@
+
 class Player extends Entity{
   int catnip;
   int weapon; //damage
@@ -29,7 +30,7 @@ class Player extends Entity{
       PVector shoot=position.copy();
       bullets.add(new Bullets(shoot,dir,bulletSpeed));
     ammo--;
-    System.out.println("ammo: "+ammo+"/"+maxAmmo);
+   // System.out.println("ammo: "+ammo+"/"+maxAmmo);
     }
   }
   
