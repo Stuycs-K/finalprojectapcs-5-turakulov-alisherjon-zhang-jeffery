@@ -31,3 +31,8 @@ Time: ~40 minutes
 ### 2025-06-01 - Sprites and fixes
 Drew and implemented sprites for shop, cat, walls, shopkeeper, and map (Drawing these took most of the work time). Merged with main and got hit with a huge issue with fps caused by map which should be fixed. Added comments to certain code to make reading easier. Tried to adjust wall collision but wasn't successful. Readjusted wave UI and added a FPS counter (primarily for bugtesting fps issues).
 Time: ~160 minutes
+
+### 2025-06-02 - Animation sprites, intermission
+Implemented and animated the idle cat sprites. Drew and implemented bullet sprite. Ported all images and sprites into data folder. Began and finished the intermission system that occurs every 5 waves, allowing the player to upgrade their stats (and maybe buy certain things) through shop. Tried to implement the randomization of shop spawning at the start of intermission but didn't finish.
+Time: ~140 minutes
+
