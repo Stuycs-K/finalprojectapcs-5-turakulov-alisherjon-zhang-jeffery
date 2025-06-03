@@ -23,5 +23,6 @@ class Bullets{
     rectMode(CENTER);
     rect(0,0,20,5);
     popMatrix();
+    rectMode(CORNER);
   }
 }

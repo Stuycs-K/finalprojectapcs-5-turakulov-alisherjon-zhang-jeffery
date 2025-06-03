@@ -6,6 +6,7 @@ Cat c;
 Map m;
 Enemy e;
 int spawned = 0, enemiesFolded = 0, wave = 1,tick=0;
+boolean inter;
 Entity en;
 Shop s;
 
@@ -67,14 +68,14 @@ void draw(){
   //e.UI(); maybe for bosses instead keep though
   
   //game funcs
-  for(int h = Enemies.size()-1; h>0; h--){
+  for(int h = Enemies.size()-1; h>=0; h--){
     Enemy en = Enemies.get(h);
     en.display();
     en.attack(c);
     en.attack(p);
     en.applyForce(en.attractTo(c));
     en.move();
-    for(int i=p.bullets.size()-1;i>0;i--){
+    for(int i=p.bullets.size()-1;i>=0;i--){
       Bullets b=p.bullets.get(i);
       float d=dist(b.position.x,b.position.y,en.position.x,en.position.y);
       if(d<20){
@@ -100,19 +101,28 @@ void draw(){
     p.hp=100;
     p.lives--;
   }
-  if(p.shootHold&&!s.isOpen&&frameCount%10==0){
+  if(!inter&&p.shootHold&&!s.isOpen&&frameCount%10==0){
       p.shoot();
   }
   
-  if(wave%5==0&&Enemies.size()==0&&tick!=300){
-  if(frameCount%5==0) tick++;
+  if(Enemies.size()==0&&!inter&&wave%5==0){
+    inter=true;
+    tick=0;
+  }
+  
+  if(inter){
+    tick++;
   System.out.println(tick);
-    }else if(wave%5==0){
-      tick=0;
-      wave++;
-    }
+  if(tick>300){
+    inter=false;
+    wave++;
+    spawned=0;
+    enemiesFolded=0;
+  }
+  return;
+  }
     
-  if(frameCount % (120-(wave*2)) == 0 && wave%5!=0 && tick==0){   //spawn rate increases with waves
+  if(frameCount % (120-(wave*2)) == 0||Enemies.size()==0){   //spawn rate increases with waves
         
         if(Enemies.size() < wave*2 && spawned < wave*2){
           
@@ -142,10 +152,10 @@ void draw(){
         wave++;
         spawned=0;
         enemiesFolded=0;
+        }
       }
     //System.out.println("player: "+ p.hp+ "  ;   cat: " + c.hp);
  
-}
 }
 
 public static String debugToString(int[][] arr){
