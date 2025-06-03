@@ -2,6 +2,7 @@
 ArrayList<Wall> Walls;
 ArrayList<Bullets> bullets;
 ArrayList<Enemy> Enemies;
+ArrayList<Enemy> savedEnemies;
 Player p;
 Cat c;
 Map m;
@@ -18,7 +19,7 @@ m.display();
 Walls = m.Walls;
 //en= new Enemy(1, 100, 100);
 Enemies = new ArrayList<Enemy>(30); 
-p=new Player(1,1,0,10,false,470,400);
+p=new Player(1,1,0,10,false,470,400,3);
 e = new Enemy(1, 100, 100);
 c = new Cat(400, 400);
 s = new Shop(5,3,p);
@@ -58,6 +59,12 @@ void draw(){
   textSize(20);
   text("wave: "+ wave, width-80, 40);
   text("FPS: "+int(frameRate),width-70,20);
+  s.UI();
+  textSize(30);
+  p.UI();
+  //e.UI(); maybe for bosses instead keep though
+  
+  //game funcs
   for(int h = Enemies.size()-1; h>0; h--){
     Enemy en = Enemies.get(h);
     en.display();
@@ -87,10 +94,10 @@ void draw(){
       enemiesFolded++;
     }
   }
-  s.UI();
-  textSize(30);
-  p.UI();
-  //e.UI(); maybe for bosses instead keep though
+  if(p.hp<=0){
+    p.hp=100;
+    p.lives--;
+  }
   if(p.shootHold&&!s.isOpen&&frameCount%10==0){
       p.shoot();
   }

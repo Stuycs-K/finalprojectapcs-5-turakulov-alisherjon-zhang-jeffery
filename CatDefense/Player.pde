@@ -4,6 +4,7 @@ class Player extends Entity{
   int defense; //hp increase
   int ammo; int maxAmmo;
   int souls; //currency
+  int lives;
   boolean isCatnip;
   float speed = 10; //test around
   float bulletSpeed=10; //upgrades later
@@ -11,7 +12,7 @@ class Player extends Entity{
   ArrayList<Bullets> bullets;
   boolean shootHold;
   
-  public Player(int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos){
+  public Player(int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos, int lifes){
     super(100,100+def,10.0,xpos,ypos,0,0,"Player");
     this.catnip=catnip;
     weapon=wep;
@@ -20,6 +21,7 @@ class Player extends Entity{
     maxAmmo=amm;
     this.isCatnip=isCatnip;
     bullets=new ArrayList<Bullets>();
+    lives=lifes;
   }
   
   void shoot(){
