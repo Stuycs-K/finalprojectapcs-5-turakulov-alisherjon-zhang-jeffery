@@ -1,6 +1,7 @@
 ArrayList<Wall> Walls;
 ArrayList<Bullets> bullets;
 ArrayList<Enemy> Enemies;
+ArrayList<Shop> shopCopies;
 Player p;
 Cat c;
 Map m;
@@ -8,19 +9,19 @@ Enemy e;
 int spawned = 0, enemiesFolded = 0, wave = 1,tick=0;
 boolean inter;
 Entity en;
-Shop s;
+Shop s=null;
 
 void setup(){
 size(800, 800);
-m = new Map(50);
+p=new Player(1,1,0,10,false,470,400,3);
+m = new Map(50,p);
 m.display();
 Walls = m.Walls;
+shopCopies=m.shopCopies;
 //en= new Enemy(1, 100, 100);
 Enemies = new ArrayList<Enemy>(30); 
-p=new Player(1,1,0,10,false,470,400,3);
 e = new Enemy(1, 100, 100);
 c = new Cat(400, 400);
-s = new Shop(5,3,p);
 }
 
 void keyPressed(){
@@ -40,7 +41,7 @@ void mouseReleased(){
 }
 
 void mouseClicked(){
-  if(s.isOpen){
+  if(s!=null&&s.isOpen){
   s.mouseClicked();
   }
 }
@@ -55,7 +56,6 @@ void draw(){
   m.display();
   p.display();
   c.display();
-  s.display();
   p.move();
   fill(0);
   textSize(20);
@@ -94,7 +94,9 @@ void draw(){
     }
   }
   
-  s.UI();
+  if(s!=null){
+    s.UI();
+  }
   textSize(30);
   p.UI();
   //e.UI(); maybe for bosses instead keep though
@@ -103,7 +105,7 @@ void draw(){
     p.hp=100;
     p.lives--;
   }
-  if(!inter&&p.shootHold&&!s.isOpen&&frameCount%10==0){
+  if(!inter&&p.shootHold&&(s==null||!s.isOpen)&&frameCount%10==0){
       p.shoot();
   }
   
@@ -113,6 +115,10 @@ void draw(){
   }
   
   if(inter){
+    if(tick==0){
+      int rand=(int)random(shopCopies.size());
+      s=shopCopies.get(rand);
+    }
     tick++;
   System.out.println(tick);
   if(tick>300){
@@ -120,6 +126,7 @@ void draw(){
     wave++;
     spawned=0;
     enemiesFolded=0;
+    s=null;
   }
   return;
   }
@@ -139,6 +146,15 @@ void draw(){
               spawned++;
             }
           
+        }
+        for(int i = 0; i< Walls.size(); i++){
+          Wall wa = Walls.get(i);
+          wa.takeDamage();
+          if(wa.hp <= 0){
+              m.map[(int) wa.position.y/20][(int) wa.position.x/20] = 0;
+              Walls.remove(i);
+              i--;
+            }
         }
         for(int i = 0; i< Walls.size(); i++){
           Wall wa = Walls.get(i);

@@ -6,8 +6,8 @@ class Shop extends Entity{
   PImage shop;
   int expDef; int expWep;
   PImage shopGuy=loadImage("shopdude.png");
-  public Shop(int costD,int costW,Player player){
-    super(10000000,10000000,10.0,200,600,0,0,"Shop");
+  public Shop(int costD,int costW,Player player,int x,int y){
+    super(10000000,10000000,10.0,x,y,0,0,"Shop");
     costDefence=costD;
     costWeapon=costW;
     p=player;

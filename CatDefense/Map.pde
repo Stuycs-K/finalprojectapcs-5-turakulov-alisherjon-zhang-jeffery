@@ -2,12 +2,15 @@
 class Map{
 int[][] map;
 ArrayList<Wall> Walls = new ArrayList<Wall>(25);
+ArrayList<Shop> shopCopies = new ArrayList<Shop>(5);
 PImage wallace=loadImage("wall.png");
 PImage mappa=loadImage("map.png");
+Player p;
 
-public Map(int num){
+public Map(int num, Player player){
   num = max(num, 50);
   map = new int[50][50];
+  p=player;
   int x, y;
   for(int i = 0; i < num; i++){
     x = (int) random(0, 50);
@@ -15,12 +18,9 @@ public Map(int num){
     if(map[y][x] == 0){ // initialize walls at spots with value 0
       map[y][x] = 1; //return back to 1 so it becomes map color?
       Walls.add(new Wall(x*20, y*20));
+      shopCopies.add(new Shop(5,3,p, x, y));
     }
   }
-}
-
-public Map(){
-  this(20);
 }
 
 //display map
