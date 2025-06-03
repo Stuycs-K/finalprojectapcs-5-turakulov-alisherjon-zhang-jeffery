@@ -1,3 +1,4 @@
+
 class Map{
 int[][] map;
 ArrayList<Wall> Walls = new ArrayList<Wall>(25);
@@ -34,7 +35,8 @@ void display(){
       if(map[i][j] == 1){
         fill(0, 250, 50);
         image(wallace,x-wallace.width/2,y-wallace.height/2);
-        text(""+map[i][j], x, y);
+        //textSize(12);
+        //text(""+map[i][j], x, y);
       }
     }
   }
@@ -43,5 +45,13 @@ void display(){
     Walls.get(k).display();
   }*/
 }
+
+ void displayEnd(){
+  fill(100, 40, 20);
+  rect(200, 200, 400, 200);
+  fill(0);
+  textSize(50);
+  text("Game Over", 275, 310);
+  }
 
 }

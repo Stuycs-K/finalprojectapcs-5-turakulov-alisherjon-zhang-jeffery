@@ -1,10 +1,11 @@
+
  class Enemy extends Entity{
   int damage;
   ArrayList<Wall> Walls = new ArrayList<Wall>();
  //static ArrayList<Entity> Enemies = new ArrayList<Entity>(30);
   
   public Enemy(int damage, int xpos, int ypos){
-    super(5, 5, 10.0, xpos, ypos, (int)random(-2,2), 0, "Enemy");
+    super(5, 5, 10.0, xpos, ypos, 0, 0, "Enemy");
     this.damage = damage;
    
   }
@@ -51,7 +52,7 @@
  /// Precondition: other is Cat
   PVector attractTo(Entity other){ // use constant distance 
       PVector direction = PVector.sub(other.position, position);
-      direction.setMag(3);
+      direction.setMag(1.5);
       return direction;
 /*    float distance = PVector.sub(position, other.position).mag();
     if(distance >= 400){

@@ -1,3 +1,4 @@
+
     class Cat extends Entity{
       PImage catto;
         public Cat(int x, int y){
@@ -10,4 +11,20 @@
         noStroke();
          image(catto,position.x-catto.width/2,position.y-catto.height/2);
         }
+        void move(){
+        position.add(velocity);
+        
+        }
+        
+        PVector attractTo(Entity other){
+          PVector direction = PVector.sub(position, other.position);
+          direction.setMag(2);
+          return direction;
+        }
+        
+        void applyForce(PVector f){
+          velocity = f;
+        }
+        
+        
     }

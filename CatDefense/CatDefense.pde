@@ -1,16 +1,13 @@
-
 ArrayList<Wall> Walls;
 ArrayList<Bullets> bullets;
 ArrayList<Enemy> Enemies;
-ArrayList<Enemy> savedEnemies;
 Player p;
 Cat c;
 Map m;
 Enemy e;
-int wave = 1;
+int spawned = 0, enemiesFolded = 0, wave = 1,tick=0;
 Entity en;
 Shop s;
-int enemiesFolded = 0;
 
 void setup(){
 size(800, 800);
@@ -49,6 +46,10 @@ void mouseClicked(){
 
 void draw(){
   //c.position = new PVector(mouseX, mouseY);
+  if(p.hp <= 0 || c.hp <= 0){
+    background(200);
+    m.displayEnd();
+  }else{
   background(255);
   m.display();
   p.display();
@@ -57,8 +58,9 @@ void draw(){
   p.move();
   fill(0);
   textSize(20);
-  text("wave: "+ wave, width-80, 40);
+  text("wave: "+ wave, width-70, 50);
   text("FPS: "+int(frameRate),width-70,20);
+  text("Cat: " + c.hp, width-70, 80);
   s.UI();
   textSize(30);
   p.UI();
@@ -101,32 +103,49 @@ void draw(){
   if(p.shootHold&&!s.isOpen&&frameCount%10==0){
       p.shoot();
   }
-  if(frameCount % 40 == 0){   
-    if(Enemies.size() < wave*3 && enemiesFolded < wave*3){
-      int x = (int) random(0, 800);
-      int y = (int) random(0, 800);
-      if(!(x > 250 && x < 550 && y > 250 && y < 550)){
-        Enemies.add(new Enemy(wave, x, y));
-      }
+  
+  if(wave%5==0&&Enemies.size()==0&&tick!=300){
+  if(frameCount%5==0) tick++;
+  System.out.println(tick);
+    }else if(wave%5==0){
+      tick=0;
+      wave++;
     }
-    for(int i = 0; i< Walls.size(); i++){
-      Wall wa = Walls.get(i);
-      wa.takeDamage();
-      if(wa.hp <= 0){
-          m.map[(int) wa.position.y/20][(int) wa.position.x/20] = 0;
-          Walls.remove(i);
-          i--;
-        }
-    }
-  }
-  if(enemiesFolded == wave*3){
-    wave++;
-  }
- 
- 
     
+  if(frameCount % (120-(wave*2)) == 0 && wave%5!=0 && tick==0){   //spawn rate increases with waves
+        
+        if(Enemies.size() < wave*2 && spawned < wave*2){
+          
+            int x = (int) random(0, 800);
+            int y = (int) random(0, 800);
+            if(!(x > 250 && x < 550 && y > 250 && y < 550)){
+              Enemies.add(new Enemy(wave, x, y));//enemy damage increases with waves
+              spawned++;
+            }else{
+              y=20;
+              Enemies.add(new Enemy(wave, x, y));//enemy damage increases with waves
+              spawned++;
+            }
+          
+        }
+        for(int i = 0; i< Walls.size(); i++){
+          Wall wa = Walls.get(i);
+          wa.takeDamage();
+          if(wa.hp <= 0){
+              m.map[(int) wa.position.y/20][(int) wa.position.x/20] = 0;
+              Walls.remove(i);
+              i--;
+            }
+        }
+      }
+      if(enemiesFolded == wave*2){
+        wave++;
+        spawned=0;
+        enemiesFolded=0;
+      }
     //System.out.println("player: "+ p.hp+ "  ;   cat: " + c.hp);
  
+}
 }
 
 public static String debugToString(int[][] arr){
