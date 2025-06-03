@@ -1,15 +1,18 @@
 class Shop extends Entity{
   int costDefence;
   int costWeapon;
+  int costBox; boolean boxBought;
+  int cost
   Player p;
   boolean isOpen;
   PImage shop;
   int expDef; int expWep;
   PImage shopGuy=loadImage("shopdude.png");
-  public Shop(int costD,int costW,Player player,int x,int y){
+  public Shop(int costD,int costW, int costBox, Player player,int x,int y){
     super(10000000,10000000,10.0,x,y,0,0,"Shop");
     costDefence=costD;
     costWeapon=costW;
+    costBox=cost
     p=player;
     shop=loadImage("shop.png");
   }
@@ -19,7 +22,6 @@ class Shop extends Entity{
       p.defInc(5);
       costDefence*=Math.pow(1.085,expDef);
       expDef++;
-      System.out.println("bought HP!");
   }
   }
   void upgradeWeapon(){
@@ -28,8 +30,13 @@ class Shop extends Entity{
       p.wepInc(1);
       costWeapon*=Math.pow(1.107,expWep);
       expWep++;
-      //maybe add a bulletspeed thing too
-       System.out.println("bought ATK!");
+  }
+  }
+  void ammoBox(){//more ammoboxes more times can reload. reloading with remaining ammo subtracts from ammoBox remaining ammo
+    if(p.getSouls()>=costBox&&!boxBought){
+      p.soulsDec(costBox);
+      p.remBox++;
+      boxBought=true; //reset in display after intermission also have UI for it being already bought
   }
   }
   void changePos(int x, int y){

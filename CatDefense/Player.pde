@@ -2,9 +2,11 @@ class Player extends Entity{
   int catnip;
   int weapon; //damage
   int defense; //hp increase
-  int ammo; int maxAmmo;
+  int ammo; int maxAmmo; int remBox;
   int souls; //currency
-  int lives;
+  int lives; //later
+  boolean medkit; //heal self or cat
+  boolean boxCheck; //only can reload if ammobox with ammo left
   boolean isCatnip;
   float speed = 10; //test around
   float bulletSpeed=10; //upgrades later

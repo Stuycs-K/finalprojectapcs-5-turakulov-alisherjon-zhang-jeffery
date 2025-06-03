@@ -21,7 +21,7 @@ Walls = m.Walls;
 Enemies = new ArrayList<Enemy>(30); 
 e = new Enemy(1, 100, 100);
 c = new Cat(400, 400);
-s=new Shop(5,3,p,-100,-100);
+s=new Shop(5,3,7,p,-100,-100);
 }
 
 void keyPressed(){
