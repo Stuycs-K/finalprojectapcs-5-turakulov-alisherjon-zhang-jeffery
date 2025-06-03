@@ -2,7 +2,6 @@
 class Map{
 int[][] map;
 ArrayList<Wall> Walls = new ArrayList<Wall>(25);
-ArrayList<Shop> shopCopies = new ArrayList<Shop>(5);
 PImage wallace=loadImage("wall.png");
 PImage mappa=loadImage("map.png");
 Player p;
@@ -18,7 +17,6 @@ public Map(int num, Player player){
     if(map[y][x] == 0){ // initialize walls at spots with value 0
       map[y][x] = 1; //return back to 1 so it becomes map color?
       Walls.add(new Wall(x*20, y*20));
-      shopCopies.add(new Shop(5,3,p, x, y));
     }
   }
 }

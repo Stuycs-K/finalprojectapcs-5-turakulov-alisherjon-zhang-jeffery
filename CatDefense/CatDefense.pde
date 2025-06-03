@@ -17,11 +17,11 @@ p=new Player(1,1,0,10,false,470,400,3);
 m = new Map(50,p);
 m.display();
 Walls = m.Walls;
-shopCopies=m.shopCopies;
 //en= new Enemy(1, 100, 100);
 Enemies = new ArrayList<Enemy>(30); 
 e = new Enemy(1, 100, 100);
 c = new Cat(400, 400);
+s=new Shop(5,3,p,-100,-100);
 }
 
 void keyPressed(){
@@ -55,6 +55,7 @@ void draw(){
   background(255);
   m.display();
   p.display();
+  s.display();
   c.display();
   p.move();
   fill(0);
@@ -94,9 +95,7 @@ void draw(){
     }
   }
   
-  if(s!=null){
-    s.UI();
-  }
+  s.UI();
   textSize(30);
   p.UI();
   //e.UI(); maybe for bosses instead keep though
@@ -105,7 +104,7 @@ void draw(){
     p.hp=100;
     p.lives--;
   }
-  if(!inter&&p.shootHold&&(s==null||!s.isOpen)&&frameCount%10==0){
+  if(!inter&&p.shootHold&&!s.isOpen&&frameCount%10==0){
       p.shoot();
   }
   
@@ -116,8 +115,9 @@ void draw(){
   
   if(inter){
     if(tick==0){
-      int rand=(int)random(shopCopies.size());
-      s=shopCopies.get(rand);
+      int randX=(int)random(width-100);
+      int randY=(int)random(height-100);
+      s.changePos(randX,randY);
     }
     tick++;
   System.out.println(tick);
@@ -126,7 +126,7 @@ void draw(){
     wave++;
     spawned=0;
     enemiesFolded=0;
-    s=null;
+    s.changePos(-100,-100);
   }
   return;
   }

@@ -32,6 +32,10 @@ class Shop extends Entity{
        System.out.println("bought ATK!");
   }
   }
+  void changePos(int x, int y){
+    position.x=x;
+    position.y=y;
+  }
   void textStroke(float size,int col){
     textSize(size);
       fill(col);
