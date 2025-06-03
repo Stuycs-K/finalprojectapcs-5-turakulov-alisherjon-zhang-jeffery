@@ -2,11 +2,11 @@
  class Enemy extends Entity{
   int damage;
   ArrayList<Wall> Walls = new ArrayList<Wall>();
-  String[] types = {"Enemy", "Fast", "Jump", "Tank"};
+
  //static ArrayList<Entity> Enemies = new ArrayList<Entity>(30);
   
-  public Enemy(int damage, int xpos, int ypos){
-    super(5, 5, 10.0, xpos, ypos, 0, 0, "Enemy");
+  public Enemy(int damage, int xpos, int ypos, String name){
+    super(5, 5, 10.0, xpos, ypos, 0, 0, name);
     this.damage = damage;
    
   }

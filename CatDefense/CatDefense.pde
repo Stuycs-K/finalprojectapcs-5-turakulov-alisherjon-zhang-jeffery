@@ -2,6 +2,7 @@
 ArrayList<Wall> Walls;
 ArrayList<Bullets> bullets;
 ArrayList<Enemy> Enemies;
+String[] types = {"Enemy", "Fast", "Jump", "Tank"};
 Player p;
 Cat c;
 Map m;
@@ -19,7 +20,7 @@ Walls = m.Walls;
 //en= new Enemy(1, 100, 100);
 Enemies = new ArrayList<Enemy>(30); 
 p=new Player(1,1,0,10,false,470,400);
-e = new Enemy(1, 100, 100);
+//e = new Enemy(1, 100, 100);
 c = new Cat(400, 400);
 s = new Shop(5,3,p);
 }
@@ -119,12 +120,13 @@ void draw(){
           
             int x = (int) random(0, 800);
             int y = (int) random(0, 800);
+            String type = types[(int) random(0, (int)wave/10)];
             if(!(x > 250 && x < 550 && y > 250 && y < 550)){
-              Enemies.add(new Enemy(wave, x, y));//enemy damage increases with waves
+              Enemies.add(new Enemy(wave, x, y, type));//enemy damage increases with waves
               spawned++;
             }else{
               y=20;
-              Enemies.add(new Enemy(wave, x, y));//enemy damage increases with waves
+              Enemies.add(new Enemy(wave, x, y, type));//enemy damage increases with waves
               spawned++;
             }
           
