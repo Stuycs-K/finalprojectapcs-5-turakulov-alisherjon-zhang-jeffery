@@ -2,6 +2,7 @@
  class Enemy extends Entity{
   int damage;
   ArrayList<Wall> Walls = new ArrayList<Wall>();
+  String[] types = {"Enemy", "Fast", "Jump", "Tank"};
  //static ArrayList<Entity> Enemies = new ArrayList<Entity>(30);
   
   public Enemy(int damage, int xpos, int ypos){
@@ -43,43 +44,42 @@
   }
   
   void display(){
-    fill(150, 50, 50);
-    noStroke();
-    circle(position.x, position.y, 24);
-    fill(0);
+    if(name.equals("Enemy")){
+      fill(150, 50, 50);
+      noStroke();
+      circle(position.x, position.y, 24);
+      //fill(0);
+    }else if(name.equals("Fast")){
+      fill(10, 30, 200);
+      noStroke();
+      circle(position.x, position.y, 24);
+      fill(0);
+    }else if(name.equals("Jump")){
+      fill(10, 200, 50);
+      noStroke();
+      circle(position.x, position.y, 24);
+      fill(0);
+    }else if(name.equals("Tank")){
+      fill(50, 20, 10);
+      noStroke();
+      circle(position.x, position.y, 24);
+      fill(0);
+    }
+    
   }
  
- /// Precondition: other is Cat
+ /// Precondition other is Cat
   PVector attractTo(Entity other){ // use constant distance 
       PVector direction = PVector.sub(other.position, position);
       direction.setMag(1.5);
       return direction;
-/*    float distance = PVector.sub(position, other.position).mag();
-    if(distance >= 400){
-      distance = 50;
-    }else if(distance >=300){
-      distance = 10000;
-    }else{
-      distance = 50;
-    }
-    
-    float magForce = (20*mass*other.mass) / (distance*distance); // Universal law of gravity
-    PVector  force = PVector.sub(other.position, position);
-    if(mass > other.mass){
-      force.setMag(force.mag()*-1);
-    }
-     force.normalize();
-     force.setMag(magForce);
-    return force;*/
+
     
   }
   
   
   void applyForce(PVector f){
-    //Using forula F=ma ; a = F/m
-     //acceleration = f.div(mass).setMag(acceleration.mag() + f.mag());
-     
-      velocity = f;
+    velocity = f;
   }
 
 }
