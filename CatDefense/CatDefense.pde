@@ -13,7 +13,7 @@ Shop s=null;
 
 void setup(){
 size(800, 800);
-p=new Player(1,1,0,10,false,470,400,3);
+p=new Player(1,1,0,50,false,470,400,3);
 m = new Map(50,p);
 m.display();
 Walls = m.Walls;
@@ -54,10 +54,8 @@ void draw(){
   }else{
   background(255);
   m.display();
-  p.display();
   s.display();
   c.display();
-  p.move();
   fill(0);
   textSize(20);
   text("wave: "+ wave, width-70, 50);
@@ -95,6 +93,8 @@ void draw(){
     }
   }
   
+  p.display();
+  p.move();
   s.UI();
   textSize(30);
   p.UI();
@@ -121,7 +121,7 @@ void draw(){
     }
     tick++;
   System.out.println(tick);
-  if(tick>300){
+  if(tick>1000){
     inter=false;
     wave++;
     spawned=0;
