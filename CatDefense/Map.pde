@@ -57,6 +57,8 @@ void display(){
   fill(0);
   textSize(50);
   text("Game Over", 275, 310);
+  textSize(25);
+  text("Wave: " +wave, 355, 350);
   }
 
 }

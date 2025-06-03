@@ -29,4 +29,10 @@ abstract class Entity{
   
   }
   
+  void heal(int amt){
+    if(hp+amt <= maxHP){
+      hp += amt;
+    }
+  }
+  
 }
