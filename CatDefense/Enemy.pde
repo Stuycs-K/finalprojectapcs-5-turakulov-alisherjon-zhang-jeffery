@@ -8,6 +8,18 @@
   public Enemy(int damage, int xpos, int ypos, String name){
     super(5, 5, 10.0, xpos, ypos, 0, 0, name);
     this.damage = damage;
+    if(name.equals("Enemy")){
+      //default above
+     
+    }else if(name.equals("Fast")){
+        this.damage = damage;
+    }else if(name.equals("Jump")){
+    
+    this.damage = damage;
+    }else if(name.equals("Tank")){
+      
+    this.damage = damage;
+    }
    
   }
   
