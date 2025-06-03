@@ -2,6 +2,7 @@ class Bullets{
   PVector position, velocity;
   Player p;
   float ang;
+  PImage bull=loadImage("bullet.png");
   
   public Bullets(PVector start,PVector dir,float speed){
     position=start;
@@ -18,10 +19,11 @@ class Bullets{
   void display(){
     fill(175,155,96);
     pushMatrix();
-    translate(position.x,position.y);
-    rotate(ang);
+    translate(position.x-2.5,position.y);
+    rotate(ang+HALF_PI);
     rectMode(CENTER);
-    rect(0,0,20,5);
+    bull.resize(100,100);
+    image(bull,0,0);
     popMatrix();
     rectMode(CORNER);
   }

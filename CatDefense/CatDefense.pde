@@ -62,10 +62,6 @@ void draw(){
   text("wave: "+ wave, width-70, 50);
   text("FPS: "+int(frameRate),width-70,20);
   text("Cat: " + c.hp, width-70, 80);
-  s.UI();
-  textSize(30);
-  p.UI();
-  //e.UI(); maybe for bosses instead keep though
   
   //game funcs
   for(int h = Enemies.size()-1; h>=0; h--){
@@ -97,6 +93,12 @@ void draw(){
       enemiesFolded++;
     }
   }
+  
+  s.UI();
+  textSize(30);
+  p.UI();
+  //e.UI(); maybe for bosses instead keep though
+  
   if(p.hp<=0){
     p.hp=100;
     p.lives--;
