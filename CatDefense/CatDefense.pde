@@ -112,10 +112,10 @@ void draw(){
     if(p.shootHold&&!s.isOpen&&frameCount%10==0){
         p.shoot();
     }
+    int spawnNum = (int) (4*Math.pow(1.005, wave));
+     if(frameCount % (max(122-(wave*2),20)) == 0){   //spawn rate increases with waves
     
-     if(frameCount % (120-(wave*2)) == 0){   //spawn rate increases with waves
-        
-        if(Enemies.size() < wave*2 && spawned < wave*2){
+        if(Enemies.size() < spawnNum && spawned < spawnNum){
           
             int x = (int) random(0, 800);
             int y = (int) random(0, 800);
@@ -132,15 +132,23 @@ void draw(){
         for(int i = 0; i< Walls.size(); i++){
           Wall wa = Walls.get(i);
           wa.takeDamage();
-          if(wa.hp <= 0){
-              m.map[(int) wa.position.y/20][(int) wa.position.x/20] = 0;
+          if(wa.hp <= 0 && wa.damage>0){
               Walls.remove(i);
+              m.map[(int) wa.position.y/20][(int) wa.position.x/20] = 0;
               i--;
+          }else if(wa.hp <= 0){
+              wa.name="Debris";
+              wa.damage=2;
+              wa.hp = 5;
+              m.map[(int) wa.position.y/20][(int) wa.position.x/20] = 2;
             }
         }
       }
-      if(enemiesFolded == wave*2){
+      if(enemiesFolded == spawnNum){
+        println(spawnNum);
         wave++;
+        c.heal((int) .25*wave + 1); //(int) (2*Math.pow(1.005, wave))
+        p.heal(2);
         spawned=0;
         enemiesFolded=0;
       }
