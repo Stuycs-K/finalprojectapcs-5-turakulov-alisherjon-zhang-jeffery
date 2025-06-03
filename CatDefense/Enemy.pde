@@ -6,21 +6,12 @@
  //static ArrayList<Entity> Enemies = new ArrayList<Entity>(30);
   
   public Enemy(int damage, int xpos, int ypos, String name){
-    super(5, 5, 10.0, xpos, ypos, 0, 0, name);
+    super(5, 50, 10.0, xpos, ypos, 0, 0, name);
     this.damage = damage;
-    if(name.equals("Enemy")){
-      //default above
-     
-    }else if(name.equals("Fast")){
-        this.damage = damage;
-    }else if(name.equals("Jump")){
     
-    this.damage = damage;
-    }else if(name.equals("Tank")){
-      
-    this.damage = damage;
+    if(name.equals("Tank")){
+      super.hp = 20;
     }
-   
   }
   
   void attack(Entity other){
@@ -28,26 +19,13 @@
       other.hp -= damage;
     }
   }
+  
   void move(){
-    /*boolean blocked=false;
-    for(int i=0;i<Walls.size();i++){
-      if(Walls.get(i).closeEnoughW(this)){
-        blocked=true;
-      }
-    } nvm */
-    
-    if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0){
-      
-    
-      //velocity.add(acceleration);
-      position.add(velocity);
-     // acceleration.setMag(0.0);
+    if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0 || name.equals("Jump")){ //jumpers dont stop at walls
+        position.add(velocity);
     }
-    //println(m.map[(int)(position.x/40)][(int)(position.y/40)]);
-    
-    
-    
   }
+  
   void UI(){
     if(hp!=maxHP){
       fill(0);
@@ -77,16 +55,16 @@
       circle(position.x, position.y, 24);
       fill(0);
     }
-    
   }
  
  /// Precondition other is Cat
   PVector attractTo(Entity other){ // use constant distance 
       PVector direction = PVector.sub(other.position, position);
       direction.setMag(1.5);
+      if(name.equals("Fast")){
+        direction.setMag(4);
+      }
       return direction;
-
-    
   }
   
   
