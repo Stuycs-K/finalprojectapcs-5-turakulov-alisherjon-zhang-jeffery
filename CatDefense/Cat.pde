@@ -16,7 +16,7 @@
         
         }
         
-        void attractTo(Entity other){
+        void moveTo(Entity other){
           PVector direction = PVector.sub(position, other.position);
           direction.setMag(2);
           velocity = direction;

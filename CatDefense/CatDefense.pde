@@ -94,7 +94,7 @@ void draw(){
         en.attack(c);
         en.attack(p);
       }
-      en.attractTo(c);
+      en.moveTo(c);
       en.move();
       for(int i=p.bullets.size()-1;i>0;i--){
         Bullets b=p.bullets.get(i);
@@ -170,7 +170,7 @@ void draw(){
       }
      
      /*if(p.isCatnip){
-       c.applyForce(c.attractTo(p));
+       c.moveTo(p);
        c.move();
      }*/
    

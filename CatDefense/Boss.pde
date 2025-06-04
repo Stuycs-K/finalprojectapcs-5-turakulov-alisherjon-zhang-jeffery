@@ -25,7 +25,7 @@ class Boss extends Enemy{
   
   }
   
-  void attractTo(Entity other){}
+  void moveTo(Entity other){}
   
  
 }
