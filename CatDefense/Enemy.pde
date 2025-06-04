@@ -3,13 +3,15 @@
   int damage;
   ArrayList<Wall> Walls = new ArrayList<Wall>();
 
- //static ArrayList<Entity> Enemies = new ArrayList<Entity>(30);
+
   
   public Enemy(int damage, int xpos, int ypos, String name){
     super(5, 50, 10.0, xpos, ypos, 0, 0, name);
     this.damage = damage;
     
-    if(name.equals("Tank")){
+    if(name.equals("Fast")){
+     this.damage = 5;
+    }else if(name.equals("Tank")){
       super.hp = 20;
     }
   }

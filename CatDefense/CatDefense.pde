@@ -28,6 +28,11 @@ s = new Shop(5,3,p);
 
 void keyPressed(){
   p.keyPressed();
+  if(key == 'q'){
+    wave--;
+  }else if(key == 'e'){
+    wave++;
+  }
 }
 
 void keyReleased(){
@@ -113,14 +118,14 @@ void draw(){
     if(p.shootHold&&!s.isOpen&&frameCount%10==0){
         p.shoot();
     }
-    int spawnNum = (int) (4*Math.pow(1.005, wave));
+    int spawnNum = (int) (3*Math.pow(1.005, wave));
      if(frameCount % (max(122-(wave*2),20)) == 0){   //spawn rate increases with waves
     
         if(Enemies.size() < spawnNum && spawned < spawnNum){
           
             int x = (int) random(0, 800);
             int y = (int) random(0, 800);
-            String type = types[(int) random(0, (int)wave/10)];
+            String type = types[min(3, (int) random(0, (int)wave/10))];
             if(!(x > 250 && x < 550 && y > 250 && y < 550)){
               Enemies.add(new Enemy(wave, x, y, type));//enemy damage increases with waves
               spawned++;
