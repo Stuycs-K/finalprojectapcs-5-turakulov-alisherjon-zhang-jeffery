@@ -36,3 +36,7 @@ Time: ~160 minutes
 Implemented and animated the idle cat sprites. Drew and implemented bullet sprite. Ported all images and sprites into data folder. Began and finished the intermission system that occurs every 5 waves, allowing the player to upgrade their stats (and maybe buy certain things) through shop. Tried to implement the randomization of shop spawning at the start of intermission but didn't finish.
 Time: ~140 minutes
 
+### 2025-06-02 - Shop random spawn, inventory system
+Implemented shop spawn in random location around map when intermission occurs. Implemented ammobox system for reloading to increase difficulty of game since infinite reloading is too easy and boring. Implemented sprites for ammobox and medkit (medkit not implemented yet). Began implementing an inventory system that consists of up to two slots of items that the player can use (items currently are ammobox, medkit, and catnip).
+Time: ~90 minutes
+
