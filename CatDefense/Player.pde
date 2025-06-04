@@ -29,6 +29,7 @@ class Player extends Entity{
     this.isCatnip=isCatnip;
     bullets=new ArrayList<Bullets>();
     lives=lifes;
+    addItem("ammoBox");
   }
   
   void shoot(){
@@ -128,8 +129,10 @@ class Player extends Entity{
   
   void addItem(String item){
     boolean isDupe=false;
+    if(inventory.size()!=0){
     for(int i=0;i<2;i++){
       if(inventory.get(i).equals(item)) isDupe=true;
+    }
     }
     if(inventory.size()<2&&!isDupe){
       inventory.add(item);
@@ -151,8 +154,10 @@ class Player extends Entity{
       fill(50,50,50,120);
       stroke(255);
       rect(15+i*(toolSlot+kerning),690,toolSlot,toolSlot,8);
-    }
-    if(boxCheck){
+      
+      if(i<inventory.size()){
+      String item=inventory.get(i);
+      if(item.equals("ammoBox")){
     imageMode(CENTER);
     box.resize(280,280);
     image(box,18+toolSlot/2,690+toolSlot/2);
@@ -160,10 +165,13 @@ class Player extends Entity{
     fill(0,0,0);
     text("Remaining uses: "+remBox,mouseX,mouseY);
     imageMode(CORNER);
+    System.out.println("tool ammOK");
     }
     imageMode(CENTER);
     kit.resize(240,240);
     image(kit,15+(toolSlot+kerning)+toolSlot/2,690+toolSlot/2);
+      }
+    }
   }
   void display(){
     fill(255,255,0);
