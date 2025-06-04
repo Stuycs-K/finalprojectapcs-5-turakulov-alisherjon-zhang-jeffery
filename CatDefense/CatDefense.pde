@@ -2,14 +2,17 @@
 ArrayList<Wall> Walls;
 ArrayList<Bullets> bullets;
 ArrayList<Enemy> Enemies;
-String[] types = {"Enemy", "Fast", "Jump", "Tank"};
+String[] types = {"Enemy", "Fast", "Jump", "Tank", "Bob", "Tar", "Drunk"};// randomization starts inlcuding more types 20..30..40 (unil bosses index 4)
+//Bob -the builder, first boss; Tar -the murkiness of real life, of responsbiltiy; Drunk -the players childhood trauma. 
+//Wave 100 is where the player comes to terms with everything in their past; their journey continues. (Accompanied by their good friend Mr Bartelby the feline).
 Player p;
 Cat c;
 Map m;
 Enemy e;
-int spawned=0, enemiesFolded = 0, wave = 1;
+int spawnNum, spawned=0, enemiesFolded = 0, wave = 1;
 Entity en;
 Shop s;
+boolean invincible;
 
 
 void setup(){
@@ -32,6 +35,8 @@ void keyPressed(){
     wave--;
   }else if(key == 'e'){
     wave++;
+  }else if(key == 'i'){
+    invincible = true;
   }
 }
 
@@ -81,7 +86,7 @@ void draw(){
     for(int h = 0; h < Enemies.size(); h++){
       Enemy en = Enemies.get(h);
       en.display();
-      if(frameCount % 40 == 0){
+      if(frameCount % 40 == 0 && invincible == false){
         en.attack(c);
         en.attack(p);
       }
@@ -118,8 +123,8 @@ void draw(){
     if(p.shootHold&&!s.isOpen&&frameCount%10==0){
         p.shoot();
     }
-    int spawnNum = (int) (3*Math.pow(1.005, wave));
-     if(frameCount % (max(122-(wave*2),20)) == 0){   //spawn rate increases with waves
+     spawnNum = (int) (3*Math.pow(1.005, wave));
+     if(frameCount % 100 == 0){   //spawn rate remains same; otherwise at upper waves computer fan will increase with spawn rate too.
     
         if(Enemies.size() < spawnNum && spawned < spawnNum){
           
