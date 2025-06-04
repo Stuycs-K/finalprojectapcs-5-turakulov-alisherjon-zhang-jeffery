@@ -73,7 +73,12 @@ class Player extends Entity{
       if(medpacks==1){
         medkit=false;
       }
-      System.out.println("HEAEAEAEAEAEEEALED");
+    }else if(medkit){
+      hp+=maxHP-hp;
+      medpacks--;
+      if(medpacks==1){
+        medkit=false;
+      }
     }
   }
   void keyPressed(){
