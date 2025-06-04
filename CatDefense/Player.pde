@@ -13,6 +13,7 @@ class Player extends Entity{
   boolean up,down,left,right;
   ArrayList<Bullets> bullets;
   boolean shootHold;
+  ArrayList<String> inventory=new ArrayList<String>();
   PImage box=loadImage("ammobox2.png");
   PImage kit=loadImage("kit.png");
   
@@ -124,6 +125,19 @@ class Player extends Entity{
   void applyForce(PVector f){
   acceleration=f.div(mass).setMag(acceleration.mag()+f.mag());
   }
+  
+  void addItem(String item){
+    boolean isDupe=false;
+    for(int i=0;i<2;i++){
+      if(inventory.get(i).equals(item)) isDupe=true;
+    }
+    if(inventory.size()<2&&!isDupe){
+      inventory.add(item);
+      if(item.equals("ammoBox")) boxCheck=true;
+      if(item.equals("medkit")) medkit=true;
+    }
+  }
+  
   void UI(){
     //reload
     int toolSlot=95;
