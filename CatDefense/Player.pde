@@ -13,6 +13,7 @@ class Player extends Entity{
   boolean up,down,left,right;
   ArrayList<Bullets> bullets;
   boolean shootHold;
+  PImage box=loadImage("ammobox2.png");
   
   public Player(int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos, int lifes){
     super(100,100+def,10.0,xpos,ypos,0,0,"Player");
@@ -21,6 +22,7 @@ class Player extends Entity{
     defense=def;
     ammo=amm;
     maxAmmo=amm;
+    boxCheck=true;
     remBox=2; remBoxL=100;
     this.isCatnip=isCatnip;
     bullets=new ArrayList<Bullets>();
@@ -39,10 +41,15 @@ class Player extends Entity{
   }
   
   void reload(){
-    if(ammo<maxAmmo&&remBox>0){
+    if(ammo<maxAmmo&&boxCheck){
       remBoxL-=maxAmmo-ammo;
       System.out.println("current ammoBox remaining bullets: "+remBoxL);
       if(remBoxL<=0){
+        if(remBox==1){
+          boxCheck=false;
+        }else{
+          boxCheck=true;
+        }
         remBox--;
         remBoxL=100+remBoxL;
         System.out.println("remaining ammoBoxes: "+remBox);
@@ -118,11 +125,27 @@ class Player extends Entity{
   }
   void UI(){
     //reload
+    int toolSlot=95;
+    int kerning=20;
     fill(0);
     text("Bullets: " + ammo+"/"+maxAmmo, 25, 50);
     textSize(30); // bullet icon next to it or smth
     text(hp+"  /  "+(maxHP+defense),25,100);
     text("Souls " +souls,25,150);
+    for(int i=0;i<2;i++){
+      fill(50,50,50,120);
+      stroke(255);
+      rect(15+i*(toolSlot+kerning),690,toolSlot,toolSlot,8);
+    }
+    if(boxCheck){
+    imageMode(CENTER);
+    box.resize(280,280);
+    image(box,18+toolSlot/2,690+toolSlot/2);
+    textSize(20);
+    fill(0,0,0);
+    text("Remaining uses: "+remBox,mouseX,mouseY);
+    imageMode(CORNER);
+    }
   }
   void display(){
     fill(255,255,0);
