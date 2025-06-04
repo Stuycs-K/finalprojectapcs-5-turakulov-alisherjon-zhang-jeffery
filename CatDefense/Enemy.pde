@@ -56,7 +56,7 @@
       noStroke();
       circle(position.x, position.y, 24);
       
-    }else if(name.equals("Bob")){ //like a construction uniform
+    }/*else if(name.equals("Bob")){ //like a construction uniform  //uncomment block to test boss displays for now
       fill(50, 20, 10);
       PImage bob = loadImage("bob.png"); //may need to change if drawing is conspiciously subpar
       noStroke();
@@ -65,7 +65,7 @@
     
     }else if(name.equals("Drunk")){
     
-    }
+    }*/
   }
  
  /// Precondition other is Cat

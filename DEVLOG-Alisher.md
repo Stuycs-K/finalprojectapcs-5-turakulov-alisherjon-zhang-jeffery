@@ -28,10 +28,14 @@ Time: ~90 minutes;
 Fix the array index lookup for Enemy-Wall obstructions, write wall-enemy takeDamage() and removal, as well as removal and additon of Enemies based on hp and wave.  
 Time: ~90 minutes;  
   
-### 2025-06-01 - Enemy spawn per wave, Cat movement, spawn randomization
-Use spawned variable to make sure each wave spawns a larger total enemies than the last; Increase the rate of spawning each wave; write Cat movement, and placeholder code checking for the isCatnip usage by the player. Merge changes to wave system and spawn rate into main.
+### 2025-06-01 - Enemy spawn per wave, Cat movement, spawn randomization, End Screen
+Use spawned variable to make sure each wave spawns a larger total enemies than the last; Increase the rate of spawning each wave; write Cat movement, and placeholder code checking for the isCatnip usage by the player. Add Game Over screen. Merge changes to wave system and spawn rate into main.
 Time: ~90 minutes;  
   
-### 2025-06-02 - Wall Debris transformation, Wave healing  
-Implement wall to debris transformation upon initial zero hp, added wave healing for cat and player using Entity class method.  
+### 2025-06-02 - Wall Debris transformation, Wave healing
+Implement wall to debris transformation upon initial zero hp, added wave healing for cat and player using Entity class method, update End screen with wave.
 Time: ~30 minutes;  
+  
+### 2025-06-03 - Cheatcodes, Enemy types, Boss class types
+Add Fast, Jump, and Tank Enemy types that get introduced every ten waves starting with wave 20; add corresponding attributes and display differenes into Enemy class for different Enemy types; Create Q/E cheatcode for waves, 'i' cheatcode for invincibility; Add boss types to types, and create boss class with display method for first boss setup.
+Time: ~90 minutes;  

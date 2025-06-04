@@ -2,7 +2,7 @@
 ArrayList<Wall> Walls;
 ArrayList<Bullets> bullets;
 ArrayList<Enemy> Enemies;
-String[] types = {"Enemy", "Fast", "Jump", "Tank", "Bob", "Tar", "Drunk"};// randomization starts inlcuding more types 20..30..40 (unil bosses index 4)
+String[] types = {"Enemy", "Jump", "Fast", "Tank", "Bob", "Tar", "Drunk"};// randomization starts inlcuding more types 20..30..40 (unil bosses index 4)
 //Bob -the builder, first boss; Tar -the murkiness of real life, of responsbiltiy; Drunk -the players childhood trauma. 
 //Wave 100 is where the player comes to terms with everything in their past; their journey continues. (Accompanied by their good friend Mr Bartelby the feline).
 Player p;
