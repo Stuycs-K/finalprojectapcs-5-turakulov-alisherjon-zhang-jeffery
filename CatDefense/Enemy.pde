@@ -56,16 +56,7 @@
       noStroke();
       circle(position.x, position.y, 24);
       
-    }/*else if(name.equals("Bob")){ //like a construction uniform  //uncomment block to test boss displays for now
-      fill(50, 20, 10);
-      PImage bob = loadImage("bob.png"); //may need to change if drawing is conspiciously subpar
-      noStroke();
-      image(bob, position.x-bob.width/2, position.y-bob.height/2);
-    }else if(name.equals("Tar")){
-    
-    }else if(name.equals("Drunk")){
-    
-    }*/
+    }
   }
  
  /// Precondition other is Cat
@@ -74,6 +65,8 @@
       direction.setMag(1.5);
       if(name.equals("Fast")){
         direction.setMag(4);
+      }else if(name.equals("Tank")){
+        direction.setMag(.75);
       }
       return direction;
   }

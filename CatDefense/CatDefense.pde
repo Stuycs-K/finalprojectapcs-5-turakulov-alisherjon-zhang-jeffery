@@ -159,7 +159,7 @@ void draw(){
       if(enemiesFolded == spawnNum){
         println(spawnNum);
         wave++;
-        c.heal((int) .25*wave + 1); //(int) (2*Math.pow(1.005, wave))
+      //  c.heal((int) .25*wave + 1); //(int) (2*Math.pow(1.005, wave))
         p.heal(2);
         spawned=0;
         enemiesFolded=0;
