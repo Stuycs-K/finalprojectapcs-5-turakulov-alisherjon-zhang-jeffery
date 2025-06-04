@@ -2,7 +2,6 @@ class Shop extends Entity{
   int costDefence;
   int costWeapon;
   int costBox; boolean boxBought;
-  int cost
   Player p;
   boolean isOpen;
   PImage shop;
@@ -12,7 +11,7 @@ class Shop extends Entity{
     super(10000000,10000000,10.0,x,y,0,0,"Shop");
     costDefence=costD;
     costWeapon=costW;
-    costBox=cost
+    this.costBox=costBox;
     p=player;
     shop=loadImage("shop.png");
   }

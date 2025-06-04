@@ -2,7 +2,7 @@ class Player extends Entity{
   int catnip;
   int weapon; //damage
   int defense; //hp increase
-  int ammo; int maxAmmo; int remBox;
+  int ammo; int maxAmmo; int remBox; int remBoxL;
   int souls; //currency
   int lives; //later
   boolean medkit; //heal self or cat
@@ -21,6 +21,7 @@ class Player extends Entity{
     defense=def;
     ammo=amm;
     maxAmmo=amm;
+    remBox=2; remBoxL=100;
     this.isCatnip=isCatnip;
     bullets=new ArrayList<Bullets>();
     lives=lifes;
@@ -38,8 +39,15 @@ class Player extends Entity{
   }
   
   void reload(){
-    if(ammo<maxAmmo){
-    ammo+=maxAmmo-ammo; //placeholder include amt of max bullets
+    if(ammo<maxAmmo&&remBox>0){
+      remBoxL-=maxAmmo-ammo;
+      System.out.println("current ammoBox remaining bullets: "+remBoxL);
+      if(remBoxL<=0){
+        remBox--;
+        remBoxL=100+remBoxL;
+        System.out.println("remaining ammoBoxes: "+remBox);
+      }
+    ammo+=maxAmmo-ammo;
     }
   }
   
