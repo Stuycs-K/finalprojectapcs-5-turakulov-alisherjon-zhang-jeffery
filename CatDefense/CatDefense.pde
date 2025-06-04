@@ -13,14 +13,14 @@ Shop s=null;
 
 void setup(){
 size(800, 800);
-p=new Player(1,1,0,50,false,470,400,3);
+c = new Cat(400, 400);
+p=new Player(c,1,1,0,50,false,470,400,3);
 m = new Map(50,p);
 m.display();
 Walls = m.Walls;
 //en= new Enemy(1, 100, 100);
 Enemies = new ArrayList<Enemy>(30); 
 e = new Enemy(1, 100, 100);
-c = new Cat(400, 400);
 s=new Shop(5,3,7,p,-100,-100);
 }
 

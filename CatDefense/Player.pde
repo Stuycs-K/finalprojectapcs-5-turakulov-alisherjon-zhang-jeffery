@@ -3,6 +3,7 @@ class Player extends Entity{
   int weapon; //damage
   int defense; //hp increase
   int ammo; int maxAmmo; int remBox; int remBoxL;
+  int medpacks;
   int souls; //currency
   int lives; //later
   boolean medkit; //heal self or cat
@@ -16,8 +17,9 @@ class Player extends Entity{
   ArrayList<String> inventory=new ArrayList<String>();
   PImage box=loadImage("ammobox2.png");
   PImage kit=loadImage("kit.png");
+  Cat c;
   
-  public Player(int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos, int lifes){
+  public Player(Cat cattail,int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos, int lifes){
     super(100,100+def,10.0,xpos,ypos,0,0,"Player");
     this.catnip=catnip;
     weapon=wep;
@@ -25,9 +27,12 @@ class Player extends Entity{
     ammo=amm;
     maxAmmo=amm;
     boxCheck=true;
+    medpacks=1;
+    medkit=true;
     remBox=2; remBoxL=100;
     this.isCatnip=isCatnip;
     bullets=new ArrayList<Bullets>();
+    c=cattail;
     lives=lifes;
     addItem("ammoBox");
   }
@@ -61,6 +66,16 @@ class Player extends Entity{
     }
   }
   
+  void heal(){
+    if(medkit&&closeEnough(c)){
+      c.hp+=c.maxHP-c.hp;
+      medpacks--;
+      if(medpacks==1){
+        medkit=false;
+      }
+      System.out.println("HEAEAEAEAEAEEEALED");
+    }
+  }
   void keyPressed(){
     if(key=='w'||key=='W'||keyCode==UP){
       up=true;
@@ -76,6 +91,9 @@ class Player extends Entity{
     }
     if(key=='r'||key=='R'){
       reload();
+    }
+    if(key=='t'||key=='T'){
+      heal();
     }
   }
   
@@ -141,6 +159,13 @@ class Player extends Entity{
     }
   }
   
+  void addMedkit(){
+    addItem("medkit");
+  }
+  void addBox(){
+    addItem("ammoBox");
+  }
+  
   void UI(){
     //reload
     int toolSlot=95;
@@ -154,7 +179,7 @@ class Player extends Entity{
       fill(50,50,50,120);
       stroke(255);
       rect(15+i*(toolSlot+kerning),690,toolSlot,toolSlot,8);
-      
+      fill(50);
       if(i<inventory.size()){
       String item=inventory.get(i);
       if(item.equals("ammoBox")){
@@ -165,11 +190,12 @@ class Player extends Entity{
     fill(0,0,0);
     text("Remaining uses: "+remBox,mouseX,mouseY);
     imageMode(CORNER);
-    System.out.println("tool ammOK");
     }
+    if(item.equals("medkit")){
     imageMode(CENTER);
     kit.resize(240,240);
     image(kit,15+(toolSlot+kerning)+toolSlot/2,690+toolSlot/2);
+    }
       }
     }
   }
