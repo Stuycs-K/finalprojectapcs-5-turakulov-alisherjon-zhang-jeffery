@@ -2,6 +2,7 @@ class Shop extends Entity{
   int costDefence;
   int costWeapon;
   int costBox; boolean boxBought;
+  int costMed; boolean medBought;
   Player p;
   boolean isOpen;
   PImage shop;
@@ -33,9 +34,22 @@ class Shop extends Entity{
   }
   void ammoBox(){//more ammoboxes more times can reload. reloading with remaining ammo subtracts from ammoBox remaining ammo
     if(p.getSouls()>=costBox&&!boxBought){
+      if(!p.boxCheck){
+        p.addBox();
+      }
       p.soulsDec(costBox);
       p.remBox++;
       boxBought=true; //reset in display after intermission also have UI for it being already bought
+  }
+  }
+  void Medkit(){
+    if(p.getSouls()>=costMed&&!medBought){
+      if(!p.medkit){
+        p.addMedkit();
+      }
+      p.soulsDec(costMed);
+      p.medpacks++;
+      medBought=true;
   }
   }
   void changePos(int x, int y){
@@ -49,7 +63,7 @@ class Shop extends Entity{
   void UI(){
     if(dist(position.x,position.y,p.position.x,p.position.y)<30){
       isOpen=true;
-      fill(123,225,184);
+      fill(123,225,184); //placeholder fill
       rect((width/4)+50,height/4,300,400,28);
       fill(173,235,179);
       rect((width/4)+70,(height/4)+115,252.5,40,28);
