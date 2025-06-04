@@ -14,6 +14,7 @@ class Player extends Entity{
   ArrayList<Bullets> bullets;
   boolean shootHold;
   PImage box=loadImage("ammobox2.png");
+  PImage kit=loadImage("kit.png");
   
   public Player(int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos, int lifes){
     super(100,100+def,10.0,xpos,ypos,0,0,"Player");
@@ -146,6 +147,9 @@ class Player extends Entity{
     text("Remaining uses: "+remBox,mouseX,mouseY);
     imageMode(CORNER);
     }
+    imageMode(CENTER);
+    kit.resize(240,240);
+    image(kit,15+(toolSlot+kerning)+toolSlot/2,690+toolSlot/2);
   }
   void display(){
     fill(255,255,0);
