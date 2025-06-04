@@ -36,7 +36,11 @@ void keyPressed(){
   }else if(key == 'e'){
     wave++;
   }else if(key == 'i'){
-    invincible = true;
+    if(invincible){
+      invincible = false;
+    }else{
+      invincible = true;
+    }
   }
 }
 
@@ -90,7 +94,7 @@ void draw(){
         en.attack(c);
         en.attack(p);
       }
-      en.applyForce(en.attractTo(c));
+      en.attractTo(c);
       en.move();
       for(int i=p.bullets.size()-1;i>0;i--){
         Bullets b=p.bullets.get(i);

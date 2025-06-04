@@ -25,11 +25,7 @@ class Boss extends Enemy{
   
   }
   
-  PVector attractTo(Entity other){
-    return null;
-  }
+  void attractTo(Entity other){}
   
-  void applyForce(PVector f){
-  
-  }
+ 
 }

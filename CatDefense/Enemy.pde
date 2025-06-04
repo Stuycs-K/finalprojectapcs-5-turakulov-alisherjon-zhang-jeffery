@@ -60,7 +60,7 @@
   }
  
  /// Precondition other is Cat
-  PVector attractTo(Entity other){ // use constant distance 
+  void attractTo(Entity other){ // use constant distance 
       PVector direction = PVector.sub(other.position, position);
       direction.setMag(1.5);
       if(name.equals("Fast")){
@@ -68,12 +68,12 @@
       }else if(name.equals("Tank")){
         direction.setMag(.75);
       }
-      return direction;
+      velocity = direction;
   }
   
   
-  void applyForce(PVector f){
+ /* void applyForce(PVector f){
     velocity = f;
   }
-
+*/
 }
