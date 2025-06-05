@@ -17,8 +17,8 @@ abstract class Entity{
    void move(){}
    void display(){}
    void applyForce(PVector f) {} // constant distance for calculating.
-void moveTowards(Entity other){}
-    PVector attractTo(Entity other){}
+   void moveTo(Entity other){}
+   PVector attractTo(Entity other){ return null; }
    void attack(Entity other){}
    
   boolean closeEnough(Entity other){

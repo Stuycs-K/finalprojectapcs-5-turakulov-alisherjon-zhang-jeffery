@@ -105,6 +105,7 @@ class Player extends Entity{
   void applyForce(PVector f){
   acceleration=f.div(mass).setMag(acceleration.mag()+f.mag());
   }
+  
   void UI(){
     //reload
     fill(0);

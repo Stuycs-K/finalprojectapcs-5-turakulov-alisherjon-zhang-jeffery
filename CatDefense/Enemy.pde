@@ -23,14 +23,13 @@
   }
   
   void move(){
-    if(name.equals("Jump")){
-      if(frameCount % 60 == 0){
-          for(int i = 0; i<10; i++){
-            position.add(velocity);
-          }
-      }
-    }
-    else if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0 || name.equals("Jump")){ //jumpers dont stop at walls
+    if(name.equals("Jump") ){
+        for(int i = 0; i < 20; i++){
+          velocity.add(acceleration);
+          acceleration.setMag(0.0);
+          position.add(velocity);
+        }
+    }else if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0){ //jumpers dont stop at walls
       position.add(velocity);
     }
   }
@@ -75,8 +74,25 @@
       }else if(name.equals("Tank")){
         direction.setMag(.75);
       }
-      velocity = direction;
+      if(name.equals("Jump")){
+        
+        PVector f = PVector.sub(other.position, position);
+        
+        
+        
+        float mag = (20*100*10) / (400*400);
+        
+        f.normalize();
+        f.setMag(mag);
+        PVector acc = f.div(10).setMag(mag);
+        acceleration = acc.setMag(f.mag()+acceleration.mag());
+      }else{
+        velocity = direction;
+        
+      }
+      
   }
+  
   
   
  /* void applyForce(PVector f){
