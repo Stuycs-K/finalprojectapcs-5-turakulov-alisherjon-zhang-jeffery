@@ -3,12 +3,16 @@ class Shop extends Entity{
   int costWeapon;
   int costBox; boolean boxBought;
   int costMed; boolean medBought;
+  int trackUI;
   Player p;
   boolean isOpen;
   PImage shop;
   int expDef; int expWep;
   PImage shopGuy=loadImage("shopdude.png");
   PImage bgUI=loadImage("shopBase.png");
+  PImage[] souls;
+  int curFrame,countFrame,delayFrame,totalFrame;
+  
   public Shop(int costD,int costW, int costBox, Player player,int x,int y){
     super(10000000,10000000,10.0,x,y,0,0,"Shop");
     costDefence=costD;
@@ -16,6 +20,21 @@ class Shop extends Entity{
     this.costBox=costBox;
     p=player;
     shop=loadImage("shop.png");
+    curFrame=0;
+    countFrame=0;
+    delayFrame=2;
+    totalFrame=27;
+    souls=new PImage[totalFrame];
+        for(int i=0;i<totalFrame;i++){
+          String get="soulSprites/souls_0";
+          if(i<10){
+            get+="0"+i+".png";
+          }else{
+            get+=i+".png";
+          }
+          souls[i]=loadImage(get);
+          souls[i].resize(150,150);
+        }
   }
   void upgradeDefense(){
     if(p.getSouls()>=costDefence){
@@ -61,12 +80,45 @@ class Shop extends Entity{
     textSize(size);
       fill(col);
   }
+  
+  void keyPressed(){
+    if(keyCode==UP){
+      trackUI--;
+      if(trackUI<0) trackUI=1;
+      System.out.println(trackUI+" THIS IS TRACKUI");
+    }
+    if(keyCode==DOWN){
+      trackUI++;
+      if(trackUI>1) trackUI=0;
+      System.out.println(trackUI+" THIS IS TRACKUI");
+    }
+  }
+  
   void UI(){
     if(dist(position.x,position.y,p.position.x,p.position.y)<30){
       isOpen=true;
       shopGuy.resize(800,800);
       image(shopGuy,0,30);
       image(bgUI,5,0);
+      textSize(40);
+      fill(255);
+      text(" > Why did the man fall through\n    the glass?",width/2-370,height/2+200);
+      text(" > Because he weighed a\n    SKELEton!",width/2-370,height/2+280);
+      text("Items",width/2+175,height/2+200);
+      text("Upgrades",width/2+175,height/2+250);
+      text(p.getSouls()+" SOULS",width/2+155,height/2+350);
+      float soulX=width/2+85;
+      float[] soulY={height/2+115,height/2+265};
+      image(souls[curFrame],soulX,soulY[trackUI]);
+         countFrame++;
+         if(countFrame>=delayFrame){
+           curFrame++;
+         if(curFrame>=totalFrame){
+           curFrame=0;
+         }
+         countFrame=0;
+        }
+      
       fill(173,235,179);
       rect((width/4)+70,(height/4)+115,252.5,40,28);
       rect((width/4)+70,(height/4)+115+150.5,252.5,40,28);

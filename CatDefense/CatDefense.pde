@@ -27,7 +27,12 @@ s2=new Shop(5,3,7,p,100,100); // tesing purp remove later
 }
 
 void keyPressed(){
+  if(s2.isOpen){
+  s.keyPressed();
+  }
+  if(!s2.isOpen){
   p.keyPressed();
+  }
 }
 
 void keyReleased(){
@@ -43,7 +48,7 @@ void mouseReleased(){
 }
 
 void mouseClicked(){
-  if(s!=null&&s.isOpen){
+  if(s2.isOpen){
   s.mouseClicked();
   }
 }
@@ -99,11 +104,11 @@ void draw(){
   
   p.display();
   p.move();
+  textSize(50);
+  p.UI();
   s.UI();
   s2.display(); // tesing purp remove later
   s2.UI(); // tesing purp remove later
-  textSize(50);
-  p.UI();
   //e.UI(); maybe for bosses instead keep though
   
   if(p.hp<=0){
