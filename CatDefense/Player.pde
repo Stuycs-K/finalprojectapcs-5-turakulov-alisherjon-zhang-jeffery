@@ -177,7 +177,7 @@ class Player extends Entity{
     int kerning=20;
     fill(0);
     text("Bullets: " + ammo+"/"+maxAmmo, 25, 50);
-    textSize(30); // bullet icon next to it or smth
+    textSize(50); // bullet icon next to it or smth
     text(hp+"  /  "+(maxHP+defense),25,100);
     text("Souls " +souls,25,150);
     for(int i=0;i<2;i++){

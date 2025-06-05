@@ -8,6 +8,7 @@ class Shop extends Entity{
   PImage shop;
   int expDef; int expWep;
   PImage shopGuy=loadImage("shopdude.png");
+  PImage bgUI=loadImage("shopBase.png");
   public Shop(int costD,int costW, int costBox, Player player,int x,int y){
     super(10000000,10000000,10.0,x,y,0,0,"Shop");
     costDefence=costD;
@@ -63,8 +64,9 @@ class Shop extends Entity{
   void UI(){
     if(dist(position.x,position.y,p.position.x,p.position.y)<30){
       isOpen=true;
-      fill(123,225,184); //placeholder fill
-      rect((width/4)+50,height/4,300,400,28);
+      shopGuy.resize(800,800);
+      image(shopGuy,0,30);
+      image(bgUI,5,0);
       fill(173,235,179);
       rect((width/4)+70,(height/4)+115,252.5,40,28);
       rect((width/4)+70,(height/4)+115+150.5,252.5,40,28);
@@ -98,7 +100,6 @@ class Shop extends Entity{
       textSize(35);
       fill(225);
       text("Cost: "+ costWeapon+"",(width/4)+55,(height/4)+72.5);
-      image(shopGuy,430,470);
       /*fill(225);
       rect((width/4)+322.5,height/4,10,400,28);
       rect((width/4)+70,height/4,10,400,28);

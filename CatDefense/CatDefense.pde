@@ -9,7 +9,8 @@ Enemy e;
 int spawned = 0, enemiesFolded = 0, wave = 1,tick=0;
 boolean inter;
 Entity en;
-Shop s=null;
+Shop s;
+Shop s2; // tesing purp remove later
 
 void setup(){
 size(800, 800);
@@ -22,6 +23,7 @@ Walls = m.Walls;
 Enemies = new ArrayList<Enemy>(30); 
 e = new Enemy(1, 100, 100);
 s=new Shop(5,3,7,p,-100,-100);
+s2=new Shop(5,3,7,p,100,100); // tesing purp remove later
 }
 
 void keyPressed(){
@@ -48,6 +50,8 @@ void mouseClicked(){
 
 void draw(){
   //c.position = new PVector(mouseX, mouseY);
+  PFont pixel=createFont("MedodicaRegular.otf",128);
+  textFont(pixel);
   if(p.hp <= 0 || c.hp <= 0){
     background(200);
     m.displayEnd();
@@ -57,10 +61,10 @@ void draw(){
   s.display();
   c.display();
   fill(0);
-  textSize(20);
-  text("wave: "+ wave, width-70, 50);
-  text("FPS: "+int(frameRate),width-70,20);
-  text("Cat: " + c.hp, width-70, 80);
+  textSize(30);
+  text("wave: "+ wave, width-100, 48);
+  text("FPS: "+int(frameRate),width-100,20);
+  text("Cat: " + c.hp, width-100, 80);
   
   //game funcs
   for(int h = Enemies.size()-1; h>=0; h--){
@@ -96,7 +100,9 @@ void draw(){
   p.display();
   p.move();
   s.UI();
-  textSize(30);
+  s2.display(); // tesing purp remove later
+  s2.UI(); // tesing purp remove later
+  textSize(50);
   p.UI();
   //e.UI(); maybe for bosses instead keep though
   
