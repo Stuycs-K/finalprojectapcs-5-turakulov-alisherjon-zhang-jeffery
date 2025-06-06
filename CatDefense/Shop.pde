@@ -1,9 +1,10 @@
 class Shop extends Entity{
   int costDefence;
   int costWeapon;
-  int costBox; boolean boxBought;
-  int costMed; boolean medBought;
-  int trackUI;
+  int costBox;
+  int costMed;
+  int trackUI, trackUII, trackUIU;
+  boolean base,items,upgrades;
   Player p;
   boolean isOpen;
   PImage shop;
@@ -18,8 +19,11 @@ class Shop extends Entity{
     costDefence=costD;
     costWeapon=costW;
     this.costBox=costBox;
+    costMed=10; //TOO LAZYY
     p=player;
     shop=loadImage("shop.png");
+    shopGuy.resize(800,800);
+    base=true;
     curFrame=0;
     countFrame=0;
     delayFrame=2;
@@ -53,23 +57,21 @@ class Shop extends Entity{
   }
   }
   void ammoBox(){//more ammoboxes more times can reload. reloading with remaining ammo subtracts from ammoBox remaining ammo
-    if(p.getSouls()>=costBox&&!boxBought){
+    if(p.getSouls()>=costBox){
       if(!p.boxCheck){
         p.addBox();
       }
       p.soulsDec(costBox);
       p.remBox++;
-      boxBought=true; //reset in display after intermission also have UI for it being already bought
   }
   }
   void Medkit(){
-    if(p.getSouls()>=costMed&&!medBought){
+    if(p.getSouls()>=costMed){
       if(!p.medkit){
         p.addMedkit();
       }
       p.soulsDec(costMed);
       p.medpacks++;
-      medBought=true;
   }
   }
   void changePos(int x, int y){
@@ -83,32 +85,90 @@ class Shop extends Entity{
   
   void keyPressed(){
     if(keyCode==UP){
+      if(base){
       trackUI--;
       if(trackUI<0) trackUI=1;
-      System.out.println(trackUI+" THIS IS TRACKUI");
+      }
+      if(items){
+        trackUII--;
+        if(trackUII<0) trackUII=3;
+      }
+      if(upgrades){
+        trackUIU--;
+        if(trackUIU<0) trackUIU=2;
+      }
     }
     if(keyCode==DOWN){
+      if(base){
       trackUI++;
       if(trackUI>1) trackUI=0;
-      System.out.println(trackUI+" THIS IS TRACKUI");
+      }
+      if(items){
+        trackUII++;
+        if(trackUII>3) trackUII=0;
+      }
+      if(upgrades){
+        trackUIU++;
+        if(trackUIU>2) trackUIU=0;
+      }
+    }
+    if(keyCode==ENTER){
+      if(base){
+      if(trackUI==0){
+        base=false;
+        items=true;
+        upgrades=false;
+      }
+      if(trackUI==1){
+        base=false;
+        items=false;
+        upgrades=true;
+      }
+      }
+      if(items){
+        if(trackUII==0){
+          ammoBox();
+        }
+        if(trackUII==1){
+          Medkit();
+        }
+        if(trackUII==3){
+          base=true;
+          items=false;
+          upgrades=false;
+        }
+      }
+      if(upgrades){
+        if(trackUIU==0){
+          upgradeWeapon();
+        }
+        if(trackUIU==1){
+          upgradeDefense();
+        }
+        if(trackUIU==2){
+          base=true;
+          items=false;
+          upgrades=false;
+        }
+    }
     }
   }
   
   void UI(){
     if(dist(position.x,position.y,p.position.x,p.position.y)<30){
       isOpen=true;
-      shopGuy.resize(800,800);
       image(shopGuy,0,30);
       image(bgUI,5,0);
       textSize(40);
       fill(255);
+      text(p.getSouls()+" SOULS",width/2+155,height/2+350);
+      if(base){
       text(" > Why did the man fall through\n    the glass?",width/2-370,height/2+200);
       text(" > Because he weighed a\n    SKELEton!",width/2-370,height/2+280);
       text("Items",width/2+175,height/2+200);
       text("Upgrades",width/2+175,height/2+250);
-      text(p.getSouls()+" SOULS",width/2+155,height/2+350);
       float soulX=width/2+85;
-      float[] soulY={height/2+115,height/2+265};
+      float[] soulY={height/2+115,height/2+165};
       image(souls[curFrame],soulX,soulY[trackUI]);
          countFrame++;
          if(countFrame>=delayFrame){
@@ -118,52 +178,43 @@ class Shop extends Entity{
          }
          countFrame=0;
         }
-      
-      fill(173,235,179);
-      rect((width/4)+70,(height/4)+115,252.5,40,28);
-      rect((width/4)+70,(height/4)+115+150.5,252.5,40,28);
-      textStroke(35.5,0);
-      text("Upgrade DMG",(width/4)+55-2.5,(height/4)+40+2);//-2.5 to x & +2 to y for effect
-      textSize(35);
-      fill(225);
-      text("Upgrade DMG",(width/4)+55,(height/4)+40);
-      textStroke(35.5,0);
-      text("Current: "+p.weapon,(width/4)+55-2.5,(height/4)+105+2);
-      textSize(35);
-      fill(225);
-      text("Current: "+p.weapon,(width/4)+55,(height/4)+105);
-      textStroke(35.5,0);
-      text("Upgrade MaxHP",(width/4)+55-2.5,(height/4)+190+2);
-      textSize(35);
-      fill(225);
-      text("Upgrade MaxHP",(width/4)+55,(height/4)+190);
-      textStroke(35.5,0);
-      text("Current: "+(p.defense+p.maxHP),(width/4)+55-2.5,(height/4)+255+2);
-      textSize(35);
-      fill(225);
-      text("Current: "+(p.defense+p.maxHP),(width/4)+55,(height/4)+255);
-      textStroke(35.5,0);
-      text("Cost: "+ costDefence,(width/4)+55-2.5,(height/4)+221.5+2);
-      textSize(35);
-      fill(225);
-      text("Cost: "+ costDefence,(width/4)+55,(height/4)+221.5);
-      textStroke(35.5,0);
-      text("Cost: "+ costWeapon+"",(width/4)+55-2.5,(height/4)+72.5+2);
-      textSize(35);
-      fill(225);
-      text("Cost: "+ costWeapon+"",(width/4)+55,(height/4)+72.5);
-      /*fill(225);
-      rect((width/4)+322.5,height/4,10,400,28);
-      rect((width/4)+70,height/4,10,400,28);
-      rect((width/4)+150,(height/4)+115,10,10,28);
-      rect((width/4)+170,(height/4)+315,10,10,28);
-      fill(155);
-      rect((width/4)+150,(height/4)+215,10,10,28);
-      rect((width/4)+170,(height/4)+355,10,10,28);boundariestest*/
+      }else if(items){
+        text("Ammo Box"+"             "+costBox+" Souls",width/2-300,height/2+200);
+        text("Health Kit"+"          "+costMed+" Souls",width/2-300,height/2+250);
+        text("Catnip"+"           "+"99999 Souls",width/2-300,height/2+300);
+        text("Exit",width/2-300,height/2+350);
+        float soulX=width/2-400;
+      float[] soulY={height/2+115,height/2+165,height/2+215,height/2+265};
+        image(souls[curFrame],soulX,soulY[trackUII]);
+         countFrame++;
+         if(countFrame>=delayFrame){
+           curFrame++;
+         if(curFrame>=totalFrame){
+           curFrame=0;
+         }
+         countFrame=0;
+         }
+      }else if(upgrades){
+        text("DMG Upgrade"+"        "+costWeapon+" Souls",width/2-300,height/2+200);
+        text("Health Upgrade"+"    "+costDefence+" Souls",width/2-300,height/2+250);
+        text("Exit",width/2-300,height/2+300);
+        float soulX=width/2-400;
+      float[] soulY={height/2+115,height/2+165,height/2+215};
+        image(souls[curFrame],soulX,soulY[trackUIU]);
+         countFrame++;
+         if(countFrame>=delayFrame){
+           curFrame++;
+         if(curFrame>=totalFrame){
+           curFrame=0;
+         }
+         countFrame=0;
+         }
+      }
       }else{
         isOpen=false;
       }
     }
+    
   void mouseClicked(){
     float xLeft=(width/4+70); float xRight=(width/4+322.5);
     float yUp=(width/4+115); float yDown=(width/4+155);

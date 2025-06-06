@@ -29,8 +29,11 @@ s2=new Shop(5,3,7,p,100,100); // tesing purp remove later
 void keyPressed(){
   if(s2.isOpen){
   s.keyPressed();
+  s2.keyPressed();
+  if(key=='w'||key=='W'||key=='a'||key=='A'||  key=='s'||key=='S'|| key=='d'||key=='D'){
+    p.keyPressed();
   }
-  if(!s2.isOpen){
+  }else{
   p.keyPressed();
   }
 }
@@ -106,7 +109,9 @@ void draw(){
   p.move();
   textSize(50);
   p.UI();
+  if(s.isOpen){
   s.UI();
+  }
   s2.display(); // tesing purp remove later
   s2.UI(); // tesing purp remove later
   //e.UI(); maybe for bosses instead keep though
