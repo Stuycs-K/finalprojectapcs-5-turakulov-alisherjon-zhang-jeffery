@@ -10,6 +10,7 @@ class Shop extends Entity{
   PImage shop;
   int expDef; int expWep;
   PImage shopGuy=loadImage("shopdude.png");
+  float sinAng, sinAmp;
   PImage bgUI=loadImage("shopBase.png");
   PImage[] souls;
   int curFrame,countFrame,delayFrame,totalFrame;
@@ -157,7 +158,13 @@ class Shop extends Entity{
   void UI(){
     if(dist(position.x,position.y,p.position.x,p.position.y)<30){
       isOpen=true;
-      image(shopGuy,0,30);
+      int sinu=0;
+      sinAmp=10;
+      image(shopGuy,0,30+sin(sinAng)*sinAmp);
+      sinAng+=0.075;
+      if(sinAng>TWO_PI) sinAng=0;
+      sinu+=0.1;
+      if(sinu>(3.14*2)) sinu=0;
       image(bgUI,5,0);
       textSize(40);
       fill(255);
