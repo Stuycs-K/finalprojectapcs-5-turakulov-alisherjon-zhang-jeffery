@@ -1,16 +1,14 @@
-
 class Map{
 int[][] map;
-ArrayList<Wall> Walls = new ArrayList<Wall>(25);
+ArrayList<Wall> Walls = new ArrayList<Wall>(26);
 PImage wallace=loadImage("wall.png");
 PImage mappa=loadImage("map.png");
 PImage winS=loadImage("win.png");
 Player p;
 
-public Map(int num, Player player){
+public Map(int num){
   num = max(num, 50);
   map = new int[50][50];
-  p=player;
   int x, y;
   for(int i = 0; i < num; i++){
     x = (int) random(0, 50);
@@ -20,6 +18,10 @@ public Map(int num, Player player){
       Walls.add(new Wall(x*20, y*20));
     }
   }
+}
+
+public Map(){
+  this(20);
 }
 
 //display map
@@ -37,6 +39,11 @@ void display(){
         //textSize(12);
         //text(""+map[i][j], x, y);
       }
+      if(map[i][j] == 2){
+        fill(90,40,5);
+        rect(x-35, y, 70, 15);
+        
+      }
     }
   }
   
@@ -51,6 +58,8 @@ void display(){
   fill(0);
   textSize(50);
   text("Game Over", 275, 310);
+  textSize(25);
+  text("Wave: " +wave, 355, 350);
   }
   
   void displayWin(){

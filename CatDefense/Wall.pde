@@ -21,7 +21,7 @@ class Wall extends Entity{
   }
   
  boolean closeEnoughW(Entity other){
-   boolean closeX = abs(position.x - other.position.x) <= 40;
+   boolean closeX = abs(position.x - other.position.x) <= 50;
     boolean closeY = abs(position.y - other.position.y) <= 24;
     return closeX && closeY; 
  }

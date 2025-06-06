@@ -19,7 +19,7 @@ class Player extends Entity{
   PImage kit=loadImage("kit.png");
   Cat c;
   
-  public Player(Cat cattail,int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos, int lifes){
+  public Player(Cat cattail,int catnip, int wep, int def, int amm, boolean isCatnip, int xpos, int ypos){
     super(100,100+def,10.0,xpos,ypos,0,0,"Player");
     this.catnip=catnip;
     weapon=wep;
@@ -33,7 +33,6 @@ class Player extends Entity{
     this.isCatnip=isCatnip;
     bullets=new ArrayList<Bullets>();
     c=cattail;
-    lives=lifes;
     addItem("ammoBox");
   }
   
@@ -44,7 +43,7 @@ class Player extends Entity{
       PVector shoot=position.copy();
       bullets.add(new Bullets(shoot,dir,bulletSpeed));
     ammo--;
-    System.out.println("ammo: "+ammo+"/"+maxAmmo);
+    //System.out.println("ammo: "+ammo+"/"+maxAmmo);
     }
   }
   
@@ -115,7 +114,7 @@ class Player extends Entity{
   
   /*void mouseClicked(){
     shoot();
-  } deprecated */
+  } deprecated */  
   
   void keyReleased(){
     if(key=='w'||key=='W'||keyCode==UP){

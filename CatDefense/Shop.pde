@@ -232,16 +232,6 @@ class Shop extends Entity{
       }
     }
     
-  void mouseClicked(){
-    float xLeft=(width/4+70); float xRight=(width/4+322.5);
-    float yUp=(width/4+115); float yDown=(width/4+155);
-    if(mouseX>=xLeft && mouseX<=xRight && mouseY>=yUp && mouseY<=yDown){
-    upgradeWeapon();
-    }
-    if(mouseX>=xLeft && mouseX<=xRight && mouseY>=yUp+150.5 && mouseY<=yDown+150.5){
-    upgradeDefense();
-    }
-  }
   void display(){
     fill(0,255,255);
     image(shop,position.x-shop.width/2,position.y-shop.height/2);

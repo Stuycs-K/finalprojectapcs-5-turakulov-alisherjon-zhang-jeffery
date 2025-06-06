@@ -1,5 +1,4 @@
-
-    class Cat extends Entity{
+class Cat extends Entity{
       PImage[] catto;
       int curFrame,countFrame,delayFrame,totalFrame;
         public Cat(int x, int y){
@@ -29,22 +28,16 @@
            curFrame=0;
          }
          countFrame=0;
+         }
         }
-        }
-        
         void move(){
         position.add(velocity);
-        
         }
         
-        PVector attractTo(Entity other){
+        void moveTo(Entity other){
           PVector direction = PVector.sub(position, other.position);
           direction.setMag(2);
-          return direction;
-        }
-        
-        void applyForce(PVector f){
-          velocity = f;
+          velocity = direction;
         }
         
         

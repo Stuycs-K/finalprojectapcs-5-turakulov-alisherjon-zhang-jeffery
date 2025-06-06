@@ -1,40 +1,33 @@
 
  class Enemy extends Entity{
   int damage;
-  ArrayList<Wall> Walls = new ArrayList<Wall>();
- //static ArrayList<Entity> Enemies = new ArrayList<Entity>(30);
+  //ArrayList<Wall> Walls = new ArrayList<Wall>();
+
+
   
-  public Enemy(int damage, int xpos, int ypos){
-    super(5, 5, 10.0, xpos, ypos, 0, 0, "Enemy");
+  public Enemy(int damage, int xpos, int ypos, String name){
+    super(5, 50, 10.0, xpos, ypos, 0, 0, name);
     this.damage = damage;
-   
+    
+    if(name.equals("Fast")){
+     this.damage = 5;
+    }else if(name.equals("Tank")){
+      super.hp = 20;
+    }
   }
   
   void attack(Entity other){
-    if(closeEnough(other) && !other.name.equals("Enemy")){
+    if(closeEnough(other)){
       other.hp -= damage;
     }
   }
+  
   void move(){
-    /*boolean blocked=false;
-    for(int i=0;i<Walls.size();i++){
-      if(Walls.get(i).closeEnoughW(this)){
-        blocked=true;
-      }
-    } nvm */
-    
-    if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0){
-      
-    
-      //velocity.add(acceleration);
+    if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0){ //jumpers dont stop at walls
       position.add(velocity);
-     // acceleration.setMag(0.0);
-    }
-    //println(m.map[(int)(position.x/40)][(int)(position.y/40)]);
-    
-    
-    
+    }//Note: could use hashMap to store walls by position to have faster runtime
   }
+  
   void UI(){
     if(hp!=maxHP){
       fill(0);
@@ -43,43 +36,65 @@
   }
   
   void display(){
-    fill(150, 50, 50);
-    noStroke();
-    circle(position.x, position.y, 24);
-    fill(0);
+    if(name.equals("Enemy")){
+      fill(150, 50, 50);
+      noStroke();
+      circle(position.x, position.y, 24);
+      
+    }else if(name.equals("Fast")){
+      fill(10, 30, 200);
+      noStroke();
+      circle(position.x, position.y, 24);
+    
+    }else if(name.equals("Jump")){
+      fill(10, 200, 50);
+      noStroke();
+      circle(position.x, position.y, 24);
+    
+    }else if(name.equals("Tank")){
+      fill(50, 20, 10);
+      noStroke();
+      circle(position.x, position.y, 24);
+      
+    }else if(name.equals("Bob")){ //like a construction uniform  note ot self: REMOVE ONCE BOSS CLASS READY
+      fill(50, 20, 10);
+      PImage bob = loadImage("bob.png"); //may need to change if drawing is conspiciously subpar
+      noStroke();
+      image(bob, position.x-bob.width/2, position.y-bob.height/2);
+    }
   }
  
- /// Precondition: other is Cat
-  PVector attractTo(Entity other){ // use constant distance 
+ /// Precondition other is Cat
+  void moveTo(Entity other){ // use constant distance 
+    
       PVector direction = PVector.sub(other.position, position);
-      direction.setMag(1.5);
-      return direction;
-/*    float distance = PVector.sub(position, other.position).mag();
-    if(distance >= 400){
-      distance = 50;
-    }else if(distance >=300){
-      distance = 10000;
-    }else{
-      distance = 50;
-    }
-    
-    float magForce = (20*mass*other.mass) / (distance*distance); // Universal law of gravity
-    PVector  force = PVector.sub(other.position, position);
-    if(mass > other.mass){
-      force.setMag(force.mag()*-1);
-    }
-     force.normalize();
-     force.setMag(magForce);
-    return force;*/
-    
+      if(name.equals("Jump")){
+        if(!closeEnough(other) && frameCount % 140 < 25){
+          direction.setMag(1.5);
+        }else{
+          direction.setMag(0.0);
+        }
+      }else{
+        direction.setMag(1.5);
+      }
+      
+      if(name.equals("Fast")){
+        direction.setMag(4);
+      }else if(name.equals("Tank")){
+        direction.setMag(.75);
+      }
+      
+      velocity = direction;
   }
   
   
-  void applyForce(PVector f){
-    //Using forula F=ma ; a = F/m
-     //acceleration = f.div(mass).setMag(acceleration.mag() + f.mag());
-     
-      velocity = f;
+  
+  
+  
+  
+  
+ /* void applyForce(PVector f){
+    velocity = f;
   }
-
+*/
 }

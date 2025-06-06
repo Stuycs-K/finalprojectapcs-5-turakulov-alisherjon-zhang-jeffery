@@ -1,27 +1,32 @@
 ArrayList<Wall> Walls;
 ArrayList<Bullets> bullets;
 ArrayList<Enemy> Enemies;
-ArrayList<Shop> shopCopies;
+//           wave:   0       20      30      40      60     80     100
+String[] types = {"Enemy", "Jump", "Fast", "Tank", "Bob", "Tar", "Drunk"};// randomization starts inlcuding more types 20..30..40 (unil bosses index 4)
+//Bob -the builder, first boss; Tar -the murkiness of real life, of responsbiltiy; Drunk -the players childhood trauma. 
+//Wave 100 is where the player comes to terms with their past; and their journey continues. (Accompanied by their feline friend).
 Player p;
 Cat c;
 Map m;
 Enemy e;
-int spawned = 0, enemiesFolded = 0, wave = 1,tick=0;
+int spawnNum,spawned = 0, enemiesFolded = 0, wave = 1,tick=0;
 boolean inter;
 Entity en;
 Shop s;
 Shop s2; // tesing purp remove later
+boolean invincible;
 
 void setup(){
 size(800, 800);
+PFont pixel=createFont("MedodicaRegular.otf",128);
+  textFont(pixel);
 c = new Cat(400, 400);
-p=new Player(c,1,1,0,50,false,470,400,3);
-m = new Map(50,p);
+p=new Player(c,1,1,0,50,false,470,400);
+m = new Map(50);
 m.display();
 Walls = m.Walls;
 //en= new Enemy(1, 100, 100);
 Enemies = new ArrayList<Enemy>(30); 
-e = new Enemy(1, 100, 100);
 s=new Shop(5,3,7,p,-100,-100);
 s2=new Shop(5,3,7,p,100,100); // tesing purp remove later
 }
@@ -35,6 +40,17 @@ void keyPressed(){
   }
   }else{
   p.keyPressed();
+  if(key == 'q'||key=='Q'){
+    wave--;
+  }else if(key == 'e'||key=='E'){
+    wave++;
+  }else if(key == 'i'||key=='I'){
+    if(invincible){
+      invincible = false;
+    }else{
+      invincible = true;
+    }
+  }
   }
 }
 
@@ -49,17 +65,9 @@ void mousePressed(){
 void mouseReleased(){
   p.mouseReleased();
 }
-
-void mouseClicked(){
-  if(s2.isOpen){
-  s.mouseClicked();
-  }
-}
-
+      
 void draw(){
   //c.position = new PVector(mouseX, mouseY);
-  PFont pixel=createFont("MedodicaRegular.otf",128);
-  textFont(pixel);
   if(wave==100){
     background(200);
     m.displayWin();
@@ -81,9 +89,11 @@ void draw(){
   for(int h = Enemies.size()-1; h>=0; h--){
     Enemy en = Enemies.get(h);
     en.display();
-    en.attack(c);
-    en.attack(p);
-    en.applyForce(en.attractTo(c));
+    if(frameCount % 40 == 0 && invincible == false){
+        en.attack(c);
+        en.attack(p);
+      }
+    en.moveTo(c);
     en.move();
     for(int i=p.bullets.size()-1;i>=0;i--){
       Bullets b=p.bullets.get(i);
@@ -91,7 +101,7 @@ void draw(){
       if(d<20){
         en.hp-=p.weapon;
         p.bullets.remove(i);
-        System.out.println(en.hp);
+       // System.out.println(en.hp);
       }else{
       b.move();
       b.display();
@@ -102,7 +112,7 @@ void draw(){
     }
     if(en.hp <= 0){
       p.souls++;
-      System.out.println(p.souls);
+      //System.out.println(p.souls);
       Enemies.remove(h);
       enemiesFolded++;
     }
@@ -146,18 +156,20 @@ void draw(){
   return;
   }
     
-  if(frameCount % (120-(wave*2)) == 0||Enemies.size()==0){   //spawn rate increases with waves
-        
-        if(Enemies.size() < wave*2 && spawned < wave*2){
+       spawnNum = (int) (3*Math.pow(1.005, wave));
+     if(frameCount % 100 == 0){   //spawn rate remains same; otherwise at upper waves computer fan will increase with spawn rate too.
+    
+        if(Enemies.size() < spawnNum && spawned < spawnNum){
           
             int x = (int) random(0, 800);
             int y = (int) random(0, 800);
+            String type = types[min(3, (int) random(0, (int)wave/10))];
             if(!(x > 250 && x < 550 && y > 250 && y < 550)){
-              Enemies.add(new Enemy(wave, x, y));//enemy damage increases with waves
+              Enemies.add(new Enemy(wave, x, y, type));//enemy damage increases with waves
               spawned++;
             }else{
               y=20;
-              Enemies.add(new Enemy(wave, x, y));//enemy damage increases with waves
+              Enemies.add(new Enemy(wave, x, y, type));//enemy damage increases with waves
               spawned++;
             }
           
@@ -165,27 +177,26 @@ void draw(){
         for(int i = 0; i< Walls.size(); i++){
           Wall wa = Walls.get(i);
           wa.takeDamage();
-          if(wa.hp <= 0){
-              m.map[(int) wa.position.y/20][(int) wa.position.x/20] = 0;
+          if(wa.hp <= 0 && wa.damage>0){
               Walls.remove(i);
-              i--;
-            }
-        }
-        for(int i = 0; i< Walls.size(); i++){
-          Wall wa = Walls.get(i);
-          wa.takeDamage();
-          if(wa.hp <= 0){
               m.map[(int) wa.position.y/20][(int) wa.position.x/20] = 0;
-              Walls.remove(i);
               i--;
+          }else if(wa.hp <= 0){
+              wa.name="Debris";
+              wa.damage=2;
+              wa.hp = 5;
+              m.map[(int) wa.position.y/20][(int) wa.position.x/20] = 2;
             }
         }
       }
-      if(enemiesFolded == wave*2){
+      if(enemiesFolded == spawnNum){
+        println(spawnNum);
         wave++;
+      //  c.heal((int) .25*wave + 1); //(int) (2*Math.pow(1.005, wave))
+        p.heal(2);
         spawned=0;
         enemiesFolded=0;
-        }
+      }
       }
     //System.out.println("player: "+ p.hp+ "  ;   cat: " + c.hp);
  

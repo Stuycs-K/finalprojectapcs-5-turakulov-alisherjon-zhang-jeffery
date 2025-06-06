@@ -17,16 +17,26 @@ abstract class Entity{
    void move(){}
    void display(){}
    void applyForce(PVector f) {} // constant distance for calculating.
-   PVector attractTo(Entity other){
-     return null;
-   }
+   void moveTo(Entity other){}
+   PVector attractTo(Entity other){ return null; }
    void attack(Entity other){}
    
   boolean closeEnough(Entity other){
-   boolean closeX = abs(position.x - other.position.x) <= 24;
-    boolean closeY = abs(position.y - other.position.y) <= 24;
-    return closeX && closeY; 
+    return (abs(position.x - other.position.x) <= 24) && (abs(position.y - other.position.y) <= 24); 
+  }
   
+  boolean closeEnough(PVector pos, int radius){
+    return (abs(position.x - pos.x) <= radius) && ( abs(position.y - pos.y) <= radius); 
+  }
+  
+  boolean closeEnough(Entity other, int radius){
+   return (abs(position.x - other.position.x) <= radius) && (abs(position.y - other.position.y) <= radius); 
+  }
+  
+  void heal(int amt){
+    if(hp+amt <= maxHP){
+      hp += amt;
+    }
   }
   
 }
