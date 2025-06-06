@@ -50,6 +50,8 @@ void keyPressed(){
     }else{
       invincible = true;
     }
+  }else if(key=='c'||key=='C'){
+    p.souls++;
   }
   }
 }

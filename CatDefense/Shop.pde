@@ -119,11 +119,17 @@ class Shop extends Entity{
         base=false;
         items=true;
         upgrades=false;
+        System.out.println(trackUI);
+        System.out.println(base);
+        System.out.println("UPGRADESSSS" +upgrades);
       }
       if(trackUI==1){
         base=false;
         items=false;
         upgrades=true;
+        System.out.println(trackUI);
+        System.out.println(base);
+        System.out.println("UPGRADESSSS" +upgrades);
       }
       }
       if(items){
