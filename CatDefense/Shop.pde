@@ -201,6 +201,16 @@ class Shop extends Entity{
          }
          countFrame=0;
          }
+         if(trackUII==0){
+           imageMode(CENTER);
+           image(p.box,width/2+250,height/2+100);
+         }
+         if(trackUII==1){
+           imageMode(CENTER);
+           p.kit.resize(300,300);
+           image(p.kit,width/2+250,height/2+100);
+           imageMode(CORNER);
+         }
       }else if(upgrades){
         text("DMG Upgrade"+"        "+costWeapon+" Souls",width/2-300,height/2+200);
         text("Health Upgrade"+"    "+costDefence+" Souls",width/2-300,height/2+250);
