@@ -39,3 +39,7 @@ Time: ~30 minutes;
 ### 2025-06-03 - Cheatcodes, Enemy types, Boss class types
 Add Fast, Jump, and Tank Enemy types that get introduced every ten waves starting with wave 20; add corresponding attributes and display differenes into Enemy class for different Enemy types; Create Q/E cheatcode for waves, 'i' cheatcode for invincibility; Add boss types to types, and create boss class with display method for first boss setup.
 Time: ~90 minutes;  
+  
+### 2025-06-03 - Jump movement, Boss class methods  
+Make jump types move in bursts and integrate into movement method. Implement boss sprite and hp displays, as well as boss move methods.  
+Time: ~60 minutes;  

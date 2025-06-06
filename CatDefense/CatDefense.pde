@@ -142,7 +142,7 @@ void draw(){
               spawned++;
             }else{
               y=20;
-              Enemies.add(new Enemy(wave, x, y, "Bob"));//enemy damage increases with waves
+              Enemies.add(new Enemy(wave, x, y, type));//enemy damage increases with waves
               spawned++;
             }
           
