@@ -14,6 +14,7 @@ class Shop extends Entity{
   PImage bgUI=loadImage("shopBase.png");
   PImage[] souls;
   int curFrame,countFrame,delayFrame,totalFrame;
+  float tick;
   
   public Shop(int costD,int costW, int costBox, Player player,int x,int y){
     super(10000000,10000000,10.0,x,y,0,0,"Shop");
@@ -133,11 +134,19 @@ class Shop extends Entity{
       }
       }
       if(items){
+        if(tick>50){
+        tick=0;
+        }
+        tick++;
         if(trackUII==0){
+          if(tick<25){
           ammoBox();
+          }
         }
         if(trackUII==1){
+          if(tick<25){
           Medkit();
+          }
         }
         if(trackUII==3){
           base=true;
@@ -146,11 +155,19 @@ class Shop extends Entity{
         }
       }
       if(upgrades){
+        if(tick>50){
+        tick=0;
+        }
+        tick++;
         if(trackUIU==0){
+          if(tick<2.5){
           upgradeWeapon();
+          }
         }
         if(trackUIU==1){
+          if(tick<2.5){
           upgradeDefense();
+          }
         }
         if(trackUIU==2){
           base=true;
