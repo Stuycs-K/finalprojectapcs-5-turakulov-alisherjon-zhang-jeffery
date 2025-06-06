@@ -94,6 +94,7 @@ void draw(){
         en.attack(c);
         en.attack(p);
       }
+     
       en.moveTo(c);
       en.move();
       for(int i=p.bullets.size()-1;i>0;i--){

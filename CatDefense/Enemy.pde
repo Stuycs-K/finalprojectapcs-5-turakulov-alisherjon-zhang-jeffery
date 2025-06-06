@@ -23,13 +23,7 @@
   }
   
   void move(){
-    if(name.equals("Jump") ){
-        for(int i = 0; i < 20; i++){
-          velocity.add(acceleration);
-          acceleration.setMag(0.0);
-          position.add(velocity);
-        }
-    }else if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0){ //jumpers dont stop at walls
+    if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0){ //jumpers dont stop at walls
       position.add(velocity);
     }
   }
@@ -67,31 +61,30 @@
  
  /// Precondition other is Cat
   void moveTo(Entity other){ // use constant distance 
+    
       PVector direction = PVector.sub(other.position, position);
-      direction.setMag(1.5);
+      if(name.equals("Jump")){
+        if(!closeEnough(other) && frameCount % 140 < 25){
+          direction.setMag(1.5);
+        }else{
+          direction.setMag(0.0);
+        }
+      }else{
+        direction.setMag(1.5);
+      }
+      
       if(name.equals("Fast")){
         direction.setMag(4);
       }else if(name.equals("Tank")){
         direction.setMag(.75);
       }
-      if(name.equals("Jump")){
-        
-        PVector f = PVector.sub(other.position, position);
-        
-        
-        
-        float mag = (20*100*10) / (400*400);
-        
-        f.normalize();
-        f.setMag(mag);
-        PVector acc = f.div(10).setMag(mag);
-        acceleration = acc.setMag(f.mag()+acceleration.mag());
-      }else{
-        velocity = direction;
-        
-      }
       
+      velocity = direction;
   }
+  
+  
+  
+  
   
   
   
