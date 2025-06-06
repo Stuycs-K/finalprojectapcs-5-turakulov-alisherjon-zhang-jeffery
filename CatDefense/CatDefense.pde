@@ -1,14 +1,19 @@
 
 ArrayList<Wall> Walls;
 ArrayList<Bullets> bullets;
-ArrayList<Enemy> Enemies;
+ArrayList<Enemy> Enemies;                    
+//           wave:   0       20      30      40      60     80     100
+String[] types = {"Enemy", "Jump", "Fast", "Tank", "Bob", "Tar", "Drunk"};// randomization starts inlcuding more types 20..30..40 (unil bosses index 4)
+//Bob -the builder, first boss; Tar -the murkiness of real life, of responsbiltiy; Drunk -the players childhood trauma. 
+//Wave 100 is where the player comes to terms with their past; and their journey continues. (Accompanied by their feline friend).
 Player p;
 Cat c;
 Map m;
 Enemy e;
-int spawned=0, enemiesFolded = 0, wave = 1;
+int spawnNum, spawned=0, enemiesFolded = 0, wave = 1;
 Entity en;
 Shop s;
+boolean invincible;
 
 
 void setup(){
@@ -19,7 +24,7 @@ Walls = m.Walls;
 //en= new Enemy(1, 100, 100);
 Enemies = new ArrayList<Enemy>(30); 
 p=new Player(1,1,0,10,false,470,400);
-e = new Enemy(1, 100, 100);
+//e = new Enemy(1, 100, 100);
 c = new Cat(400, 400);
 s = new Shop(5,3,p);
 }
@@ -27,6 +32,17 @@ s = new Shop(5,3,p);
 
 void keyPressed(){
   p.keyPressed();
+  if(key == 'q'){
+    wave--;
+  }else if(key == 'e'){
+    wave++;
+  }else if(key == 'i'){
+    if(invincible){
+      invincible = false;
+    }else{
+      invincible = true;
+    }
+  }
 }
 
 void keyReleased(){
@@ -75,11 +91,12 @@ void draw(){
     for(int h = 0; h < Enemies.size(); h++){
       Enemy en = Enemies.get(h);
       en.display();
-      if(frameCount % 40 == 0){
+      if(frameCount % 40 == 0 && invincible == false){
         en.attack(c);
         en.attack(p);
       }
-      en.applyForce(en.attractTo(c));
+     
+      en.moveTo(c);
       en.move();
       for(int i=p.bullets.size()-1;i>0;i--){
         Bullets b=p.bullets.get(i);
@@ -112,19 +129,20 @@ void draw(){
     if(p.shootHold&&!s.isOpen&&frameCount%10==0){
         p.shoot();
     }
-    int spawnNum = (int) (4*Math.pow(1.005, wave));
-     if(frameCount % (max(122-(wave*2),20)) == 0){   //spawn rate increases with waves
+     spawnNum = (int) (3*Math.pow(1.005, wave));
+     if(frameCount % 100 == 0){   //spawn rate remains same; otherwise at upper waves computer fan will increase with spawn rate too.
     
         if(Enemies.size() < spawnNum && spawned < spawnNum){
           
             int x = (int) random(0, 800);
             int y = (int) random(0, 800);
+            String type = types[min(3, (int) random(0, (int)wave/10))];
             if(!(x > 250 && x < 550 && y > 250 && y < 550)){
-              Enemies.add(new Enemy(wave, x, y));//enemy damage increases with waves
+              Enemies.add(new Enemy(wave, x, y, type));//enemy damage increases with waves
               spawned++;
             }else{
               y=20;
-              Enemies.add(new Enemy(wave, x, y));//enemy damage increases with waves
+              Enemies.add(new Enemy(wave, x, y, type));//enemy damage increases with waves
               spawned++;
             }
           
@@ -147,14 +165,14 @@ void draw(){
       if(enemiesFolded == spawnNum){
         println(spawnNum);
         wave++;
-        c.heal((int) .25*wave + 1); //(int) (2*Math.pow(1.005, wave))
+      //  c.heal((int) .25*wave + 1); //(int) (2*Math.pow(1.005, wave))
         p.heal(2);
         spawned=0;
         enemiesFolded=0;
       }
      
      /*if(p.isCatnip){
-       c.applyForce(c.attractTo(p));
+       c.moveTo(p);
        c.move();
      }*/
    

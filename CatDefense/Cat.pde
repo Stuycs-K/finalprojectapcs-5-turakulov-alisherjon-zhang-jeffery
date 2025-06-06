@@ -16,15 +16,12 @@
         
         }
         
-        PVector attractTo(Entity other){
+        void moveTo(Entity other){
           PVector direction = PVector.sub(position, other.position);
           direction.setMag(2);
-          return direction;
+          velocity = direction;
         }
         
-        void applyForce(PVector f){
-          velocity = f;
-        }
         
         
     }
