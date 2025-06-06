@@ -60,7 +60,10 @@ void draw(){
   //c.position = new PVector(mouseX, mouseY);
   PFont pixel=createFont("MedodicaRegular.otf",128);
   textFont(pixel);
-  if(p.hp <= 0 || c.hp <= 0){
+  if(wave==100){
+    background(200);
+    m.displayWin();
+  }else if(p.hp <= 0 || c.hp <= 0){
     background(200);
     m.displayEnd();
   }else{
@@ -115,11 +118,7 @@ void draw(){
   s2.display(); // tesing purp remove later
   s2.UI(); // tesing purp remove later
   //e.UI(); maybe for bosses instead keep though
-  
-  if(p.hp<=0){
-    p.hp=100;
-    p.lives--;
-  }
+
   if(!inter&&p.shootHold&&!s.isOpen&&frameCount%10==0){
       p.shoot();
   }

@@ -4,6 +4,7 @@ int[][] map;
 ArrayList<Wall> Walls = new ArrayList<Wall>(25);
 PImage wallace=loadImage("wall.png");
 PImage mappa=loadImage("map.png");
+PImage winS=loadImage("win.png");
 Player p;
 
 public Map(int num, Player player){
@@ -51,5 +52,8 @@ void display(){
   textSize(50);
   text("Game Over", 275, 310);
   }
-
+  
+  void displayWin(){
+    image(winS,0,0);//add animated cat sprite below
+}
 }
