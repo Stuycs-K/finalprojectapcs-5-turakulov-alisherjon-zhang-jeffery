@@ -36,7 +36,11 @@ Time: ~160 minutes
 Implemented and animated the idle cat sprites. Drew and implemented bullet sprite. Ported all images and sprites into data folder. Began and finished the intermission system that occurs every 5 waves, allowing the player to upgrade their stats (and maybe buy certain things) through shop. Tried to implement the randomization of shop spawning at the start of intermission but didn't finish.
 Time: ~140 minutes
 
-### 2025-06-02 - Shop random spawn, inventory system
+### 2025-06-03 - Shop random spawn, inventory system
 Implemented shop spawn in random location around map when intermission occurs. Implemented ammobox system for reloading to increase difficulty of game since infinite reloading is too easy and boring. Implemented sprites for ammobox and medkit (medkit not implemented yet). Began implementing an inventory system that consists of up to two slots of items that the player can use (items currently are ammobox, medkit, and catnip).
 Time: ~90 minutes
+
+### 2025-06-04 - Shop UI Revamp and Medkit item
+Medkit item was implemented. It heals the cat if player is in close proximity otherwise when used it heals the player (always to max health). Began revamping the shop's UI and changed the text. The shop's UI was revamped up to interacting with the options shown on the UI such as going to the items section. Animated and implemented a soul icon that keeps track of where you are on the UI.
+Time: ~120 minutes
 
