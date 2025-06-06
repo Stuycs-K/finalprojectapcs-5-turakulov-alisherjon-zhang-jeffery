@@ -1,7 +1,7 @@
 
  class Enemy extends Entity{
   int damage;
-  ArrayList<Wall> Walls = new ArrayList<Wall>();
+  //ArrayList<Wall> Walls = new ArrayList<Wall>();
 
 
   
@@ -17,7 +17,7 @@
   }
   
   void attack(Entity other){
-    if(closeEnough(other) && !other.name.equals("Enemy")){
+    if(closeEnough(other)){
       other.hp -= damage;
     }
   }
@@ -25,7 +25,7 @@
   void move(){
     if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0){ //jumpers dont stop at walls
       position.add(velocity);
-    }
+    }//Note: could use hashMap to store walls by position to have faster runtime
   }
   
   void UI(){
@@ -56,6 +56,11 @@
       noStroke();
       circle(position.x, position.y, 24);
       
+    }else if(name.equals("Bob")){ //like a construction uniform  note ot self: REMOVE ONCE BOSS CLASS READY
+      fill(50, 20, 10);
+      PImage bob = loadImage("bob.png"); //may need to change if drawing is conspiciously subpar
+      noStroke();
+      image(bob, position.x-bob.width/2, position.y-bob.height/2);
     }
   }
  

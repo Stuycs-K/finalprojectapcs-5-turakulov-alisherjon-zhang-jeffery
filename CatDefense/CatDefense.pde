@@ -1,10 +1,11 @@
 
 ArrayList<Wall> Walls;
 ArrayList<Bullets> bullets;
-ArrayList<Enemy> Enemies;
+ArrayList<Enemy> Enemies;                    
+//           wave:   0       20      30      40      60     80     100
 String[] types = {"Enemy", "Jump", "Fast", "Tank", "Bob", "Tar", "Drunk"};// randomization starts inlcuding more types 20..30..40 (unil bosses index 4)
 //Bob -the builder, first boss; Tar -the murkiness of real life, of responsbiltiy; Drunk -the players childhood trauma. 
-//Wave 100 is where the player comes to terms with everything in their past; their journey continues. (Accompanied by their good friend Mr Bartelby the feline).
+//Wave 100 is where the player comes to terms with their past; and their journey continues. (Accompanied by their feline friend).
 Player p;
 Cat c;
 Map m;
@@ -141,7 +142,7 @@ void draw(){
               spawned++;
             }else{
               y=20;
-              Enemies.add(new Enemy(wave, x, y, type));//enemy damage increases with waves
+              Enemies.add(new Enemy(wave, x, y, "Bob"));//enemy damage increases with waves
               spawned++;
             }
           
