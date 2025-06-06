@@ -42,7 +42,7 @@ class Boss extends Enemy{
   void spawnEnemies(int typeIndex, int count){ // spawn different types based on hp levels
     if(hp == 140 || hp == 80 || hp == 30){
       for(int i = 0; i < 10; i++){
-        Enemies.add(new Enemy(damage/10, (int)position.x, (int)position.y, "Enemy"));
+        Enemies.add(new Enemy(damage/10, (int)position.x, (int)position.y, "Enemy")); //will change to bosses respective Enemy types later
       }
     }
   }
