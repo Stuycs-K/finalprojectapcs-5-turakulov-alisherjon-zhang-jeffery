@@ -14,6 +14,7 @@ class Shop extends Entity{
   PImage bgUI=loadImage("shopBase.png");
   PImage[] souls;
   int curFrame,countFrame,delayFrame,totalFrame;
+  boolean purchaseCD;
   float tick;
   
   public Shop(int costD,int costW, int costBox, Player player,int x,int y){
@@ -26,6 +27,7 @@ class Shop extends Entity{
     shop=loadImage("shop.png");
     shopGuy.resize(800,800);
     base=true;
+    purchaseCD=true;
     curFrame=0;
     countFrame=0;
     delayFrame=2;
@@ -120,25 +122,21 @@ class Shop extends Entity{
         base=false;
         items=true;
         upgrades=false;
-        System.out.println(trackUI);
-        System.out.println(base);
-        System.out.println("UPGRADESSSS" +upgrades);
       }
       if(trackUI==1){
         base=false;
         items=false;
         upgrades=true;
-        System.out.println(trackUI);
-        System.out.println(base);
-        System.out.println("UPGRADESSSS" +upgrades);
       }
       }
-      if(items){
+      if(items&&purchaseCD){
         if(trackUII==0){
           ammoBox();
+          purchaseCD=false;
         }
         if(trackUII==1){
           Medkit();
+          purchaseCD=false;
         }
         if(trackUII==3){
           base=true;
@@ -148,14 +146,14 @@ class Shop extends Entity{
           trackUII=0;
         }
       }
-      if(upgrades){
+      if(upgrades&&purchaseCD){
         if(trackUIU==0){
           upgradeWeapon();
+          purchaseCD=false;
         }
         if(trackUIU==1){
-          if(tick<2.5){
           upgradeDefense();
-          }
+          purchaseCD=false;
         }
         if(trackUIU==2){
           base=true;
@@ -169,6 +167,13 @@ class Shop extends Entity{
   }
   
   void UI(){
+    if(!purchaseCD){
+      tick++;
+    if(tick>=15){
+      purchaseCD=true;
+      tick=0;
+    }
+    }
     if(dist(position.x,position.y,p.position.x,p.position.y)<30){
       isOpen=true;
       int sinu=0;
