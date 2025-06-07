@@ -40,6 +40,10 @@ Time: ~30 minutes;
 Add Fast, Jump, and Tank Enemy types that get introduced every ten waves starting with wave 20; add corresponding attributes and display differenes into Enemy class for different Enemy types; Create Q/E cheatcode for waves, 'i' cheatcode for invincibility; Add boss types to types, and create boss class with display method for first boss setup.
 Time: ~90 minutes;  
   
-### 2025-06-03 - Jump movement, Boss class methods  
+### 2025-06-05 - Jump movement, Boss class methods  
 Make jump types move in bursts and integrate into movement method. Implement boss sprite and hp displays, as well as boss move methods.  
+Time: ~60 minutes;    
+  
+### 2025-06-06 - Tesla movement/attack, window size and wall error  
+Write Tesla movement and attack method and move into separate boss lackey methods; Expand window, Fix the walls spawning outside the bounds because array was 50x, change back to 40x.
 Time: ~60 minutes;  
