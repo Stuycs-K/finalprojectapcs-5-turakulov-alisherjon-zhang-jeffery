@@ -17,12 +17,12 @@ Shop s2; // tesing purp remove later
 boolean invincible;
 
 void setup(){
-size(800, 800);
+size(1000, 800);
 PFont pixel=createFont("MedodicaRegular.otf",128);
   textFont(pixel);
 c = new Cat(400, 400);
 p=new Player(c,1,1,0,50,false,470,400);
-m = new Map(50);
+m = new Map(35);
 m.display();
 Walls = m.Walls;
 //en= new Enemy(1, 100, 100);
