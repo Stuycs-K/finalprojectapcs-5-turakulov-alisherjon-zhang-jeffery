@@ -148,7 +148,7 @@ void draw(){
     }
     tick++;
   System.out.println(tick);
-  if(tick>10000){
+  if(tick>1000){
     inter=false;
     wave++;
     spawned=0;

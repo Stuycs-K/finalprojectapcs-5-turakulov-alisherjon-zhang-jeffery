@@ -134,35 +134,23 @@ class Shop extends Entity{
       }
       }
       if(items){
-        if(tick>50){
-        tick=0;
-        }
-        tick++;
         if(trackUII==0){
-          if(tick<25){
           ammoBox();
-          }
         }
         if(trackUII==1){
-          if(tick<25){
           Medkit();
-          }
         }
         if(trackUII==3){
           base=true;
           items=false;
           upgrades=false;
+          trackUI=0;
+          trackUII=0;
         }
       }
       if(upgrades){
-        if(tick>50){
-        tick=0;
-        }
-        tick++;
         if(trackUIU==0){
-          if(tick<2.5){
           upgradeWeapon();
-          }
         }
         if(trackUIU==1){
           if(tick<2.5){
@@ -173,6 +161,8 @@ class Shop extends Entity{
           base=true;
           items=false;
           upgrades=false;
+          trackUI=0;
+          trackUIU=0;
         }
     }
     }
