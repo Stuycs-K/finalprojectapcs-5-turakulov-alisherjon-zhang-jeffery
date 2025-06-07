@@ -145,8 +145,8 @@ void draw(){
       s.changePos(randX,randY);
     }
     tick++;
-  System.out.println(tick);
-  if(tick>10000){
+  //System.out.println(tick);
+  if(tick>400){
     inter=false;
     wave++;
     spawned=0;

@@ -1,9 +1,19 @@
 class Boss extends Enemy{
-  
+//           wave:   0       20      30      40      49     99     ~49    ~99
+//String[] types = {"Enemy", "Jump", "Fast", "Tank", "Bob", "Tar", "Tesla", };// randomization starts inlcuding more types 20..30..40 (unil bosses index 4)  
+//Bob -the builder, first boss; Tar -the murkiness of real life, of responsbiltiy 
+//Wave 100 is where the player comes to terms with their past; and their journey continues. (Accompanied by their feline friend).
   public Boss(int damage, int xpos, int ypos, String name){
     super(damage, xpos, ypos, name);
     hp = 200;
     maxHP = 200;
+    if(name.equals("Bob")){
+      damage = 50;
+    }else{ //Tar
+      damage = 100;
+      hp = 600;
+      maxHP = 600;
+    }
   }
   
   void attack(Entity other){
@@ -26,11 +36,8 @@ class Boss extends Enemy{
       PImage bob = loadImage("bob.png"); //may need to change if drawing is conspiciously subpar
       image(bob, position.x-bob.width/2, position.y-bob.height/2);
     }else if(name.equals("Tar")){
-     fill(0);
+     fill(10);
      circle(position.x, position.y, 48);
-    }else if(name.equals("Drunk")){
-      fill(180);
-      circle(position.x, position.y, 48);
     }
   }
   
