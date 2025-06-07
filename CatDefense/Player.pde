@@ -28,10 +28,12 @@ class Player extends Entity{
     maxAmmo=amm;
     boxCheck=true;
     medpacks=1;
-    medkit=true;
+    medkit=false;
     remBox=2; remBoxL=100;
     this.isCatnip=isCatnip;
     bullets=new ArrayList<Bullets>();
+    box.resize(280,280);
+    kit.resize(240,240);
     c=cattail;
     addItem("ammoBox");
   }
@@ -54,6 +56,7 @@ class Player extends Entity{
       if(remBoxL<=0){
         if(remBox==1){
           boxCheck=false;
+          inventory.remove("ammoBox");
         }else{
           boxCheck=true;
         }
@@ -70,12 +73,14 @@ class Player extends Entity{
       c.hp+=c.maxHP-c.hp;
       medpacks--;
       if(medpacks==1){
+        inventory.remove("medkit");
         medkit=false;
       }
     }else if(medkit){
       hp+=maxHP-hp;
       medpacks--;
       if(medpacks==1){
+        inventory.remove("medkit");
         medkit=false;
       }
     }
@@ -152,7 +157,7 @@ class Player extends Entity{
   void addItem(String item){
     boolean isDupe=false;
     if(inventory.size()!=0){
-    for(int i=0;i<2;i++){
+    for(int i=0;i<inventory.size();i++){
       if(inventory.get(i).equals(item)) isDupe=true;
     }
     }
@@ -186,20 +191,24 @@ class Player extends Entity{
       fill(50);
       if(i<inventory.size()){
       String item=inventory.get(i);
-      if(item.equals("ammoBox")){
-    imageMode(CENTER);
-    box.resize(280,280);
+      imageMode(CENTER);
+      if(i==0&&item.equals("ammoBox")){
     image(box,18+toolSlot/2,690+toolSlot/2);
     textSize(20);
     fill(0,0,0);
     text("Remaining uses: "+remBox,mouseX,mouseY);
+    }else if(i==1&&item.equals("ammoBox")){
+    image(box,134+toolSlot/2,690+toolSlot/2);
+    textSize(20);
+    fill(0,0,0);
+    text("Remaining uses: "+remBox,mouseX,mouseY);
+    }
+    if(i==0&&item.equals("medkit")){
+    image(kit,16+toolSlot/2,695+toolSlot/2);
+    }else if(i==1&&item.equals("medkit")){
+    image(kit,132+toolSlot/2,695+toolSlot/2);
+    }
     imageMode(CORNER);
-    }
-    if(item.equals("medkit")){
-    imageMode(CENTER);
-    kit.resize(240,240);
-    image(kit,15+(toolSlot+kerning)+toolSlot/2,690+toolSlot/2);
-    }
       }
     }
   }

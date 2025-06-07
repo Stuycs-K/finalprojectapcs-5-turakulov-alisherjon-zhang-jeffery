@@ -117,16 +117,18 @@ class Shop extends Entity{
       }
     }
     if(keyCode==ENTER){
-      if(base){
+      if(base&&purchaseCD){
       if(trackUI==0){
         base=false;
         items=true;
         upgrades=false;
+        purchaseCD=false;
       }
       if(trackUI==1){
         base=false;
         items=false;
         upgrades=true;
+        purchaseCD=false;
       }
       }
       if(items&&purchaseCD){
@@ -225,7 +227,6 @@ class Shop extends Entity{
          }
          if(trackUII==1){
            imageMode(CENTER);
-           p.kit.resize(300,300);
            image(p.kit,width/2+250,height/2+100);
            imageMode(CORNER);
          }
