@@ -27,7 +27,7 @@
   
   void henchmanAttack(Entity other){//dependent on lhenchmen, Tesla attack the player
     if(name.equals("Tesla")){
-      if(closeEnough(other, 35)){
+      if(closeEnough(other, 40)){
         stroke(0, 0, 220);
         line(position.x, position.y,other.position.x, other.position.y);
         other.hp -= damage;

@@ -101,6 +101,7 @@ void draw(){
       p.move();
       textSize(50);
       p.UI();
+      
       if(wave == 49){//Bob boss event
         if(!bossBattle){
           Enemies = new ArrayList<Enemy>(11);
@@ -108,22 +109,24 @@ void draw(){
           Bob = new Boss(50, 400, 50, "Bob");
           bossBattle = true;
        }
+       if(Bob.hp <= 0){
+        println(Bob.hp+"bob");
+        bossBattle = false;
+        wave++;
+      }
        Bob.display();
        Bob.UI();
+      
        if(frameCount % 100 == 0 && !invincible){
          Bob.attack(c);
          Bob.attack(p);
         }
       
        
-        
+       
        Bob.moveTo(c);
        Bob.move();
-      if(Bob.hp <= 0){
-        println(Bob.hp+"bob");
-        bossBattle = false;
-        wave++;
-      }
+      
     }
   
   if(inter){
@@ -152,8 +155,10 @@ void draw(){
     inter=true;
     tick=0;
   }
-  Bob.spawnEnemies("Tesla");
-   for(int i = Enemies.size()-1; i > 0; i--){
+ 
+    Bob.spawnEnemies("Tesla");
+    
+   for(int i = Enemies.size()-1; i >= 0; i--){
      Enemy en = Enemies.get(i);
     
      
@@ -170,7 +175,7 @@ void draw(){
     
     en.henchmanDisplay();
     en.henchmanMoveTo(p);
-    
+  
     for(int j=p.bullets.size()-1;j>=0;j--){
       Bullets b=p.bullets.get(j);
       if(b.closeEnough(en, 20)){
@@ -188,22 +193,9 @@ void draw(){
     }
     }
    }
+  
    
-   if(Enemies.size() == 0){
-    for(int j=p.bullets.size()-1;j>=0;j--){
-      Bullets b=p.bullets.get(j);
-      if(b.closeEnough(Bob, 50)){
-        Bob.hp-=p.weapon;
-        p.bullets.remove(j);
-      }else{
-      b.move();
-      b.display();
-      if(b.destroy()){
-        p.bullets.remove(j);
-      }
-      }
-    }
-  }
+   
    
     for(int i = 0; i< Walls.size(); i++){
         Wall wa = Walls.get(i);

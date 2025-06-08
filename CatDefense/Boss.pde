@@ -49,13 +49,13 @@ class Boss extends Enemy{
   }
   
   void spawnEnemies(String type){ // spawn different types based on hp levels
-      int i = 0;
-       if(Bob.hp == 201|| Bob.hp == 140 || Bob.hp == 80 || Bob.hp == 30){
-      while(i < 7 && frameCount % 20 == 0){
+     
+      if(Enemies.size() == 0){
+        
           Enemies.add(new Enemy(damage/10, (int)position.x, (int)position.y, type)); //type based on boss
-          i++;
-      }
-      hp-=1; //To avoid repetition if boss doesnt get damaged
+          
+      
+     
     }
     
       
