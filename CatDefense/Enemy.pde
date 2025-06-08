@@ -110,7 +110,7 @@
     position.add(velocity);
   }
   
-  
+  void spawnEnemies(String type){};
   
   
   

@@ -8,10 +8,10 @@ class Boss extends Enemy{
     super(damage, xpos, ypos, name);
     
     if(name.equals("Bob")){
-      hp = 200;
+      hp = 201; //since spawnEnemies subtracts
       maxHP = 200;
     }else{ //Tar
-      hp = 600;
+      hp = 601;
       maxHP = 600;
     }
   
@@ -50,14 +50,15 @@ class Boss extends Enemy{
   
   void spawnEnemies(String type){ // spawn different types based on hp levels
       int i = 0;
-       if(Bob.hp == 200|| Bob.hp == 140 || Bob.hp == 80 || Bob.hp == 30){
+       if(Bob.hp == 201|| Bob.hp == 140 || Bob.hp == 80 || Bob.hp == 30){
       while(i < 7 && frameCount % 20 == 0){
           Enemies.add(new Enemy(damage/10, (int)position.x, (int)position.y, type)); //type based on boss
           i++;
       }
+      hp-=1; //To avoid repetition if boss doesnt get damaged
     }
     
-      hp-=1; //To avoid repetition if boss doesnt get damaged
+      
     }
 
   

@@ -106,12 +106,13 @@ void draw(){
           bossBattle = true;
        }
        Bob.display();
-       if(frameCount % 100 == 0){
+       Bob.UI();
+       if(frameCount % 100 == 0 && !invincible){
          Bob.attack(c);
          Bob.attack(p);
         }
       
-         //Bob.spawnEnemies("Tesla");
+       
         
        Bob.moveTo(c);
        Bob.move();
@@ -148,7 +149,7 @@ void draw(){
     inter=true;
     tick=0;
   }*/
-  
+  Bob.spawnEnemies("Tesla");
    for(int i = Enemies.size()-1; i > 0; i--){
      Enemy en = Enemies.get(i);
     
@@ -175,12 +176,13 @@ void draw(){
       }else if(b.closeEnough(Bob, 54)){
         Bob.hp-=p.weapon;
         p.bullets.remove(j);
-      }
+      }else{
        b.move();
       b.display();
       if(b.destroy()){
         p.bullets.remove(j);
       }
+    }
     }
    }
    
