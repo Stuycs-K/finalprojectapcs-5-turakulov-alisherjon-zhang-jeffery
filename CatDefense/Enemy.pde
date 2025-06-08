@@ -70,7 +70,7 @@
       PVector direction = PVector.sub(other.position, position);
       if(name.equals("Jump")){
         if(!closeEnough(other) && frameCount % 140 < 25){
-          direction.setMag(1.5);
+          direction.setMag(5);
         }else{
           direction.setMag(0.0);
         }
