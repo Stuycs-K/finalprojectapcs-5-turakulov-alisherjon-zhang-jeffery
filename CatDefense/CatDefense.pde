@@ -28,13 +28,11 @@ Walls = m.Walls;
 //en= new Enemy(1, 100, 100);
 Enemies = new ArrayList<Enemy>(30); 
 s=new Shop(7,12,7,p,c,-100,-100);
-s2=new Shop(7,12,7,p,c,100,100); // tesing purp remove later
 }
 
 void keyPressed(){
-  if(s2.isOpen){
+  if(s.isOpen){
   s.keyPressed();
-  s2.keyPressed();
   if(key=='w'||key=='W'||key=='a'||key=='A'||  key=='s'||key=='S'|| key=='d'||key=='D'){
     p.keyPressed();
   }
@@ -124,11 +122,8 @@ void draw(){
   p.move();
   textSize(50);
   p.UI();
-  if(s.isOpen){
+  s.display();
   s.UI();
-  }
-  s2.display(); // tesing purp remove later
-  s2.UI(); // tesing purp remove later
   //e.UI(); maybe for bosses instead keep though
 
   if(!inter&&p.shootHold&&!s.isOpen&&frameCount%10==0){
