@@ -71,7 +71,7 @@
   void henchmanDisplay(){
     if(name.equals("Tesla")){
       fill(30, 10, 240);
-      circle((int)position.x,(int) position.y, 20);
+      circle(position.x, position.y, 24);
     }
   }
  

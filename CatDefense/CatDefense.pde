@@ -89,11 +89,14 @@ void draw(){
       background(255);
       m.display();
       c.display();
+      noStroke();
+      fill(#637081);
+      rect(800,0, 200, 800);
       fill(0);
       textSize(30);
-      text("wave: "+ wave, width-100, 48);
-      text("FPS: "+int(frameRate),width-100,20);
-      text("Cat: " + c.hp, width-100, 80);
+      text("wave: "+ wave, 805, 140);
+      text("FPS: "+int(frameRate), 805,20);
+      text("Cat: " + c.hp, 805, 80);
       p.display();
       p.move();
       textSize(50);
@@ -221,16 +224,19 @@ void draw(){
 }else{
   
   
-  
+    
     background(255);
     m.display();
     s.display();
     c.display();
+    noStroke();
+    fill(#637081);
+    rect(800,0, 200, 800);
     fill(0);
     textSize(30);
-    text("wave: "+ wave, width-100, 48);
-    text("FPS: "+int(frameRate),width-100,20);
-    text("Cat: " + c.hp, width-100, 80);
+    text("wave: "+ wave, 805, 140);
+    text("FPS: "+int(frameRate), 805,20);
+    text("Cat: " + c.hp, 805, 80);
   
   //game funcs
     for(int h = Enemies.size()-1; h>=0; h--){
