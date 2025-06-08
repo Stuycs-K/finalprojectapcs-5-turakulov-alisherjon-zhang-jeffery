@@ -193,13 +193,13 @@ class Shop extends Entity{
       image(bgUI,5,0);
       textSize(40);
       fill(255);
-      text(p.getSouls()+" SOULS",width/2+155,height/2+350);
+      text(p.getSouls()+" SOULS",width/2+55,height/2+350);
       if(base){
-      text(" > Why did the man fall through\n    the glass?",width/2-370,height/2+200);
-      text(" > Because he weighed a\n    SKELEton!",width/2-370,height/2+280);
-      text("Items",width/2+175,height/2+200);
-      text("Upgrades",width/2+175,height/2+250);
-      float soulX=width/2+85;
+      text(" > Why did the man fall through\n    the glass?",width/2-470,height/2+200);
+      text(" > Because he weighed a\n    SKELEton!",width/2-470,height/2+280);
+      text("Items",width/2+75,height/2+200);
+      text("Upgrades",width/2+75,height/2+250);
+      float soulX=width/2-15;
       float[] soulY={height/2+115,height/2+165};
       image(souls[curFrame],soulX,soulY[trackUI]);
          countFrame++;
@@ -211,20 +211,20 @@ class Shop extends Entity{
          countFrame=0;
         }
       }else if(items){
-        text("Ammo Box"+"             "+costBox+" Souls",width/2-300,height/2+200);
-        text("Health Kit"+"          "+costMed+" Souls",width/2-300,height/2+250);
-        text("Catnip"+"           "+"99999 Souls",width/2-300,height/2+300);
+        text("Ammo Box"+"             "+costBox+" Souls",width/2-400,height/2+200);
+        text("Health Kit"+"          "+costMed+" Souls",width/2-400,height/2+250);
+        text("Catnip"+"           "+"99999 Souls",width/2-400,height/2+300);
         if(trackUII==0){
-          text("Contains 100\nbullets\n[R to reload]",width/2+150,height/2+185);
+          text("Contains 100\nbullets\n[R to reload]",width/2+50,height/2+185);
         }
         if(trackUII==1){
-          text("Heals either\nyourself or\ncat to max\nHP if near\n[T to heal]",width/2+150,height/2+185);
+          text("Heals either\nyourself or\ncat to max\nHP if near\n[T to heal]",width/2+50,height/2+185);
         }
         if(trackUII==2){
-          text("no you can\nnot have this",width/2+150,height/2+185);
+          text("no you can\nnot have this",width/2+50,height/2+185);
         }
-        text("Exit",width/2-300,height/2+350);
-        float soulX=width/2-400;
+        text("Exit",width/2-400,height/2+350);
+        float soulX=width/2-500;
       float[] soulY={height/2+115,height/2+165,height/2+215,height/2+265};
         image(souls[curFrame],soulX,soulY[trackUII]);
          countFrame++;
@@ -237,24 +237,24 @@ class Shop extends Entity{
          }
          if(trackUII==0){
            imageMode(CENTER);
-           image(p.box,width/2+250,height/2+100);
+           image(p.box,width/2+150,height/2+100);
          }
          if(trackUII==1){
            imageMode(CENTER);
-           image(p.kit,width/2+250,height/2+100);
+           image(p.kit,width/2+150,height/2+100);
            imageMode(CORNER);
          }
       }else if(upgrades){
-        text("DMG Upgrade"+"        "+costWeapon+" Souls",width/2-300,height/2+200);
-        text("Health Upgrade"+"    "+costDefence+" Souls",width/2-300,height/2+250);
+        text("DMG Upgrade"+"        "+costWeapon+" Souls",width/2-400,height/2+200);
+        text("Health Upgrade"+"    "+costDefence+" Souls",width/2-400,height/2+250);
         if(trackUIU==0){
-          text("Upgrades the\ndamage you\ndeal by 1!",width/2+150,height/2+185);
+          text("Upgrades the\ndamage you\ndeal by 1!",width/2+50,height/2+185);
         }
         if(trackUIU==1){
-          text("Upgrades your\nand cat's\nmax health\nby 5!",width/2+150,height/2+185);
+          text("Upgrades your\nand cat's\nmax health\nby 5!",width/2+50,height/2+185);
         }
-        text("Exit",width/2-300,height/2+300);
-        float soulX=width/2-400;
+        text("Exit",width/2-400,height/2+300);
+        float soulX=width/2-500;
       float[] soulY={height/2+115,height/2+165,height/2+215};
         image(souls[curFrame],soulX,soulY[trackUIU]);
          countFrame++;
