@@ -28,7 +28,8 @@
   void henchmanAttack(Entity other){//dependent on lhenchmen, Tesla attack the player
     if(name.equals("Tesla")){
       if(closeEnough(other, 35)){
-        stroke(0, 0, 220);
+        stroke(0);
+      
         line(position.x, position.y,other.position.x, other.position.y);
         other.hp -= damage;
       }
@@ -71,7 +72,7 @@
   void henchmanDisplay(){
     if(name.equals("Tesla")){
       fill(30, 10, 240);
-      circle((int)position.x,(int) position.y, 20);
+      circle(position.x, position.y, 24);
     }
   }
  
@@ -103,7 +104,7 @@
   void henchmanMoveTo(Entity other){
     PVector dir =  PVector.sub(other.position, position);
     dir.setMag(1.5);
-    if(closeEnough(other, 24)){
+    if(closeEnough(other, 30)){
         dir.setMag(0);
       }
     velocity = dir;
@@ -111,7 +112,7 @@
   }
   
   void spawnEnemies(String type){};
-  
+  void speak(){};
   
   
   

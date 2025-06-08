@@ -8,35 +8,35 @@ class Boss extends Enemy{
     super(damage, xpos, ypos, name);
     
     if(name.equals("Bob")){
-      hp = 201; //since spawnEnemies subtracts
+      hp = 200; //since spawnEnemies subtracts
       maxHP = 200;
     }else{ //Tar
-      hp = 601;
+      hp = 600;
       maxHP = 600;
     }
   
   }
   
   void attack(Entity other){
-    if(closeEnough(other, 50)){
+    if(closeEnough(other, 45)){
       other.hp -= damage;
     }
   }
   
   void UI(){ //health bar
       fill(200);
-    rect(position.x-48, position.y-55, 70, 30);
+    //rect(position.x-48, position.y-55, 70, 30);
     textSize(30);
-    text(hp+"/"+maxHP, position.x-45, position.y-52);
+    text(hp+"/"+maxHP, position.x-45, position.y-32);
   }
   
   void display(){
      noStroke();
     if(name.equals("Bob")){ //like a construction uniform
         fill(250, 160, 10);
-        //PImage bob = loadImage("bob.png"); //may need to change if drawing is conspiciously subpar
-        circle(position.x, position.y, 50);
-        //image(bob, position.x-bob.width/2, position.y-bob.height/2);
+        PImage bob = loadImage("bob.png"); //may need to change if drawing is conspiciously subpar
+        //circle(position.x, position.y, 50);
+        image(bob, position.x-bob.width/2, position.y-bob.height/2);
       }else if(name.equals("Tar")){
        fill(10);
        circle(position.x, position.y, 48);
@@ -49,13 +49,13 @@ class Boss extends Enemy{
   }
   
   void spawnEnemies(String type){ // spawn different types based on hp levels
-      int i = 0;
-       if(Bob.hp == 201|| Bob.hp == 140 || Bob.hp == 80 || Bob.hp == 30){
-      while(i < 7 && frameCount % 20 == 0){
+     
+      if(Enemies.size() == 0){
+        
           Enemies.add(new Enemy(damage/10, (int)position.x, (int)position.y, type)); //type based on boss
-          i++;
-      }
-      hp-=1; //To avoid repetition if boss doesnt get damaged
+          
+      
+     
     }
     
       
@@ -63,29 +63,33 @@ class Boss extends Enemy{
 
   
   void speak(){
-    if(name.equals("Bob") && hp ==maxHP){
-      fill(0);
+    if(name.equals("Bob") && hp > 195){
+      fill(200);
       textSize(24);
-      rect(240, 740, 200, 770);
+      rect(125, 540, 520, 75);
       fill(245, 180, 0);
-      text("Bob The Builder: Hey! where did all the walls I built go?", 250, 750);
+      text("Bob The Builder: Hey! where did all the walls I built go?", 135, 570);
     }
   }
     
   void moveTo(Entity target){//will initially appear at top center of the screen at max hp
     PVector pos =  new PVector(position.x, position.y);
-      if(hp == 200){
+      if(hp > 190){
         position.x = 400;
         position.y = 60;
+      }else if(hp>170){
+        pos = new PVector(720, 60);
       }else if(hp < 170 && hp > 160){
         pos = target.position;
       }else if(hp > 120){
         pos = new PVector(730, 730);
       }else if(hp < 120 && hp > 100){
         pos = target.position;
-      }else if(hp > 60 ){
-        pos = new PVector(60, 400);
-      }else if(hp < 60 && hp > 30){
+      }else if(hp > 70 ){
+        pos = new PVector(60, 500);
+      }else if(hp < 70 && hp > 50){
+        pos = new PVector(60, 200);
+      }else if(hp < 50 && hp > 30){
         pos = new PVector(400, 60);
       }else if( hp < 30){
         pos = target.position;
