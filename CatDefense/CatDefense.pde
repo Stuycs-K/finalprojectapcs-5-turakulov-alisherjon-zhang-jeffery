@@ -123,7 +123,7 @@ void draw(){
       }
     }
   
- /* if(inter){
+  if(inter){
     if(tick==0){
       int randX=(int)random(width-100);
       int randY=(int)random(height-100);
@@ -139,16 +139,16 @@ void draw(){
     s.changePos(-100,-100);
   }
   return;
-  }*/
+  }
       
        if(!inter&&p.shootHold&&!s.isOpen&&frameCount%10==0){
       p.shoot();
   }
   
- /* if(Enemies.size()==0&&!inter&&wave%5==0){
+  if(Enemies.size()==0&&!inter&&wave%5==0){
     inter=true;
     tick=0;
-  }*/
+  }
   Bob.spawnEnemies("Tesla");
    for(int i = Enemies.size()-1; i > 0; i--){
      Enemy en = Enemies.get(i);
