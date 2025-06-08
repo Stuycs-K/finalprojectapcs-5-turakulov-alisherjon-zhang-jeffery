@@ -8,8 +8,8 @@ Player p;
     super(damage, xpos, ypos, name);
     this.p=p;
     if(name.equals("Bob")){
-      hp = 201; //since spawnEnemies subtracts
-      maxHP = 200;
+      hp = 999; //since spawnEnemies subtracts
+      maxHP = 999;
     }/*else{ //Tar
       hp = 601;
       maxHP = 600;

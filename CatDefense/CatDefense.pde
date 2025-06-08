@@ -75,7 +75,7 @@ void mouseReleased(){
       
 void draw(){
   //c.position = new PVector(mouseX, mouseY);
-  if(wave==100){
+  if(wave==50){
     background(200);
     m.displayWin();
   }else if(p.hp <= 0 || c.hp <= 0){
