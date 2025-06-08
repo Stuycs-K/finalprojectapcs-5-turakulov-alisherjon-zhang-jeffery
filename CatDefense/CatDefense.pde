@@ -2,7 +2,7 @@ ArrayList<Wall> Walls;
 ArrayList<Bullets> bullets;
 ArrayList<Enemy> Enemies;
 //           wave:   0       20      30      40      60     80     100
-String[] types = {"Enemy", "Jump", "Fast", "Tank", "Bob", "Tar", "Drunk"};// randomization starts inlcuding more types 20..30..40 (unil bosses index 4)
+String[] types = {"Enemy", "Jump", "Fast", "Tank", "Bob"/*, *"Tar", "Drunk"*/};// randomization starts inlcuding more types 20..30..40 (unil bosses index 4)
 //Bob -the builder, first boss; Tar -the murkiness of real life, of responsbiltiy; Drunk -the players childhood trauma. 
 //Wave 100 is where the player comes to terms with their past; and their journey continues. (Accompanied by their feline friend).
 Player p;
@@ -14,7 +14,7 @@ boolean inter;
 Entity en;
 Shop s;
 boolean invincible, bossBattle;
-Enemy Bob, Tar;
+Enemy Bob/*, Tar*/;
 
 void setup(){
 size(1000, 800);
@@ -98,7 +98,7 @@ void draw(){
         if(!bossBattle){
           Enemies = new ArrayList<Enemy>(11);
           inter = false;
-          Bob = new Boss(50, 400, 50, "Bob");
+          Bob = new Boss(50, 400, 50,p, "Bob");
           bossBattle = true;
        }
        Bob.display();
@@ -117,8 +117,8 @@ void draw(){
         bossBattle = false;
         wave++;
       }
-    }
-  
+      }
+       
   if(inter){
     if(tick==0){
       int randX=(int)random(width-100);

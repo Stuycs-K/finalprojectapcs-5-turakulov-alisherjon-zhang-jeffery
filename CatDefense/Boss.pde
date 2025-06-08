@@ -3,17 +3,17 @@ class Boss extends Enemy{
 //String[] types = {"Enemy", "Jump", "Fast", "Tank", "Bob", "Tar", "Tesla", };// randomization starts inlcuding more types 20..30..40 (unil bosses index 4)  
 //Bob -the builder, first boss; Tar -the murkiness of real life, of responsbiltiy 
 //Wave 100 is where the player comes to terms with their past; and their journey continues. (Accompanied by their feline friend).
-
-  public Boss(int damage, int xpos, int ypos, String name){
+Player p;
+  public Boss(int damage, int xpos, int ypos, Player p, String name){
     super(damage, xpos, ypos, name);
-    
+    this.p=p;
     if(name.equals("Bob")){
       hp = 201; //since spawnEnemies subtracts
       maxHP = 200;
-    }else{ //Tar
+    }/*else{ //Tar
       hp = 601;
       maxHP = 600;
-    }
+    }*/
   
   }
   
@@ -24,10 +24,12 @@ class Boss extends Enemy{
   }
   
   void UI(){ //health bar
-      fill(200);
-    rect(position.x-48, position.y-55, 70, 30);
-    textSize(30);
-    text(hp+"/"+maxHP, position.x-45, position.y-52);
+      fill(255,0,0);
+      stroke(0);
+    rect(width/2-150,100,300*(float)hp/maxHP,20);
+    textSize(21);
+    fill(0);
+    text(hp+"/"+maxHP, width/2-145.8,115);
   }
   
   void display(){

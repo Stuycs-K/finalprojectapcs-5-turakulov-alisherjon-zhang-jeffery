@@ -9,6 +9,7 @@ class Bullets{
     velocity=dir.normalize().mult(speed);
     ang=atan2(dir.y,dir.x);
   }
+  
   void move(){
     position.add(velocity);
   }

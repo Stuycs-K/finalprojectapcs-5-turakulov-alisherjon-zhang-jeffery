@@ -5,7 +5,7 @@ class Player extends Entity{
   int ammo; int maxAmmo; int remBox; int remBoxL; int reloadT; boolean remainR;
   int medpacks, healT; boolean healR;
   int souls; //currency
-  int lives; //later
+  int slowedT;
   boolean medkit; //heal self or cat
   boolean boxCheck; //only can reload if ammobox with ammo left
   boolean isCatnip;
@@ -241,11 +241,16 @@ class Player extends Entity{
   void wepInc(int amt){
     weapon+=amt;
   }
+  void slowed(){
+    if(slowedT>0){
+      slowedT--;
+    if(slowedT==0) speed=10;
+    }
+  }
   
-  void useCatnip(){
+  /*void useCatnip(){
     if(isCatnip){
       catnip--;
       //code here relating to cat class need to discuss
-    }
-  }
+    }*/
 }
