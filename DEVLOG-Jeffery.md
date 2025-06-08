@@ -59,3 +59,8 @@ Finished coding the new version of shop inspired from Deltarune's shop UI functi
 
 Time: ~90 minutes
 
+### 2025-06-06 - Map, Inventory system completed and shop fixes
+Fixed shop issue with moving to upgrades/items area of UI along with buying twice in a single button press if player has enough currency. Drew and implamented the map and win screen. Completed the inventory system by adding the proper addition of displayed items in inventory and the proper removal of them if amount player has ran out of usage.
+
+Time: ~110 minutes
+
