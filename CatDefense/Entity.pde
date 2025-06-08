@@ -33,6 +33,8 @@ abstract class Entity{
    return (abs(position.x - other.position.x) <= radius) && (abs(position.y - other.position.y) <= radius); 
   }
   
+
+  
   void heal(int amt){
     if(hp+amt <= maxHP){
       hp += amt;

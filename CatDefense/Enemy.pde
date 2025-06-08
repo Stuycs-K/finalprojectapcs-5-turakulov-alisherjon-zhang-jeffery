@@ -13,6 +13,9 @@
      this.damage = 5;
     }else if(name.equals("Tank")){
       super.hp = 20;
+    }else if(name.equals("Tesla")){
+      super.hp = 14;
+      damage = 40;
     }
   }
   
@@ -22,10 +25,20 @@
     }
   }
   
+  void henchmanAttack(Entity other){//dependent on lhenchmen, Tesla attack the player
+    if(name.equals("Tesla")){
+      if(closeEnough(other, 35)){
+        stroke(0, 0, 220);
+        line(position.x, position.y,other.position.x, other.position.y);
+        other.hp -= damage;
+      }
+    }
+  }
+  
   void move(){
-    if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0){ //jumpers dont stop at walls
+    if(m.map[(int)(position.y/20)][(int)(position.x/20)] == 0 || name.equals("Jump")){ //jumpers dont stop at walls
       position.add(velocity);
-    }//Note: could use hashMap to store walls by position to have faster runtime
+    }//Note: could use hashMap to store walls by position to have faster runtime (after getting everything done)
   }
   
   void UI(){
@@ -36,35 +49,33 @@
   }
   
   void display(){
+    noStroke();
     if(name.equals("Enemy")){
       fill(150, 50, 50);
-      noStroke();
       circle(position.x, position.y, 24);
       
     }else if(name.equals("Fast")){
       fill(10, 30, 200);
-      noStroke();
       circle(position.x, position.y, 24);
     
     }else if(name.equals("Jump")){
       fill(10, 200, 50);
-      noStroke();
       circle(position.x, position.y, 24);
     
     }else if(name.equals("Tank")){
       fill(50, 20, 10);
-      noStroke();
       circle(position.x, position.y, 24);
-      
-    }else if(name.equals("Bob")){ //like a construction uniform  note ot self: REMOVE ONCE BOSS CLASS READY
-      fill(50, 20, 10);
-      PImage bob = loadImage("bob.png"); //may need to change if drawing is conspiciously subpar
-      noStroke();
-      image(bob, position.x-bob.width/2, position.y-bob.height/2);
+    }
+  }
+  
+  void henchmanDisplay(){
+    if(name.equals("Tesla")){
+      fill(30, 10, 240);
+      circle((int)position.x,(int) position.y, 20);
     }
   }
  
- /// Precondition other is Cat
+ // other can be cat or player
   void moveTo(Entity other){ // use constant distance 
     
       PVector direction = PVector.sub(other.position, position);
@@ -74,6 +85,8 @@
         }else{
           direction.setMag(0.0);
         }
+        velocity = direction;
+        return;
       }else{
         direction.setMag(1.5);
       }
@@ -86,6 +99,18 @@
       
       velocity = direction;
   }
+  
+  void henchmanMoveTo(Entity other){
+    PVector dir =  PVector.sub(other.position, position);
+    dir.setMag(1.5);
+    if(closeEnough(other, 24)){
+        dir.setMag(0);
+      }
+    velocity = dir;
+    position.add(velocity);
+  }
+  
+  void spawnEnemies(String type){};
   
   
   
