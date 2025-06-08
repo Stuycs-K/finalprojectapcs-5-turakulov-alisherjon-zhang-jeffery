@@ -214,6 +214,15 @@ class Shop extends Entity{
         text("Ammo Box"+"             "+costBox+" Souls",width/2-300,height/2+200);
         text("Health Kit"+"          "+costMed+" Souls",width/2-300,height/2+250);
         text("Catnip"+"           "+"99999 Souls",width/2-300,height/2+300);
+        if(trackUII==0){
+          text("Contains 100\nbullets\n[R to reload]",width/2+150,height/2+185);
+        }
+        if(trackUII==1){
+          text("Heals either\nyourself or\ncat to max\nHP if near\n[T to heal]",width/2+150,height/2+185);
+        }
+        if(trackUII==2){
+          text("no you can\nnot have this",width/2+150,height/2+185);
+        }
         text("Exit",width/2-300,height/2+350);
         float soulX=width/2-400;
       float[] soulY={height/2+115,height/2+165,height/2+215,height/2+265};
@@ -239,10 +248,10 @@ class Shop extends Entity{
         text("DMG Upgrade"+"        "+costWeapon+" Souls",width/2-300,height/2+200);
         text("Health Upgrade"+"    "+costDefence+" Souls",width/2-300,height/2+250);
         if(trackUIU==0){
-          text("Upgrades the\ndamage you\ndeal by 1!",width/2+150,height/2+200);
+          text("Upgrades the\ndamage you\ndeal by 1!",width/2+150,height/2+185);
         }
         if(trackUIU==1){
-          text("Upgrades your\nand cat's\nmax health\nby 5!",width/2+150,height/2+200);
+          text("Upgrades your\nand cat's\nmax health\nby 5!",width/2+150,height/2+185);
         }
         text("Exit",width/2-300,height/2+300);
         float soulX=width/2-400;

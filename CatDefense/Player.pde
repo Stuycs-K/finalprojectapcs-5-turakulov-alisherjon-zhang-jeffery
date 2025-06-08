@@ -2,8 +2,8 @@ class Player extends Entity{
   int catnip;
   int weapon; //damage
   int defense; //hp increase
-  int ammo; int maxAmmo; int remBox; int remBoxL;
-  int medpacks;
+  int ammo; int maxAmmo; int remBox; int remBoxL; int reloadT; boolean remainR;
+  int medpacks, healT; boolean healR;
   int souls; //currency
   int lives; //later
   boolean medkit; //heal self or cat
@@ -27,7 +27,6 @@ class Player extends Entity{
     ammo=amm;
     maxAmmo=amm;
     boxCheck=true;
-    medpacks=1;
     medkit=false;
     remBox=2; remBoxL=100;
     this.isCatnip=isCatnip;
@@ -52,7 +51,6 @@ class Player extends Entity{
   void reload(){
     if(ammo<maxAmmo&&boxCheck){
       remBoxL-=maxAmmo-ammo;
-      System.out.println("current ammoBox remaining bullets: "+remBoxL);
       if(remBoxL<=0){
         if(remBox==1){
           boxCheck=false;
@@ -62,7 +60,6 @@ class Player extends Entity{
         }
         remBox--;
         remBoxL=100+remBoxL;
-        System.out.println("remaining ammoBoxes: "+remBox);
       }
     ammo+=maxAmmo-ammo;
     }
@@ -100,9 +97,13 @@ class Player extends Entity{
     }
     if(key=='r'||key=='R'){
       reload();
+      remainR=true;
+      reloadT=240;
     }
     if(key=='t'||key=='T'){
       heal();
+      healR=true;
+      healT=240;
     }
   }
   
@@ -196,7 +197,6 @@ class Player extends Entity{
     image(box,18+toolSlot/2,690+toolSlot/2);
     textSize(20);
     fill(0,0,0);
-    text("Remaining uses: "+remBox,mouseX,mouseY);
     }else if(i==1&&item.equals("ammoBox")){
     image(box,134+toolSlot/2,690+toolSlot/2);
     textSize(20);
@@ -209,6 +209,17 @@ class Player extends Entity{
     image(kit,132+toolSlot/2,695+toolSlot/2);
     }
     imageMode(CORNER);
+    if(remainR&&boxCheck&&healT<120){
+      text("Remaining bullets: "+remBoxL+"/"+"100",mouseX,mouseY);
+      text("Ammoboxes left: "+remBox,mouseX,mouseY-15);
+      }
+      reloadT--;
+      if(reloadT<=0) remainR=false;
+     if(healR&&medkit&&reloadT<120){
+      text("Remaining medkits: "+medpacks,mouseX,mouseY);
+      }
+      healT--;
+      if(healT<=0) healR=false;
       }
     }
   }
