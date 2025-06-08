@@ -142,8 +142,17 @@ void draw(){
       s.changePos(randX,randY);
     }
     tick++;
-  System.out.println(tick);
-  if(tick>1000){
+    fill(0);
+    rect(width/2-150,100,300,20);
+    fill(255,223,0);
+    rect(width/2-150,100,300*(float)tick/1500,20);
+    fill(0);
+    textSize(20.5);
+    text("Intermission [Press X to skip]",width/2-111.8,114);
+    fill(255);
+    textSize(20);
+    text("Intermission [Press X to skip]",width/2-112,115);
+  if(tick>1500){
     inter=false;
     wave++;
     spawned=0;
@@ -152,6 +161,7 @@ void draw(){
   }
   return;
   }
+  
     
        spawnNum = (int) (3*Math.pow(1.005, wave));
      if(frameCount % 100 == 0){   //spawn rate remains same; otherwise at upper waves computer fan will increase with spawn rate too.
