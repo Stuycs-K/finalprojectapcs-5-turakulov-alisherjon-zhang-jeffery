@@ -116,7 +116,7 @@ void draw(){
       }
        Bob.display();
        Bob.UI();
-      
+        Bob.speak();
        if(frameCount % 100 == 0 && !invincible){
          Bob.attack(c);
          Bob.attack(p);
@@ -126,7 +126,7 @@ void draw(){
        
        Bob.moveTo(c);
        Bob.move();
-      
+       Bob.spawnEnemies("Tesla");
     }
   
   if(inter){
@@ -156,7 +156,7 @@ void draw(){
     tick=0;
   }
  
-    Bob.spawnEnemies("Tesla");
+  
     
    for(int i = Enemies.size()-1; i >= 0; i--){
      Enemy en = Enemies.get(i);
