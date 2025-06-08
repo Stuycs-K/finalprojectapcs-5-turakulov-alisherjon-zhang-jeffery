@@ -36,8 +36,8 @@ void display(){
       if(map[i][j] == 1){
         fill(0, 250, 50);
         image(wallace,x-wallace.width/2,y-wallace.height/2);
-        textSize(12);
-        text(""+map[i][j], x, y);
+        //textSize(12);
+        //text(""+map[i][j], x, y);
       }
       if(map[i][j] == 2){
         fill(90,40,5);
@@ -54,15 +54,16 @@ void display(){
 
  void displayEnd(){
   fill(100, 40, 20);
-  rect(200, 200, 400, 200);
+  rect(300, 200, 400, 200);
   fill(0);
   textSize(50);
-  text("Game Over", 275, 310);
+  text("Game Over", 375, 310);
   textSize(25);
-  text("Wave: " +wave, 355, 350);
+  text("Wave: " +wave, 455, 350);
   }
   
   void displayWin(){
+    
     image(winS,0,0);//add animated cat sprite below
 }
 }

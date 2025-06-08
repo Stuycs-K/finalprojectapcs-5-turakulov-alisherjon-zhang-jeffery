@@ -3,21 +3,22 @@ class Boss extends Enemy{
 //String[] types = {"Enemy", "Jump", "Fast", "Tank", "Bob", "Tar", "Tesla", };// randomization starts inlcuding more types 20..30..40 (unil bosses index 4)  
 //Bob -the builder, first boss; Tar -the murkiness of real life, of responsbiltiy 
 //Wave 100 is where the player comes to terms with their past; and their journey continues. (Accompanied by their feline friend).
+
   public Boss(int damage, int xpos, int ypos, String name){
     super(damage, xpos, ypos, name);
-    hp = 200;
-    maxHP = 200;
+    
     if(name.equals("Bob")){
-      damage = 50;
+      hp = 200;
+      maxHP = 200;
     }else{ //Tar
-      damage = 100;
       hp = 600;
       maxHP = 600;
     }
+  
   }
   
   void attack(Entity other){
-    if(closeEnough(other)){
+    if(closeEnough(other, 50)){
       other.hp -= damage;
     }
   }
@@ -30,15 +31,16 @@ class Boss extends Enemy{
   }
   
   void display(){
-    noStroke();
-  if(name.equals("Bob")){ //like a construction uniform
-      //fill(50, 20, 10);
-      PImage bob = loadImage("bob.png"); //may need to change if drawing is conspiciously subpar
-      image(bob, position.x-bob.width/2, position.y-bob.height/2);
-    }else if(name.equals("Tar")){
-     fill(10);
-     circle(position.x, position.y, 48);
-    }
+     noStroke();
+    if(name.equals("Bob")){ //like a construction uniform
+        fill(250, 160, 10);
+        //PImage bob = loadImage("bob.png"); //may need to change if drawing is conspiciously subpar
+        circle(position.x, position.y, 50);
+        //image(bob, position.x-bob.width/2, position.y-bob.height/2);
+      }else if(name.equals("Tar")){
+       fill(10);
+       circle(position.x, position.y, 48);
+      }
   }
   
   void move(){
@@ -46,20 +48,34 @@ class Boss extends Enemy{
   
   }
   
-  void spawnEnemies(int typeIndex, int count){ // spawn different types based on hp levels
-    if(hp == 140 || hp == 80 || hp == 30){
-      for(int i = 0; i < 10; i++){
-        Enemies.add(new Enemy(damage/10, (int)position.x, (int)position.y, "Enemy")); //will change to bosses respective Enemy types later
+  void spawnEnemies(String type){ // spawn different types based on hp levels
+      int i = 0;
+       if(Bob.hp == 200|| Bob.hp == 140 || Bob.hp == 80 || Bob.hp == 30){
+      while(i < 7 && frameCount % 20 == 0){
+          Enemies.add(new Enemy(damage/10, (int)position.x, (int)position.y, type)); //type based on boss
+          i++;
       }
     }
-  }
-  
     
-  void bossMove(Entity target){//will initially appear at top center of the screen at max hp
-  PVector pos = new PVector(730, 60);
- 
-      if(hp != 200 && hp > 170){ //move at first damage
-        pos = new PVector(730, 60);
+      hp-=1; //To avoid repetition if boss doesnt get damaged
+    }
+
+  
+  void speak(){
+    if(name.equals("Bob") && hp ==maxHP){
+      fill(0);
+      textSize(24);
+      rect(240, 740, 200, 770);
+      fill(245, 180, 0);
+      text("Bob The Builder: Hey! where did all the walls I built go?", 250, 750);
+    }
+  }
+    
+  void moveTo(Entity target){//will initially appear at top center of the screen at max hp
+    PVector pos =  new PVector(position.x, position.y);
+      if(hp == 200){
+        position.x = 400;
+        position.y = 60;
       }else if(hp < 170 && hp > 160){
         pos = target.position;
       }else if(hp > 120){
@@ -73,10 +89,15 @@ class Boss extends Enemy{
       }else if( hp < 30){
         pos = target.position;
       }
+      velocity = PVector.sub(pos, position);
+      
       
       if(!closeEnough(pos, 48)){
-          velocity = PVector.sub(pos, position);
           velocity.setMag(1.5);
+        }else{
+          velocity.setMag(0.0);
         }
+        
+        
   }
 }

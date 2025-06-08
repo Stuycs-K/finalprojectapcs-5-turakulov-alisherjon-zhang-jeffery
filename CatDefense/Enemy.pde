@@ -25,11 +25,11 @@
     }
   }
   
-  void lackeyAttack(Entity other){
+  void henchmanAttack(Entity other){//dependent on lhenchmen, Tesla attack the player
     if(name.equals("Tesla")){
       if(closeEnough(other, 35)){
         stroke(0, 0, 220);
-        line(position.x, position.y, other.position.x, other.position.y);
+        line(position.x, position.y,other.position.x, other.position.y);
         other.hp -= damage;
       }
     }
@@ -68,7 +68,7 @@
     }
   }
   
-  void lackeyDisplay(){
+  void henchmanDisplay(){
     if(name.equals("Tesla")){
       fill(30, 10, 240);
       circle((int)position.x,(int) position.y, 20);
@@ -100,13 +100,14 @@
       velocity = direction;
   }
   
-  void lackeyMoveTo(Entity other){
+  void henchmanMoveTo(Entity other){
     PVector dir =  PVector.sub(other.position, position);
     dir.setMag(1.5);
-    if(name.equals("Tesla") && dir.mag() < 34){
+    if(closeEnough(other, 24)){
         dir.setMag(0);
       }
     velocity = dir;
+    position.add(velocity);
   }
   
   
