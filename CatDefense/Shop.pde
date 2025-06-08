@@ -6,6 +6,7 @@ class Shop extends Entity{
   int trackUI, trackUII, trackUIU;
   boolean base,items,upgrades;
   Player p;
+  Cat c;
   boolean isOpen;
   PImage shop;
   int expDef; int expWep;
@@ -17,13 +18,14 @@ class Shop extends Entity{
   boolean purchaseCD;
   float tick;
   
-  public Shop(int costD,int costW, int costBox, Player player,int x,int y){
+  public Shop(int costD,int costW, int costBox, Player player,Cat catsz,int x,int y){
     super(10000000,10000000,10.0,x,y,0,0,"Shop");
     costDefence=costD;
     costWeapon=costW;
     this.costBox=costBox;
     costMed=10; //TOO LAZYY
     p=player;
+    c=catsz;
     shop=loadImage("shop.png");
     shopGuy.resize(800,800);
     base=true;
@@ -47,7 +49,10 @@ class Shop extends Entity{
   void upgradeDefense(){
     if(p.getSouls()>=costDefence){
       p.soulsDec(costDefence);
-      p.defInc(5);
+      p.defInc(25);
+      p.hp+=p.maxHP+p.defense-p.hp;
+      c.maxHP+=25;
+      c.hp+=c.maxHP-c.hp;
       costDefence*=Math.pow(1.085,expDef);
       expDef++;
   }
@@ -233,6 +238,12 @@ class Shop extends Entity{
       }else if(upgrades){
         text("DMG Upgrade"+"        "+costWeapon+" Souls",width/2-300,height/2+200);
         text("Health Upgrade"+"    "+costDefence+" Souls",width/2-300,height/2+250);
+        if(trackUIU==0){
+          text("Upgrades the\ndamage you\ndeal by 1!",width/2+150,height/2+200);
+        }
+        if(trackUIU==1){
+          text("Upgrades your\nand cat's\nmax health\nby 5!",width/2+150,height/2+200);
+        }
         text("Exit",width/2-300,height/2+300);
         float soulX=width/2-400;
       float[] soulY={height/2+115,height/2+165,height/2+215};

@@ -27,8 +27,8 @@ m.display();
 Walls = m.Walls;
 //en= new Enemy(1, 100, 100);
 Enemies = new ArrayList<Enemy>(30); 
-s=new Shop(7,12,7,p,-100,-100);
-s2=new Shop(7,12,7,p,100,100); // tesing purp remove later
+s=new Shop(7,12,7,p,c,-100,-100);
+s2=new Shop(7,12,7,p,c,100,100); // tesing purp remove later
 }
 
 void keyPressed(){
