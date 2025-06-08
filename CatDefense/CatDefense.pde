@@ -48,9 +48,13 @@ void keyPressed(){
     }else{
       invincible = true;
     }
-  }else if(key=='c'||key=='C'){
+  }
+  }
+  if(key=='c'||key=='C'){
     p.souls++;
   }
+  if(inter&&key=='x'||key=='X'){
+    tick+=35;
   }
 }
 
@@ -148,10 +152,10 @@ void draw(){
     rect(width/2-150,100,300*(float)tick/1500,20);
     fill(0);
     textSize(20.5);
-    text("Intermission [Press X to skip]",width/2-111.8,114);
+    text("Intermission [Hold X to skip]",width/2-111.8,114);
     fill(255);
     textSize(20);
-    text("Intermission [Press X to skip]",width/2-112,115);
+    text("Intermission [Hold X to skip]",width/2-112,115);
   if(tick>1500){
     inter=false;
     wave++;
