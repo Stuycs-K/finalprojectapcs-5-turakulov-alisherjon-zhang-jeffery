@@ -6,7 +6,7 @@ CatDefense is a 2D Shooter game with the goal of protecting a Cat from waves of 
 - Wall obstructions on the map that can stop some enemies, and also turn into debris that damage enemies walking over them.
 - A Boss fight at wave 49. Where the boss has specific movement and the ability to spawn henchmen to attack to the player/cat.
   
-The game is won upon reaching wave 100, and lost whenever the players or the cat's HP reaches zero.  
+The game is won upon reaching wave 50, and lost whenever the players or the cat's HP reaches zero.  
 
 # Intended usage:
     
@@ -26,9 +26,9 @@ Keybinds:
 -  Hold X to skip the intermission
       
 Cheatcodes:  
-- I to toggle invulernability  
+- I to toggle invulnerability/invincibility
 -  Q and E to increase/decrease the current wave
--  U to incrmeent currency  
+-  U to increment currency  
 
   
 
