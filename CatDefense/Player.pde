@@ -9,7 +9,7 @@ class Player extends Entity{
   boolean medkit; //heal self or cat
   boolean boxCheck; //only can reload if ammobox with ammo left
   boolean isCatnip;
-  float speed = 10; //test around
+  float speed = 5; //test around
   float bulletSpeed=10; //upgrades later
   boolean up,down,left,right;
   ArrayList<Bullets> bullets;
@@ -138,8 +138,8 @@ class Player extends Entity{
   }
   
   void move(){
-    if(position.x>width) position.x=0;
-    if(position.x<0) position.x=width;
+    if(position.x>800) position.x=0;
+    if(position.x<0) position.x=800;
     if(position.y<0) position.y=height;
     if(position.y>height) position.y=0;
     if(up)position.y-=speed;
@@ -180,11 +180,13 @@ class Player extends Entity{
     //reload
     int toolSlot=95;
     int kerning=20;
+    //stroke(0);
     fill(0);
-    text("Bullets: " + ammo+"/"+maxAmmo, 25, 50);
-    textSize(50); // bullet icon next to it or smth
-    text(hp+"  /  "+(maxHP+defense),25,100);
-    text("Souls " +souls,25,150);
+    textSize(30);
+    text("Bullets: " + ammo+"/"+maxAmmo, 805, 50);
+    //textSize(30); // bullet icon next to it or smth
+    text(hp+"  /  "+(maxHP+defense),805,110);
+    text("Souls " +souls,805,170);
     for(int i=0;i<2;i++){
       fill(50,50,50,120);
       stroke(255);

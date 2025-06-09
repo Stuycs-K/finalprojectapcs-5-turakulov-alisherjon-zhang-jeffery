@@ -81,15 +81,18 @@ void draw(){
   }else if(p.hp <= 0 || c.hp <= 0){
     background(200);
     m.displayEnd();
-  }else if(wave == 49 || wave == 99){
+  }else if(wave == 49){
       background(255);
       m.display();
       c.display();
+      noStroke();
+      fill(#637081);
+      rect(800,0, 200, 800);
       fill(0);
       textSize(30);
-      text("wave: "+ wave, width-100, 48);
-      text("FPS: "+int(frameRate),width-100,20);
-      text("Cat: " + c.hp, width-100, 80);
+      text("wave: "+ wave, 805, 140);
+    text("FPS: "+int(frameRate), 805,20);
+    text("Cat: " + c.hp, 805, 80);
       p.display();
       p.move();
       textSize(50);
@@ -98,26 +101,28 @@ void draw(){
         if(!bossBattle){
           Enemies = new ArrayList<Enemy>(11);
           inter = false;
-          Bob = new Boss(50, 400, 50,p, "Bob");
+          Bob = new Boss(50, 400, 50, "Bob");
           bossBattle = true;
        }
+       if(Bob.hp <= 0){
+        println(Bob.hp+"bob");
+        bossBattle = false;
+        wave++;
+      }
        Bob.display();
        Bob.UI();
+        Bob.speak();
        if(frameCount % 100 == 0 && !invincible){
          Bob.attack(c);
          Bob.attack(p);
         }
       
        
-        
+       
        Bob.moveTo(c);
        Bob.move();
-      if(Bob.hp <= 0){
-        println(Bob.hp+"bob");
-        bossBattle = false;
-        wave++;
-      }
-      }
+       Bob.spawnEnemies("Tesla");
+    }
        
   if(inter){
     if(tick==0){
@@ -127,15 +132,15 @@ void draw(){
     }
     tick++;
     fill(0);
-    rect(width/2-150,100,300,20);
+    rect(width/2-250,100,300,20);
     fill(255,223,0);
-    rect(width/2-150,100,300*(float)tick/1500,20);
+    rect(width/2-250,100,300*(float)tick/1500,20);
     fill(0);
     textSize(20.5);
-    text("Intermission [Hold X to skip]",width/2-111.8,114);
+    text("Intermission [Hold X to skip]",width/2-211.8,114);
     fill(255);
     textSize(20);
-    text("Intermission [Hold X to skip]",width/2-112,115);
+    text("Intermission [Hold X to skip]",width/2-212,115);
   if(tick>1500){
     inter=false;
     wave++;
@@ -154,8 +159,7 @@ void draw(){
     inter=true;
     tick=0;
   }
-  Bob.spawnEnemies("Tesla");
-   for(int i = Enemies.size()-1; i > 0; i--){
+  for(int i = Enemies.size()-1; i >= 0; i--){
      Enemy en = Enemies.get(i);
     
      
@@ -164,7 +168,6 @@ void draw(){
        p.souls++;
      }
        
-   
     if(frameCount % 40 == 0 && invincible == false){
         en.henchmanAttack(p);
         en.henchmanAttack(c);
@@ -191,23 +194,7 @@ void draw(){
     }
    }
    
-   if(Enemies.size() == 0){
-    for(int j=p.bullets.size()-1;j>=0;j--){
-      Bullets b=p.bullets.get(j);
-      if(b.closeEnough(Bob, 50)){
-        Bob.hp-=p.weapon;
-        p.bullets.remove(j);
-      }else{
-      b.move();
-      b.display();
-      if(b.destroy()){
-        p.bullets.remove(j);
-      }
-      }
-    }
-  }
-   
-    for(int i = 0; i< Walls.size(); i++){
+   for(int i = 0; i< Walls.size(); i++){
         Wall wa = Walls.get(i);
         wa.takeDamage();
         
@@ -222,17 +209,19 @@ void draw(){
             m.map[(int) wa.position.y/20][(int) wa.position.x/20] = 2;
           }
       }
-  
 }else{
   background(255);
   m.display();
   s.display();
   c.display();
+  noStroke();
+  fill(#637081);
+  rect(800,0, 200, 800);
   fill(0);
   textSize(30);
-  text("wave: "+ wave, width-100, 48);
-  text("FPS: "+int(frameRate),width-100,20);
-  text("Cat: " + c.hp, width-100, 80);
+  text("wave: "+ wave, 805, 140);
+    text("FPS: "+int(frameRate), 805,20);
+    text("Cat: " + c.hp, 805, 80);
   
   //game funcs
   for(int h = Enemies.size()-1; h>=0; h--){
@@ -292,15 +281,15 @@ void draw(){
     }
     tick++;
     fill(0);
-    rect(width/2-150,100,300,20);
+    rect(width/2-250,100,300,20);
     fill(255,223,0);
-    rect(width/2-150,100,300*(float)tick/1500,20);
+    rect(width/2-250,100,300*(float)tick/1500,20);
     fill(0);
     textSize(20.5);
-    text("Intermission [Hold X to skip]",width/2-111.8,114);
+    text("Intermission [Hold X to skip]",width/2-211.8,114);
     fill(255);
     textSize(20);
-    text("Intermission [Hold X to skip]",width/2-112,115);
+    text("Intermission [Hold X to skip]",width/2-212,115);
   if(tick>1500){
     inter=false;
     wave++;
@@ -355,25 +344,4 @@ void draw(){
       }
       }
     //System.out.println("player: "+ p.hp+ "  ;   cat: " + c.hp);
- 
-}
-
-public static String debugToString(int[][] arr){
-  String ret = "[";
-  for(int i = 0; i < arr.length; i++){
-    for(int j = 0; j < arr[0].length; j++){
-      if(j == 0){
-      ret += "[";
-      }else if(j != arr[0].length-1){
-        ret += ""+arr[i][j] + ", ";
-      }else{
-        ret += arr[i][j] + "]";
-      }
     }
-    if(i != arr.length-1){
-      ret += "\n";
-    }
-  }
-  
-  return ret += "]";
-  }
