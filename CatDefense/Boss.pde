@@ -50,9 +50,9 @@ class Boss extends Enemy{
   
   void spawnEnemies(String type){ // spawn different types based on hp levels
      
-      if(Enemies.size() == 0){
+      if(Enemies.size() <=2){
         
-          Enemies.add(new Enemy(damage/10, (int)position.x, (int)position.y, type)); //type based on boss
+          Enemies.add(new Enemy(damage/10, ((int)position.x+(int)(Math.random()*width/3)), (int)position.y, type)); //type based on boss
           
       
      

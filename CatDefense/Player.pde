@@ -28,7 +28,7 @@ class Player extends Entity{
     maxAmmo=amm;
     boxCheck=true;
     medkit=false;
-    remBox=2; remBoxL=100;
+    remBox=1; remBoxL=100;
     this.isCatnip=isCatnip;
     bullets=new ArrayList<Bullets>();
     box.resize(280,280);
@@ -69,14 +69,14 @@ class Player extends Entity{
     if(medkit&&closeEnough(c)){
       c.hp+=c.maxHP-c.hp;
       medpacks--;
-      if(medpacks==1){
+      if(medpacks<=1){
         inventory.remove("medkit");
         medkit=false;
       }
     }else if(medkit){
       hp+=maxHP-hp;
       medpacks--;
-      if(medpacks==1){
+      if(medpacks<=1){
         inventory.remove("medkit");
         medkit=false;
       }
@@ -181,6 +181,7 @@ class Player extends Entity{
     int toolSlot=95;
     int kerning=20;
     //stroke(0);
+    imageMode(CENTER);
     fill(0);
     textSize(30);
     text("Bullets: " + ammo+"/"+maxAmmo, 805, 50);
@@ -190,25 +191,25 @@ class Player extends Entity{
     for(int i=0;i<2;i++){
       fill(50,50,50,120);
       stroke(255);
-      rect(15+i*(toolSlot+kerning),690,toolSlot,toolSlot,8);
+      rect(width/2+355,580+i*(toolSlot+kerning),toolSlot,toolSlot,8);
       fill(50);
       if(i<inventory.size()){
       String item=inventory.get(i);
       imageMode(CENTER);
       if(i==0&&item.equals("ammoBox")){
-    image(box,18+toolSlot/2,690+toolSlot/2);
+    image(box,width/2+358+toolSlot/2,580+toolSlot/2);
     textSize(20);
     fill(0,0,0);
     }else if(i==1&&item.equals("ammoBox")){
-    image(box,134+toolSlot/2,690+toolSlot/2);
+    image(box,width/2+358+toolSlot/2,694+toolSlot/2);
     textSize(20);
     fill(0,0,0);
     text("Remaining uses: "+remBox,mouseX,mouseY);
     }
     if(i==0&&item.equals("medkit")){
-    image(kit,16+toolSlot/2,695+toolSlot/2);
+     image(kit,width/2+354+toolSlot/2,586+toolSlot/2);
     }else if(i==1&&item.equals("medkit")){
-    image(kit,132+toolSlot/2,695+toolSlot/2);
+    image(kit,width/2+355+toolSlot/2,699+toolSlot/2);
     }
     imageMode(CORNER);
     if(remainR&&boxCheck&&healT<120){
