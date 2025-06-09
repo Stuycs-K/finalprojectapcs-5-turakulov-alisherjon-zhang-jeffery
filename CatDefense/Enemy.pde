@@ -89,6 +89,9 @@
         direction.setMag(1.5);
       }
       
+      if(name.equals("Tesla")){
+        direction.setMag((float)Math.random()*4);
+      }
       if(name.equals("Fast")){
         direction.setMag(4);
       }else if(name.equals("Tank")){
