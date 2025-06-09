@@ -251,7 +251,7 @@ class Shop extends Entity{
           text("Upgrades the\ndamage you\ndeal by 1!",width/2+50,height/2+185);
         }
         if(trackUIU==1){
-          text("Upgrades your\nand cat's\nmax health\nby 5!",width/2+50,height/2+185);
+          text("Upgrades your\nand cat's\nmax health\nby 25!",width/2+50,height/2+185);
         }
         text("Exit",width/2-400,height/2+300);
         float soulX=width/2-500;

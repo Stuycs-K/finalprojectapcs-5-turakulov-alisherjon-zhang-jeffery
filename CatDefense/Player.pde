@@ -69,14 +69,14 @@ class Player extends Entity{
     if(medkit&&closeEnough(c)){
       c.hp+=c.maxHP-c.hp;
       medpacks--;
-      if(medpacks<=1){
+      if(medpacks<=0){
         inventory.remove("medkit");
         medkit=false;
       }
     }else if(medkit){
       hp+=maxHP-hp;
       medpacks--;
-      if(medpacks<=1){
+      if(medpacks<=0){
         inventory.remove("medkit");
         medkit=false;
       }
