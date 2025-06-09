@@ -179,9 +179,210 @@ direction LR
 		
 	
 ```
+
+  Diagram V3:  
+```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
+classDiagram
+direction LR
+
+
+	class Entity{
+		<<Abstract>>
+		int: hp, maxHP
+		float mass
+		PVector: position, velocity, acceleration
+		String name
+
+		move() void
+		display() void
+		applyForce( f: PVector ) void
+		attractTo( other: Entity) PVector
+		moveTo(other: Entity) void
+		attack(other: Entity) void
+		heal(amt: int) void
+		closeEnough(other: Entity) boolean
+		closeEnough(other: PVector, radius: int) boolean
+		closeEnough(other: Entity, radius: int) boolean
+	}
+
+
+
+	class Map{
+		int[][] map
+		ArrayList<Wall> Walls
+		PImage: wallace, mappa, winS
+		display() void
+		displayEnd() void
+		displayWin() void
+	}
+
+
+	  class Wall{
+		   int damage
+		   takeDamage() void
+                   closeEnoughW(other: Entity) boolean
+		}
+
+	CatDefense "1" --o "1" Player
+	CatDefense "1" --o "0...n" Wall
+
+	Entity <|-- Bullets
+	Entity <|--  Shop 
+	Entity <|-- Player
+	Entity <|-- Cat
+	Entity <|-- Enemy
+	Entity <|-- Wall
+	 Enemy <|-- Boss
+	class Shop{
+	  int: costDefence, costWeapon, costBox, costMed
+	  int: trackUI, trackUII, trackUIU
+	  int: curFrame, countFrame, delayFrame, totalFrame
+	  boolean: base,items,upgrades, isOpen
+	  Player p
+          PImage: shop, shopGuy, bgUI,
+	  int: expDef, expWep
+	  float: sinAng, sinAmp
+	  PImage[] souls
+	  
+		
+		upgradeDefense() void
+		upgradeWeapon() void
+		ammoBox() void
+		medKit() void
+		changePos() void
+		textStroke() void
+		keyPressed() void
+		UI() void
+		display() void
+				
+	}
+
+    	class Player{
+		  int: catnip, weapon, defense, ammo
+	          int: maxAmmo,  remBox, remBoxL
+                  int: medpacks, souls, lives
+		  boolean: medkit, boxCheck, isCatnip
+		  float: speed, bulletSpeed
+		  boolean: up, down, left, right, shootHold
+		  ArrayList<Bullets> bullets
+		  ArrayList<String> inventory
+		  Cat c
+		  PImage: box, kit
+
+		  reload() void
+		  heal() void
+		  move() void
+		  UI() void
+                  display() void
+		  soulsDec(amount: int) void
+		  getSouls() int
+		  useCatnip() void
+                  defIng(amt: int) void
+		  wepInc(amt: int) void
+		  applyForce(f: PVector) void
+		  addItem(item: String) void
+		  addBox() void
+		  addMedkit() void
+		  keyPressed() void
+		  mousePressed() void
+		  mouseReleased() void
+		  keyReleased() void
+		  useCatnip() void
+		  shoot() void
+	  }
+  	 class Enemy{
+		int damage
+		attack( other: Entity ) void
+		henchmanAttack(other: Entity) void
+		 display() void
+		henchmanDisplay() void
+		move() void
+		moveTo(other: Entity) void
+		henchmanMoveTo(other: Entity) void
+		UI() void
+		spawnEnemies(type: String) void
+		speak() void
+			
+		
+	  }
+	class Bullets{
+		PVector: position, velocity
+  		Player p
+		float ang
+		PImage bull
+		move() void
+		destroy() boolean
+		display() void
+		closeEnough(other: Entity, radius: int) boolean
+		
+	}
+	class Cat{
+		PImage[] catto
+      		int: curFrame, countFrame, delayFrame, totalFrame
+		display() void
+		move() void
+		moveTo(other: Entity) void
+		
+	}
+	class Boss{
+		attack(other: Entity) void
+		UI() void
+		display() void
+		spawnEnemies(type: String) void
+		speak() void
+		move() void
+		moveTo(target: Entity) void
+		
+		
+		
+	}
+		
+
+
+ style m1: stroke-width:0px,text-color:none,stroke:none,fill:none
+   
+ 
+		
+  	class CatDefense{
+		  ArrayList<Enemy> Enemies
+		  ArrayList<Wall> Walls
+		  ArrayList<Bullets> Bullets
+                  Shop s
+		  String[] types
+		  Player p
+		  Cat c
+		  Map m
+  		  int: spawnNum,spawned = 0, enemiesFolded = 0, wave = 1,tick=0
+		  boolean: inter, invincible, bossBattle
+		  Enemy Bob
+		  setup() void
+		  keyPressed() void
+		  keyReleased() void
+	 	  mousePressed() void
+		  mouseReleased() void
+		  draw() void
+	}
+		
+		  Cat "1" o-- "1"CatDefense
+		Boss "1" o-- "1" CatDefense
+	       Enemy "1" o-- "1" CatDefense
+		CatDefense "1" --o "0...n" Bullets
+		CatDefense "1" --o "2" Shop
+		Map "1" o-- "1" CatDefense
+		
+	
+```  
 Changes to UML :
 - Store map array to a separate Map class
-
+- Add Boss class
+- Reorient diagram
+- rename methods in Enemies to moveTo()
+- add instance variables into classes such as shop and catdefense as needed for implementations  
     
 # Intended pacing:
 
@@ -197,7 +398,7 @@ A timeline with expected completion dates of parts of the project. (CHANGE THIS!
   - Player Child Class
     - Fields & Constructor
     - Shooting and reloading
-    - Dropping catnip
+    - ~Dropping catnip~ option in the shop; not buyable
   - Enemy Child Class
     - Fields & Constructor
     - close attacks
