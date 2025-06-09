@@ -64,4 +64,9 @@ Fixed shop issue with moving to upgrades/items area of UI along with buying twic
 
 Time: ~110 minutes
 
+### 2025-06-08 - Map, Intermission update, Inventory system completed and shop fixes
+Implemented finalizations for boss such as balancing and HP bar. Implemented intermission skipping by holding X as well as visuals showing progress in skipping intermission. Implemented shop text for each item/upgrade and changes to health upgrade in relation to cat. Fixed offsets with new program layout where most of the player's UI is on the far right and bars such as boss HP/intermission are in the top middle of the map. Also included shop text offsets being fixed to appear properly with the layout. 
+
+Time: ~300 minutes
+
 I believe this document accurately reflects the contributions of my teamate. -Alisher
