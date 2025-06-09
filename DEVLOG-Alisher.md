@@ -50,4 +50,6 @@ Time: ~60 minutes;
   
 ### 2025-06-08 - fix Bossbattle and tweak methods, readme, protoype UML, final video editing
 Add movement to boss battle, fix spawnEnemies method, increase henchman range and make zap line visible. Update readme with project desc/instructions, update prototype with final UML version. Put together individual meeting recordings into final video.
-Time: ~90 minutes;  
+Time: ~90 minutes; 
+
+I believe this document accurately reflects the contributions of my teamate. -Jeffery
