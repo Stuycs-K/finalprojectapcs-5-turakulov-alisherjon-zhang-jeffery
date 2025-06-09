@@ -126,7 +126,7 @@ void draw(){
        
   if(inter){
     if(tick==0){
-      int randX=(int)random(width-100);
+      int randX=(int)random(width-250);
       int randY=(int)random(height-100);
       s.changePos(randX,randY);
     }
