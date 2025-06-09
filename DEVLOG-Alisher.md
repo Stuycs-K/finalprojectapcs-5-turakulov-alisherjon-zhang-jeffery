@@ -46,4 +46,8 @@ Time: ~60 minutes;
   
 ### 2025-06-06 - Tesla movement/attack, window size and wall error  
 Write Tesla movement and attack method and move into separate boss lackey methods; Expand window, Fix the walls spawning outside the bounds because array was 50x, change back to 40x.
-Time: ~60 minutes;  
+Time: ~60 minutes;    
+  
+### 2025-06-08 - fix Bossbattle and tweak methods, readme, protoype UML, final video editing
+Add movement to boss battle, fix spawnEnemies method, increase henchman range and make zap line visible. Update readme with project desc/instructions, update prototype with final UML version. Put together individual meeting recordings into final video.
+Time: ~90 minutes;  

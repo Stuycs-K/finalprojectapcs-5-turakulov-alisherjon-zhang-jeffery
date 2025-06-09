@@ -64,3 +64,4 @@ Fixed shop issue with moving to upgrades/items area of UI along with buying twic
 
 Time: ~110 minutes
 
+I believe this document accurately reflects the contributions of my teamate. -Alisher
